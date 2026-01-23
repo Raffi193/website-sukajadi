@@ -3,9 +3,9 @@ import { Shield, CheckCircle, CreditCard } from "lucide-react";
 
 export default function Hero() {
   return (
-    <div className="relative w-full">
+    <div data-aos="fade-up" className="relative w-full">
       {/* Background & Text */}
-      <div className="relative h-[600px] w-full bg-gray-200 overflow-hidden">
+      <div className="relative h-[550px] w-full bg-gray-200 overflow-hidden">
         <Image
           src="/images/kantorLurah.png"
           alt="Kantor Kelurahan Sukajadi"
@@ -13,10 +13,10 @@ export default function Hero() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/90 to-blue-500/0" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500 " />
         <div className="absolute inset-0 bg-black/10" />
 
-        <div className="absolute inset-0 flex items-center">
+        <div data-aos="fade-up" className="container absolute inset-0 flex items-center">
           <div className="container mx-auto px-4 grid md:grid-cols-2 gap-8">
             <div className="text-white space-y-6">
               <div className="flex items-center gap-4">
@@ -35,7 +35,7 @@ export default function Hero() {
                 transparan dan akuntabel untuk mewujudkan pelayanan prima bagi
                 masyarakat.
               </p>
-              <button className="bg-white text-blue-700 px-8 py-3 rounded font-semibold hover:bg-blue-50 hover:scale-105 transition-all shadow-lg">
+              <button data-aos="zoom-in" className="bg-white text-blue-700 px-8 py-3 rounded font-semibold hover:bg-blue-50 hover:scale-105 transition-all shadow-lg">
                 Jelajahi Profil
               </button>
             </div>
@@ -44,7 +44,7 @@ export default function Hero() {
       </div>
 
       {/* Floating Info Cards */}
-      <div className="relative -mt-24 z-20 container mx-auto px-20 mb-12">
+      <div data-aos="fade-up" className="relative -mt-10 z-20 container mx-auto px-20 mb-12">
         <div className="grid md:grid-cols-3 shadow-xl rounded-lg overflow-hidden">
           {/* Card 1 */}
           <div className="bg-white p-8 group hover:bg-gray-50 transition cursor-pointer">

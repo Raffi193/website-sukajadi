@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@layer components {
+  .container {
+    /* mx-auto: Membuat konten otomatis di tengah */
+    /* px-4: Memberi jarak (padding) kiri-kanan di HP */
+    /* md:px-8: Memberi jarak lebih lega di layar Laptop/Tablet */
+    @apply mx-auto px-4 md:px-8 max-w-7xl;
+  }
+}
+
+body {
+  font-family: var(--font-primary), sans-serif;
+}

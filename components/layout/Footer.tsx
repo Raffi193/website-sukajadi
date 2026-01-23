@@ -1,15 +1,16 @@
 import Link from 'next/link';
-import { Phone, Mail, MapPin, Instagram, Youtube } from 'lucide-react';
+import { FaInstagram, FaYoutube, FaPhone, FaEnvelope, FaMap } from "react-icons/fa";
+
 
 export default function Footer() {
   return (
-    <footer className="bg-blue-600 text-white pt-16 pb-8">
+    <footer className="bg-blue-600 text-white pt-16 pb-8 container">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Identitas */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
-               <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-blue-600 font-bold">L</div>
+               <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-blue-600 font-bold">Logo</div>
                <h3 className="font-bold text-lg uppercase leading-tight">Kelurahan<br/>Sukajadi</h3>
             </div>
             <p className="text-blue-100 text-sm leading-relaxed">
@@ -17,10 +18,10 @@ export default function Footer() {
             </p>
             <div className="flex gap-4 pt-4">
                <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-white hover:text-blue-600 transition cursor-pointer">
-                  <Instagram size={16}/>
+                  <FaInstagram size={16}/>
                </div>
                <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-white hover:text-blue-600 transition cursor-pointer">
-                  <Youtube size={16}/>
+                  <FaYoutube size={16}/>
                </div>
             </div>
           </div>
@@ -50,15 +51,15 @@ export default function Footer() {
             <h4 className="font-bold text-lg mb-6">Hubungi Kami</h4>
             <ul className="space-y-4 text-blue-100 text-sm">
               <li className="flex gap-3 items-start">
-                <Phone size={18} className="shrink-0 mt-1" />
+                <FaPhone size={18} className="shrink-0 mt-1" />
                 <span>0812-3456-7890</span>
               </li>
               <li className="flex gap-3 items-start">
-                <Mail size={18} className="shrink-0 mt-1" />
+                <FaEnvelope size={18} className="shrink-0 mt-1" />
                 <span>kelurahan@sukajadi.go.id</span>
               </li>
               <li className="flex gap-3 items-start">
-                <MapPin size={18} className="shrink-0 mt-1" />
+                <FaMap size={18} className="shrink-0 mt-1" />
                 <span>Jl. Raya Sukajadi No. 123, Palembang</span>
               </li>
             </ul>
@@ -66,7 +67,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-blue-500 pt-8 text-center text-blue-200 text-sm">
-          <p>&copy; {new Date().getFullYear()} PEMERINTAH KELURAHAN SUKAJADI.</p>
+          <p>&copy; {new Date().getFullYear()} Pemerintah Kelurahan Sukajadi</p>
         </div>
       </div>
     </footer>

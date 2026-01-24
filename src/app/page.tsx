@@ -4,7 +4,9 @@ import Hero from "@/components/home/Hero";
 import Footer from "@/components/layout/Footer";
 import FloatingButton from "@/components/layout/FloatingButton";
 import Image from "next/image";
-import Berita from "./berita/page";
+import DaftarBerita from "./berita/DaftarBerita";
+import Jelajahi from "./section/jelajahDesa";
+import SaranaPrasarana from "./section/saranaPrasarana";
 
 export default function Home() {
   return (
@@ -14,7 +16,7 @@ export default function Home() {
         <Navbar />
         <Hero />
 
-        {/* Area Konten Utama Halaman (Bisa dibuat komponen terpisah lagi nanti) */}
+        {/* Area Konten Utama Halaman */}
         <section data-aos="fade-up" className="py-20 bg-white">
           <div className="container mx-auto px-4 md:px-16">
             <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -65,7 +67,14 @@ export default function Home() {
           </div>
         </section>
 
-        <Berita  />
+        {/* Section Jelajahi */}
+        <Jelajahi />
+
+        {/* Section Sarana */}
+        <SaranaPrasarana />
+
+        {/*Panggil list berita, batasi 3 saja */}
+        <DaftarBerita limit={3} />
 
         <Footer />
         <FloatingButton />

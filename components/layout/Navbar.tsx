@@ -19,15 +19,15 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Beranda", href: "/" },
-    { name: "Profil", href: "#", hasDropdown: true },
-    { name: "Pemerintahan", href: "#" },
+    { name: "Profil", href: "./profilPage", hasDropdown: true },
+    { name: "Pemerintahan", href: "./pemerintahan" },
     {
       name: "Layanan",
       href: "#",
       subItems: [
         { name: "Administrasi Kependudukan", href: "/layanan/administrasi" },
         { name: "Surat Keterangan", href: "/layanan/surat" },
-        { name: "Layanan Kesehatan", href: "/layanan/kesehatan" },
+        { name: "Layanan Pengaduan Masyarakat", href: "/layanan/pengaduan" },
         { name: "Bantuan Sosial", href: "/layanan/bansos" },
       ],
     },

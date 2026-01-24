@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Phone, Mail, Facebook, Instagram, Youtube } from 'lucide-react';
 import { FaInstagram, FaYoutube, FaPhone, FaEnvelope, FaFacebook } from "react-icons/fa";
 
 export default function TopBar() {

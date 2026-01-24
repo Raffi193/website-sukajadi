@@ -1,91 +1,84 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { Calendar, ArrowRight } from 'lucide-react';
+import Link from "next/link";
+import Image from "next/image";
+import { Calendar, ArrowRight } from "lucide-react";
+import TopBar from "@/components/layout/TopBar";
+import NavBar from "@/components/layout/Navbar";
+import Hero from "@/components/home/Hero";
+import Footer from "@/components/layout/Footer";
+import { FaSearch, FaHome, FaChevronRight } from "react-icons/fa";
+import DaftarBerita from "./DaftarBerita";
 
-// Data Dummy (Nanti bisa diganti dengan database/API)
-const beritaTerbaru = [
-  {
-    id: 1,
-    judul: "Penyaluran Bantuan Langsung Tunai (BLT) Tahap 3",
-    tanggal: "21 Jan 2026",
-    kategori: "Pemerintahan",
-    image: "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=1000",
-    excerpt: "Pemerintah Kelurahan Sukajadi kembali menyalurkan bantuan kepada warga yang membutuhkan sesuai data terpadu."
-  },
-  {
-    id: 2,
-    judul: "Kerja Bakti Masal Membersihkan Saluran Air",
-    tanggal: "18 Jan 2026",
-    kategori: "Kegiatan Warga",
-    image: "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80&w=1000",
-    excerpt: "Antusiasme warga RT 01 sampai RT 05 dalam kegiatan jumat bersih untuk mencegah banjir."
-  },
-  {
-    id: 3,
-    judul: "Jadwal Pelayanan Posyandu Balita & Lansia",
-    tanggal: "15 Jan 2026",
-    kategori: "Kesehatan",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1000",
-    excerpt: "Informasi jadwal terbaru pelaksanaan Posyandu di setiap RW untuk bulan Februari 2026."
-  }
-];
 
 export default function Berita() {
   return (
-    <section data-aos="fade-up" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4 md:px-16">
-        
-        {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold text-gray-800">Kabar Sukajadi</h2>
-            <p className="text-gray-600">Ikuti perkembangan terbaru dan kegiatan di wilayah kami.</p>
-            <div className="h-1 w-20 bg-blue-600 rounded-full mt-2"></div>
-          </div>
-          <Link href="/berita" className="group flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-800 transition">
-            Lihat Semua Berita 
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/>
-          </Link>
-        </div>
+    <>
+      <main className="text-gray-800 bg-gray-50 min-h-screen">
+        <TopBar />
+        <NavBar />
 
-        {/* Grid Berita */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {beritaTerbaru.map((item) => (
-            <div key={item.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group border border-gray-100">
-              {/* Gambar Berita */}
-              <div className="relative h-48 w-full overflow-hidden">
-                <Image 
-                  src={item.image} 
-                  alt={item.judul}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-4 left-4 bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-medium">
-                  {item.kategori}
-                </div>
-              </div>
-              
-              {/* Konten Berita */}
-              <div className="p-6">
-                <div className="flex items-center gap-2 text-gray-400 text-xs mb-3">
-                  <Calendar size={14} />
-                  <span>{item.tanggal}</span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-800 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
-                  <Link href={`/berita/${item.id}`}>{item.judul}</Link>
-                </h3>
-                <p className="text-gray-600 text-sm line-clamp-3 mb-4">
-                  {item.excerpt}
-                </p>
-                <Link href={`/berita/${item.id}`} className="text-sm font-semibold text-blue-600 hover:underline">
-                  Baca Selengkapnya
+        <section className="relative h-[400px] w-full flex items-center container">
+          {/* 1. Background Image (Ganti dengan foto aktivitas warga/kantor) */}
+          <Image
+            src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000&auto=format&fit=crop"
+            alt="Arsip Berita Kelurahan"
+            fill
+            className="object-cover"
+            priority
+          />
+
+          {/* 2. Gradient Overlay (Supaya teks terbaca jelas) */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 via-blue-800/80 to-blue-900/40" />
+
+          {/* 3. Konten Hero */}
+          <div className="relative z-10 px-4 md:px-3">
+            <div className="max-w-3xl">
+              {/* Breadcrumb (Navigasi Kecil) */}
+              <div className="flex items-center gap-2 text-blue-200 text-sm mb-4 font-sans">
+                <Link
+                  href="/"
+                  className="hover:text-white transition flex items-center gap-1"
+                >
+                  <FaHome /> Beranda
                 </Link>
+                <FaChevronRight size={10} />
+                <span className="text-white font-medium">Berita</span>
+              </div>
+
+              {/* Judul & Deskripsi */}
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 font-poppins leading-tight">
+                Kabar & Informasi <br />
+                <span className="text-yellow-400">Terkini</span>
+              </h1>
+
+              <p className="text-blue-100 text-lg mb-8 font-sans leading-relaxed max-w-2xl">
+                Dapatkan informasi terbaru seputar kegiatan pemerintahan,
+                layanan masyarakat, dan potensi desa secara transparan.
+              </p>
+
+              {/* Search Bar Modern */}
+              <div className="bg-white p-2 rounded-lg shadow-lg flex flex-col md:flex-row gap-2 max-w-xl">
+                <div className="relative flex-grow">
+                  <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                    <FaSearch />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Cari berita atau pengumuman..."
+                    className="w-full pl-10 pr-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 font-sans"
+                  />
+                </div>
+                <button className="bg-blue-600 text-white px-8 py-3 rounded-md font-bold hover:bg-blue-700 transition font-sans shadow-md">
+                  Cari
+                </button>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        </section>
 
-      </div>
-    </section>
+        <DaftarBerita />
+
+        <Footer />
+      </main>
+    </>
   );
 }

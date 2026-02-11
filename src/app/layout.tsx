@@ -1,3 +1,5 @@
+import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from 'sonner'
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
@@ -8,16 +10,30 @@ const inter = Inter({
   variable: "--font-primary",
 });
 
+export const metadata = {
+  title: 'Admin Panel Kelurahan',
+  description: 'Sistem Manajemen Kelurahan',
+}
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" className={inter.variable}>
-      <body>
-        <Providers>{children}</Providers>
-      </body>
-    </html>
+     <ClerkProvider
+      appearance={{
+        variables: {
+          colorPrimary: '#3b82f6',
+        },
+      }}
+    >
+      <html lang="id">
+        <body className={inter.className}>
+          {children}
+          <Toaster position="top-right" richColors />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

@@ -1,147 +1,342 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
+// This is your Prisma schema file
 generator client {
-  provider = "prisma-client"
-  output   = "../app/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
-enum PengaduanStatus {
-  Pending
-  Diproses
-  Selesai
-}
-
+// ==================== USER MANAGEMENT ====================
 model User {
-  id                String    @id @default(uuid()) @db.Uuid
-  name              String?   @db.VarChar(255)
-  email             String    @unique @db.VarChar(255)
-  emailVerifiedAt   DateTime? @map("email_verified_at")
-  password          String?   @db.VarChar(255)
-  rememberToken     String?   @map("remember_token") @db.VarChar(100)
-  createdAt         DateTime  @default(now()) @map("created_at")
-  updatedAt         DateTime  @updatedAt @map("updated_at")
+  id           String        @id @default(uuid())
+  clerkId      String        @unique
+  email        String        @unique
+  name         String
+  username     String?       @unique
+  avatar       String?
+  isActive     Boolean       @default(true)
+  lastLogin    DateTime?
+  berita       Berita[]
+  pengumuman   Pengumuman[]
+  agenda       Agenda[]
+  galeri       Galeri[]
+  dokumen      DokumenPublik[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
 
   @@map("users")
 }
 
-model Author {
-  id        String   @id @default(uuid()) @db.Uuid
-  name      String   @db.VarChar(255)
-  username  String?  @db.VarChar(255)
-  avatar    String?  @db.VarChar(255)
-  bio       String?  @db.Text
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
 
-  // Relasi
-  news      News[]   @relation("AuthorNews")
+// ==================== BERITA ====================
+model Berita {
+  id            String          @id @default(uuid())
+  judul         String
+  slug          String          @unique
+  konten        String          @db.Text
+  excerpt       String?         @db.Text
+  thumbnail     String?
+  isPublished   Boolean         @default(false)
+  isPinned      Boolean         @default(false)
+  viewCount     Int             @default(0)
+  authorId      String
+  author        User            @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  kategoriId    String
+  kategori      KategoriBerita  @relation(fields: [kategoriId], references: [id])
+  publishedAt   DateTime?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
 
-  @@map("authors")
+  @@index([slug])
+  @@index([kategoriId])
+  @@index([publishedAt])
+  @@map("berita")
 }
 
-model NewsCategory {
-  id        String   @id @default(uuid()) @db.Uuid
-  title     String   @db.VarChar(255)
-  slug      String   @unique @db.VarChar(255) // PERBAIKAN: Slug harus unik
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+model KategoriBerita {
+  id          String   @id @default(uuid())
+  nama        String
+  slug        String   @unique
+  deskripsi   String?
+  icon        String?
+  urutan      Int      @default(0)
+  berita      Berita[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  news      News[]
-
-  @@map("news_categories")
+  @@map("kategori_berita")
 }
 
-model News {
-  id             String        @id @default(uuid()) @db.Uuid
-  authorId       String?       @map("author_id") @db.Uuid
-  newsCategoryId String?       @map("news_category_id") @db.Uuid
-  title          String        @db.VarChar(255)
-  slug           String        @unique @db.VarChar(255) // PERBAIKAN: Slug harus unik
-  thumbnail      String?       @db.VarChar(255)
-  content        String?       @db.Text
-  isFeatured     Boolean       @default(false) @map("is_featured")
-  createdAt      DateTime      @default(now()) @map("created_at")
-  updatedAt      DateTime      @updatedAt @map("updated_at")
+// ==================== PROFIL KELURAHAN ====================
+model ProfilKelurahan {
+  id                String   @id @default(uuid())
+  namaKelurahan     String
+  kodePos           String?
+  alamat            String   @db.Text
+  nomorTelepon      String?
+  email             String?
+  website           String?
   
-  // PERBAIKAN: BigInt diganti Int (Lihat penjelasan di bawah)
-  views          Int           @default(0) 
+  // Sejarah & Visi Misi
+  sejarah           String?  @db.Text
+  visiMisi          String?  @db.Text
+  
+  // Data Geografis
+  luasWilayah       String?
+  batasUtara        String?
+  batasSelatan      String?
+  batasTimur        String?
+  batasBarat        String?
+  jumlahRW          Int?
+  jumlahRT          Int?
+  
+  // Data Demografi
+  jumlahPenduduk    Int?
+  jumlahKK          Int?
+  
+  // Media Sosial
+  facebook          String?
+  instagram         String?
+  twitter           String?
+  youtube           String?
+  
+  // Logo & Gambar
+  logo              String?
+  gambarKantor      String?
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
-  // Relations
-  author         Author?       @relation("AuthorNews", fields: [authorId], references: [id])
-  category       NewsCategory? @relation(fields: [newsCategoryId], references: [id])
-  banners        Banner[]
-
-  @@map("news")
+  @@map("profil_kelurahan")
 }
 
-model Banner {
-  id        String   @id @default(uuid()) @db.Uuid
-  newsId    String?  @map("news_id") @db.Uuid
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+// ==================== PENGUMUMAN ====================
+model Pengumuman {
+  id          String              @id @default(uuid())
+  judul       String
+  slug        String              @unique
+  konten      String              @db.Text
+  jenis       JenisPengumuman     @default(UMUM)
+  prioritas   PrioritasPengumuman @default(NORMAL)
+  file        String?
+  thumbnail   String?
+  isPublished Boolean             @default(false)
+  authorId    String
+  author      User                @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  tanggalMulai DateTime?
+  tanggalAkhir DateTime?
+  viewCount   Int                 @default(0)
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
 
-  news      News?    @relation(fields: [newsId], references: [id])
-
-  @@map("banners")
+  @@index([slug])
+  @@index([jenis])
+  @@map("pengumuman")
 }
 
-model HomeBanner {
-  id        String   @id @default(uuid()) @db.Uuid
-  title     String   @db.VarChar(255)
-  image     String   @db.VarChar(255)
-  order     Int?
-  isActive  Boolean  @default(true) @map("is_active")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  @@map("homebanners")
+enum JenisPengumuman {
+  UMUM
+  PENTING
+  DARURAT
+  LAYANAN
+  ACARA
 }
 
-model DokumenDesa {
-  id        String   @id @default(uuid()) @db.Uuid
-  nama      String   @db.VarChar(255)
-  file      String   @db.VarChar(255)
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  @@map("dokumen_desas")
+enum PrioritasPengumuman {
+  RENDAH
+  NORMAL
+  TINGGI
+  URGENT
 }
 
-model ContactMessage {
-  id        String   @id @default(uuid()) @db.Uuid
-  nama      String   @db.VarChar(255)
-  email     String   @db.VarChar(255)
-  subjek    String?  @db.VarChar(255)
-  pesan     String?  @db.Text
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+// ==================== AGENDA ====================
+model Agenda {
+  id              String       @id @default(uuid())
+  judul           String
+  slug            String       @unique
+  deskripsi       String       @db.Text
+  lokasi          String
+  tanggalMulai    DateTime
+  tanggalSelesai  DateTime?
+  waktuMulai      String?
+  waktuSelesai    String?
+  jenis           JenisAgenda  @default(KEGIATAN)
+  penyelenggara   String?
+  thumbnail       String?
+  isPublished     Boolean      @default(false)
+  authorId        String
+  author          User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
 
-  @@map("contact_messages")
+  @@index([slug])
+  @@index([tanggalMulai])
+  @@map("agenda")
 }
 
+enum JenisAgenda {
+  KEGIATAN
+  RAPAT
+  SOSIALISASI
+  PELAYANAN
+  LAINNYA
+}
+
+// ==================== GALERI KEGIATAN ====================
+model Galeri {
+  id          String        @id @default(uuid())
+  judul       String
+  slug        String        @unique
+  deskripsi   String?       @db.Text
+  tanggal     DateTime
+  lokasi      String?
+  thumbnail   String?
+  isPublished Boolean       @default(false)
+  authorId    String
+  author      User          @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  foto        FotoGaleri[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([slug])
+  @@index([tanggal])
+  @@map("galeri")
+}
+
+model FotoGaleri {
+  id          String   @id @default(uuid())
+  galeriId    String
+  galeri      Galeri   @relation(fields: [galeriId], references: [id], onDelete: Cascade)
+  namaFile    String
+  urlFile     String
+  caption     String?
+  urutan      Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  @@index([galeriId])
+  @@map("foto_galeri")
+}
+
+// ==================== PERANGKAT KELURAHAN ====================
+model PerangkatKelurahan {
+  id            String              @id @default(uuid())
+  nama          String
+  nip           String?             @unique
+  jabatan       String
+  jenisJabatan  JenisJabatan        @default(STAFF)
+  foto          String?
+  telepon       String?
+  email         String?
+  pendidikan    String?
+  alamat        String?             @db.Text
+  urutan        Int                 @default(0)
+  isActive      Boolean             @default(true)
+  mulaiJabatan  DateTime?
+  akhirJabatan  DateTime?
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+
+  @@index([jabatan])
+  @@map("perangkat_kelurahan")
+}
+
+enum JenisJabatan {
+  LURAH
+  SEKRETARIS
+  KASI
+  STAFF
+  LAINNYA
+}
+
+// ==================== DOKUMEN PUBLIK ====================
+model DokumenPublik {
+  id            String            @id @default(uuid())
+  judul         String
+  slug          String            @unique
+  deskripsi     String?           @db.Text
+  kategori      KategoriDokumen
+  namaFile      String
+  urlFile       String
+  ukuranFile    Int?              // in bytes
+  tipeFile      String?           // pdf, doc, xls, etc
+  thumbnail     String?
+  isPublished   Boolean           @default(false)
+  downloadCount Int               @default(0)
+  authorId      String
+  author        User              @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  @@index([slug])
+  @@index([kategori])
+  @@map("dokumen_publik")
+}
+
+enum KategoriDokumen {
+  PERATURAN
+  SK_LURAH
+  LAPORAN
+  FORMULIR
+  PROSEDUR
+  LAINNYA
+}
+
+// ==================== PENGADUAN ====================
 model Pengaduan {
-  id           String          @id @default(uuid()) @db.Uuid
-  namaLengkap  String          @map("nama_lengkap") @db.VarChar(255)
-  nik          String?         @db.VarChar(16)
-  email        String?         @db.VarChar(255)
-  telepon      String?         @db.VarChar(20)
-  kategori     String?         @db.VarChar(255)
-  isiPengaduan String?         @map("isi_pengaduan") @db.Text
-  lampiran     String?         @db.VarChar(255)
-  nomorTiket   String?         @unique @map("nomor_tiket") @db.VarChar(20) // PERBAIKAN: Tiket harus unik
-  status       PengaduanStatus @default(Pending)
-  createdAt    DateTime        @default(now()) @map("created_at")
-  updatedAt    DateTime        @updatedAt @map("updated_at")
+  id              String           @id @default(uuid())
+  nomorPengaduan  String           @unique
+  nama            String
+  nik             String?
+  email           String?
+  telepon         String
+  alamat          String           @db.Text
+  judul           String
+  isiPengaduan    String           @db.Text
+  kategori        KategoriPengaduan
+  lampiran        String?
+  status          StatusPengaduan  @default(PENDING)
+  tanggapan       String?          @db.Text
+  penanggungJawab String?
+  tanggalTanggap  DateTime?
+  tanggalSelesai  DateTime?
+  isAnonim        Boolean          @default(false)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
 
-  @@map("pengaduans")
+  @@index([nomorPengaduan])
+  @@index([status])
+  @@index([kategori])
+  @@map("pengaduan")
+}
+
+enum KategoriPengaduan {
+  INFRASTRUKTUR
+  KEBERSIHAN
+  KEAMANAN
+  ADMINISTRASI
+  PELAYANAN
+  SOSIAL
+  LAINNYA
+}
+
+enum StatusPengaduan {
+  PENDING
+  DIPROSES
+  SELESAI
+  DITOLAK
+}
+
+// ==================== SETTINGS (Optional) ====================
+model Setting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String   @db.Text
+  deskripsi String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("settings")
 }

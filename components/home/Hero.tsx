@@ -13,8 +13,10 @@ export default function Hero() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500 " />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/100 via-blue-500/20 to-blue-500/10" />
+
         <div className="absolute inset-0 bg-black/10" />
+        
 
         <div
           data-aos="fade-up"

@@ -4,16 +4,16 @@ import Hero from "@/components/home/Hero";
 import Footer from "@/components/layout/Footer";
 import FloatingButton from "@/components/layout/FloatingButton";
 import Image from "next/image";
-import DaftarBerita from "./berita/DaftarBerita";
+import DaftarBerita from "@/components/DaftarBerita";
 import Jelajahi from "./section/jelajahDesa";
 import SaranaPrasarana from "./section/saranaPrasarana";
 
 export default function Home() {
   return (
     <>
+      <TopBar />
+      <Navbar />
       <main className=" text-gray-800 bg-gray-50 min-h-screen">
-        <TopBar />
-        <Navbar />
         <Hero />
 
         {/* Area Konten Utama Halaman */}
@@ -25,7 +25,7 @@ export default function Home() {
                 {/* Frame aksen di belakang foto */}
                 <div className="absolute -inset-4 bg-blue-100 rounded-xl transform rotate-3 -z-10" />
 
-                <div className="relative h-[400px] w-full rounded-lg overflow-hidden shadow-lg border-b-4 border-blue-600">
+                <div className="relative h-[450px] w-full rounded-lg overflow-hidden shadow-lg border-b-4 border-blue-600">
                   {/* Ganti dengan foto Pak Lurah nanti */}
                   <Image
                     src="/images/kantorLurah.png"

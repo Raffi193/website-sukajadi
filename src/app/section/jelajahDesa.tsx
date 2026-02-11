@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-// 👇 Import dari react-icons/fa
-import { FaMapMarkedAlt, FaHistory, FaStore, FaImages, FaArrowRight } from "react-icons/fa";
+import { FaMapMarkedAlt, FaHistory, FaUserTie, FaImages, FaArrowRight, FaAddressCard } from "react-icons/fa";
 
 const exploreItems = [
   {
@@ -9,28 +8,28 @@ const exploreItems = [
     desc: "Letak geografis, batas wilayah, dan peta digital kelurahan.",
     icon: <FaMapMarkedAlt size={24} />, // Ikon Peta
     image: "https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop", 
-    href: "/profil/wilayah"
+    href: "/gridInformasi/gridWilayah"
   },
   {
     title: "Sejarah Desa",
     desc: "Asal usul dan perjalanan sejarah terbentuknya Kelurahan Sukajadi.",
     icon: <FaHistory size={24} />, // Ikon Sejarah
     image: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=800&auto=format&fit=crop", 
-    href: "/profil/sejarah"
+    href: "/gridInformasi/gridSejarah"
   },
   {
-    title: "Potensi UMKM",
+    title: "Potensi Kelurahan",
     desc: "Produk unggulan dan kerajinan tangan karya warga lokal.",
-    icon: <FaStore size={24} />, // Ikon Toko/UMKM
+    icon: <FaUserTie size={24} />, // Ikon Toko/UMKM
     image: "https://images.unsplash.com/photo-1472851294608-41531029f9e5?q=80&w=800&auto=format&fit=crop", 
-    href: "/potensi/umkm"
+    href: "/gridInformasi/gridPotensi"
   },
   {
     title: "Galeri Kegiatan",
     desc: "Dokumentasi visual kegiatan pemerintahan dan kemasyarakatan.",
     icon: <FaImages size={24} />, // Ikon Galeri
     image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop", 
-    href: "/galeri"
+    href: "/gridInformasi/gridGaleri"
   },
 ];
 
@@ -60,12 +59,12 @@ export default function Jelajahi() {
               className="group relative h-[320px] w-full overflow-hidden rounded-xl cursor-pointer shadow-lg"
             >
               {/* Background Image dengan Efek Zoom */}
-              <Image 
+              {/* <Image 
                 src={item.image} 
                 alt={item.title}
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
-              />
+              /> */}
               
               {/* Overlay Gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />

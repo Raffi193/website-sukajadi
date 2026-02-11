@@ -71,12 +71,12 @@ export default function PerangkatGrid() {
       
       {/* Foto Portrait (Ukuran Kecil & Pas) */}
       <div className="relative aspect-[3/3] w-full overflow-hidden bg-gray-200">
-        <Image 
+        {/* <Image 
           src={member.image} 
           alt={member.name}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
-        />
+        /> */}
         
         {/* Overlay Label */}
         <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
@@ -107,12 +107,12 @@ export default function PerangkatGrid() {
   );
 
   return (
-    <section className="py-18 mb-25 bg-white">
+    <section className="py-18  bg-white">
       <div className="container mx-auto px-4 md:px-16">
         
         {/* Judul Section */}
         <div className="mb-12 border-l-4 border-blue-600 pl-4">
-          <h2 className="text-3xl font-bold text-gray-900 font-poppins">Profil Aparatur</h2>
+          <h2 className="text-3xl font-bold text-gray-900 font-poppins">Profil <span className="text-blue-600">Aparatur</span></h2>
           <p className="text-gray-500 mt-1 font-sans">
             Perangkat Pemerintahan Kelurahan Sukajadi
           </p>

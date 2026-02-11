@@ -5,13 +5,17 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "images.unsplash.com", // Mengizinkan gambar dari Unsplash
+        hostname: "fclglmjsenezczcqgdsb.supabase.co",
+        port: "",
+        pathname: "/storage/v1/object/public/**", // <--- INI KUNCINYA
       },
-      // Jika nanti pakai domain lain (misal penyimpanan awan), tambahkan disini
     ],
   },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '10mb',
+    },
+  },
 };
-
-
 
 export default nextConfig;

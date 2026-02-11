@@ -1,26 +1,43 @@
+"use client";
+
 import React from "react";
+import Image from "next/image";
 import TopBar from "@/components/layout/TopBar";
 import Navbar from "@/components/layout/Navbar";
-import Hero from "@/components/home/Hero";
 import Footer from "@/components/layout/Footer";
-import { FaSitemap, FaDownload, FaUserTie, FaIdBadge } from "react-icons/fa";
-import PerangkatGrid from "./PerangkatDesa"
+import LembagaMitra from "./lembagaKemasyarakatan";
+import Hero from "./hero";
+import TupoksiSection from "./TupoksiSection";
+import VisiMisi from "./VisiMisi";
+import {
+  FaSitemap,
+  FaDownload,
+  FaUserTie,
+  FaIdBadge,
+  FaLandmark,
+  FaChevronDown,
+} from "react-icons/fa";
+import PerangkatGrid from "./PerangkatDesa";
+import Link from "next/link";
 
 export default function page() {
   return (
     <>
       <TopBar />
       <Navbar />
+      <Hero />
 
-      <section className="py-18 bg-gray-50">
-        <div className="container">
+      <VisiMisi />
+
+      <section className="container pt-15 py-18 bg-gray-50">
+        <div className="containezr">
           {/* Judul Section */}
           <div className=" mb-12 container">
             <span className="text-blue-600 font-bold tracking-wider text-sm uppercase">
               Hierarki Organisasi
             </span>
             <h2 className="text-3xl font-bold text-gray-900 font-poppins mt-2">
-              Bagan Struktur Pemerintahan
+              Bagan Struktur <span className="text-blue-600">Pemerintahan</span>
             </h2>
             <p className="text-gray-500 mt-4 font-sans">
               Gambaran alur koordinasi dan pertanggungjawaban tugas di
@@ -51,8 +68,13 @@ export default function page() {
         </div>
       </section>
 
+
       {/*  Komponen Grid Foto (Daftar Pegawai) */}
       <PerangkatGrid />
+
+      <TupoksiSection />
+
+      <LembagaMitra />
 
       <Footer />
     </>

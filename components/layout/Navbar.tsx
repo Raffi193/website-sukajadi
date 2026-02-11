@@ -25,14 +25,20 @@ export default function Navbar() {
       name: "Layanan",
       href: "#",
       subItems: [
-        { name: "Administrasi Kependudukan", href: "/layanan/administrasi" },
-        { name: "Surat Keterangan", href: "/layanan/surat" },
-        { name: "Layanan Pengaduan Masyarakat", href: "/layanan/pengaduan" },
-        { name: "Bantuan Sosial", href: "/layanan/bansos" },
+        { name: "Administrasi Kependudukan", href: "/administrasiKependudukan" },        
+        { name: "Layanan Pengaduan Masyarakat", href: "https://www.lapor.go.id/" },
+        { name: "Bantuan Sosial", href: "/BantuanSosial" },
       ],
     },
-    { name: "Berita", href: "./berita" },
-    { name: "Kontak", href: "#" },
+    { name: "Berita",
+      href: "./berita",
+      subItems: [
+        { name: "Berita Terbaru", href: "./berita" },
+        { name: "Pengumuman", href: "./pengumuman" },
+        { name: "Agenda", href: "./agenda" },
+      ],
+    },
+    { name: "Kontak", href: "/kontak" },
   ];
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);

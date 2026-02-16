@@ -19,14 +19,12 @@ export default function Home() {
         {/* --- SECTION SAMBUTAN LURAH (DESAIN BARU) --- */}
         <section className="py-24 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-16">
-            
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-              
               {/* KOLOM KIRI: FOTO LURAH (Desain Lebih Bersih) */}
               <div className="relative">
                 {/* Frame Background Simple (Opsional, bisa dihapus jika ingin polos) */}
                 <div className="absolute -inset-3 bg-blue-50 rounded-2xl transform rotate-2 -z-10" />
-                
+
                 <div className="relative h-[500px] lg:h-[600px] w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
                   {/* Gunakan foto formal Pak Lurah yang berkualitas tinggi di sini */}
                   <Image
@@ -53,15 +51,27 @@ export default function Home() {
                   <div className="h-1.5 w-24 bg-blue-600 rounded-full"></div>
                 </div>
 
-                <div className="space-y-6 text-medium leading-relaxed text-gray-600 font-sans text-justify" >
+                <div className="space-y-6 text-medium leading-relaxed text-gray-600 font-sans text-justify">
                   <p>
-                    "Selamat datang di website resmi Pemerintah Kelurahan Sukajadi, Kabupaten Banyuasin. Website ini merupakan wujud komitmen kami dalam era keterbukaan informasi publik, sebagai sarana interaksi dan komunikasi antara pemerintah kelurahan dengan seluruh lapisan masyarakat."
+                    "Selamat datang di website resmi Pemerintah Kelurahan
+                    Sukajadi, Kabupaten Banyuasin. Website ini merupakan wujud
+                    komitmen kami dalam era keterbukaan informasi publik,
+                    sebagai sarana interaksi dan komunikasi antara pemerintah
+                    kelurahan dengan seluruh lapisan masyarakat."
                   </p>
                   <p>
-                    Melalui media ini, kami berupaya menyajikan informasi terkini mengenai profil kelurahan, program pembangunan, layanan administrasi, serta berbagai potensi dan kegiatan kemasyarakatan. Kami berharap website ini dapat menjadi jembatan yang efektif untuk meningkatkan kualitas pelayanan publik yang lebih cepat, transparan, dan akuntabel.
+                    Melalui media ini, kami berupaya menyajikan informasi
+                    terkini mengenai profil kelurahan, program pembangunan,
+                    layanan administrasi, serta berbagai potensi dan kegiatan
+                    kemasyarakatan. Kami berharap website ini dapat menjadi
+                    jembatan yang efektif untuk meningkatkan kualitas pelayanan
+                    publik yang lebih cepat, transparan, dan akuntabel.
                   </p>
                   <p>
-                    Mari bersama-sama kita bersinergi, bergotong royong membangun Kelurahan Sukajadi yang lebih maju, mandiri, dan sejahtera. Terima kasih atas dukungan dan partisipasi aktif seluruh warga.
+                    Mari bersama-sama kita bersinergi, bergotong royong
+                    membangun Kelurahan Sukajadi yang lebih maju, mandiri, dan
+                    sejahtera. Terima kasih atas dukungan dan partisipasi aktif
+                    seluruh warga.
                   </p>
                 </div>
 
@@ -77,7 +87,6 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-
             </div>
           </div>
         </section>

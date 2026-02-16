@@ -70,7 +70,7 @@ export default async function Hero() {
         data-aos="fade-up"
         className="relative -mt-16 z-20 container mx-auto px-4 md:px-16 mb-20"
       >
-        <div className="grid md:grid-cols-3 shadow-2xl rounded-xl overflow-hidden border-t-4 border-yellow-400">
+        <div className="grid md:grid-cols-3 shadow-2xl rounded-xl overflow-hidden ">
           {/* Card 1 */}
           <div className="bg-white p-6 group hover:bg-blue-50 transition cursor-pointer border-r border-gray-100">
             <div className="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center text-blue-600 mb-4 group-hover:scale-110 transition-transform shadow-sm">
@@ -118,3 +118,4 @@ export default async function Hero() {
     </div>
   );
 }
+

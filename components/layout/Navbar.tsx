@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -72,12 +73,20 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         {/* Logo Section */}
-        <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
-          <div className="w-9 h-9 sm:w-10 sm:h-10 relative shrink-0">
-            <div className="absolute inset-0 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xs sm:text-sm group-hover:bg-blue-600 transition-colors">
-              Logo
-            </div>
+        <Link href="/" className="flex items-center gap-2 sm:gap-2 group -my-2" prefetch={true}>
+          {/* Bagian Logo */}
+          <div className="w-9 h-9 sm:w-12 sm:h-12 relative shrink-0">
+            <Image
+              src="/images/logo.png"
+              alt="Logo Kelurahan Sukajadi"
+              fill
+              className="object-contain group-hover:scale-105 transition-transform duration-300"
+              sizes="(max-width: 640px) 36px, 40px"
+              priority // Agar logo dimuat lebih cepat karena berada di header
+            />
           </div>
+
+          {/* Bagian Teks */}
           <div className="leading-tight min-w-0">
             <h1 className="text-xs sm:text-sm font-bold text-blue-500 uppercase font-poppins truncate group-hover:text-blue-600 transition-colors">
               Pemerintah Kelurahan Sukajadi

@@ -10,7 +10,7 @@ export default function SejarahSection() {
           <div className="relative h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl group">
              {/* Ganti dengan foto jadul/kantor desa */}
             <Image 
-              src="/images/kantor.jpeg"
+              src="/images/kantorlurah.jpeg"
               alt="Sejarah Kelurahan Sukajadi"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"

@@ -2,16 +2,33 @@ import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 
 // Define public routes (routes yang bisa diakses tanpa login)
 const isPublicRoute = createRouteMatcher([
-  '/',
+  '/', 
   '/sign-in(.*)',
   '/sign-up(.*)',
+  
+  // --- MENU PROFIL ---
+  '/profilPage(.*)', // Sesuai dengan href di Navbar Anda
+  '/profil(.*)',     // Antisipasi jika Anda pakai /profil juga
+
+  // --- MENU PEMERINTAHAN ---
+  '/pemerintahan(.*)',
+
+  // --- MENU LAYANAN ---
+  '/administrasiKependudukan(.*)',
+  '/BantuanSosial(.*)',
+  
+  // --- MENU BERITA ---
   '/berita(.*)',
   '/pengumuman(.*)',
-  '/galeri(.*)',
-  '/profil(.*)',
   '/agenda(.*)',
-  '/pengaduan/buat',
+  '/gridiInformasi(.*)',
+
+  // --- MENU KONTAK ---
+  '/kontak(.*)',
+
+  // --- API & WEBHOOKS ---
   '/api/webhooks(.*)',
+  '/api/uploadthing(.*)'
 ])
 
 export default clerkMiddleware(async (auth, req) => {

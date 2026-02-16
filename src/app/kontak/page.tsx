@@ -233,7 +233,7 @@ export default function HalamanKontak() {
         </div>
 
         <div className="container mx-auto px-4 md:px-16 mb-30">
-          <div className="w-full aspect-[16/9] md:aspect-[21/9] bg-gray-200 rounded-2xl overflow-hidden shadow-xl border-4 border-white relative z-0">
+          <div className="w-full aspect-[7/9] md:aspect-[21/9] bg-gray-200 rounded-2xl overflow-hidden shadow-xl border-4 border-white relative z-0">
              {/* Google Maps Embed */}
              <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.5828779957644!2d104.68656137418243!3d-2.935489739639535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b743048590e8d%3A0x6e313504153925c4!2sKantor%20Lurah%20Sukajadi!5e0!3m2!1sid!2sid!4v1709600000000!5m2!1sid!2sid" // Pastikan link embed ini benar atau gunakan placeholder
@@ -244,7 +244,7 @@ export default function HalamanKontak() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Peta Lokasi Kelurahan Sukajadi"
-              className="filter grayscale hover:grayscale-0 transition duration-500"
+              className="hover:grayscale-0 transition duration-500"
             ></iframe>
           </div>
           

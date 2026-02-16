@@ -16,7 +16,7 @@ export default function HeroPages({
   image = "/images/kantor.jpeg" // Default Image
 }: HeroPagesProps) {
   return (
-    <section className="relative h-[400px] w-full flex items-center">
+    <section className="relative h-[400px] w-full flex items-center px-6">
       
       {/* 1. Background Image Full */}
       <Image 

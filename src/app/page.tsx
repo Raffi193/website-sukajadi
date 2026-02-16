@@ -28,7 +28,7 @@ export default function Home() {
                 <div className="relative h-[500px] lg:h-[600px] w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
                   {/* Gunakan foto formal Pak Lurah yang berkualitas tinggi di sini */}
                   <Image
-                    src="/images/kantor.jpeg" // Pastikan ganti dengan foto Pak Rusdy Bahalwan
+                    src="/images/kantorlurah.jpeg" // Pastikan ganti dengan foto Pak Rusdy Bahalwan
                     alt="Rusdy Bahalwan, S.Sos. M.Si - Lurah Sukajadi"
                     fill
                     className="object-cover object-top" // object-top agar fokus ke wajah

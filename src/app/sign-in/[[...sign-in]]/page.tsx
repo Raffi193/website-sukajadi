@@ -22,7 +22,7 @@ export default function SignInPage() {
                 rootBox: "w-full",
                 card: "shadow-xl border border-slate-200 rounded-2xl",
                 formButtonPrimary: "bg-indigo-600 hover:bg-indigo-700 text-sm normal-case",
-                footerActionLink: "text-indigo-600 hover:text-indigo-700"
+                footerActionLink: { display: 'none' },
               }
             }}
           />

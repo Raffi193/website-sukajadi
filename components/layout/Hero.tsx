@@ -13,7 +13,7 @@ interface HeroPagesProps {
 export default function HeroPages({ 
   title, 
   subtitle, 
-  image = "/images/kantorLurah.png" // Default Image
+  image = "/images/kantor.jpeg" // Default Image
 }: HeroPagesProps) {
   return (
     <section className="relative h-[400px] w-full flex items-center">

@@ -20,16 +20,25 @@ model User {
   isActive     Boolean       @default(true)
   lastLogin    DateTime?
   berita       Berita[]
-  pengumuman   Pengumuman[]
   agenda       Agenda[]
   galeri       Galeri[]
-  dokumen      DokumenPublik[]
+  pengumuman   Pengumuman[]
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
 
   @@map("users")
 }
 
+model DokumenPublik {
+  id        String   @id @default(cuid())
+  judul     String   // Contoh: "Formulir F-1.01 (Biodata)"
+  url       String   // URL file dari Supabase
+  path      String   // Path file di storage (untuk delete)
+  ukuran    String   // Contoh: "120 KB"
+  kategori  String   @default("Administrasi") // Opsional, jika nanti ada kategori lain
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
 
 // ==================== BERITA ====================
 model Berita {
@@ -115,41 +124,36 @@ model ProfilKelurahan {
 
 // ==================== PENGUMUMAN ====================
 model Pengumuman {
-  id          String              @id @default(uuid())
-  judul       String
-  slug        String              @unique
-  konten      String              @db.Text
-  jenis       JenisPengumuman     @default(UMUM)
-  prioritas   PrioritasPengumuman @default(NORMAL)
-  file        String?
-  thumbnail   String?
-  isPublished Boolean             @default(false)
+  id          String   @id @default(uuid())
+  
+  // Data Utama (Sesuai UI)
+  judul       String   // Untuk judul besar: "Jadwal Pelayanan E-KTP..."
+  slug        String   @unique // Untuk URL ramah SEO: /pengumuman/jadwal-e-ktp
+  kategori    KategoriPengumuman @default(LAINNYA) // Tag biru: "PELAYANAN"
+  isi         String   @db.Text // Deskripsi: "Jadwal dan lokasi mobil..."
+  tanggal     DateTime @default(now()) // Tanggal di pojok kanan: "2023-10-24"
+  
+  // File Dokumen
+  dokumenUrl  String?  // Link file untuk tombol "Unduh". Opsional (bisa null)
+  
+  // Metadata Admin
+  isPublished Boolean  @default(true)
   authorId    String
-  author      User                @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  tanggalMulai DateTime?
-  tanggalAkhir DateTime?
-  viewCount   Int                 @default(0)
-  createdAt   DateTime            @default(now())
-  updatedAt   DateTime            @updatedAt
+  author    User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   @@index([slug])
-  @@index([jenis])
-  @@map("pengumuman")
 }
 
-enum JenisPengumuman {
-  UMUM
-  PENTING
-  DARURAT
-  LAYANAN
-  ACARA
-}
-
-enum PrioritasPengumuman {
-  RENDAH
-  NORMAL
-  TINGGI
-  URGENT
+enum KategoriPengumuman {
+  PELAYANAN
+  HIMBAUAN
+  BERITA
+  PERTEMUAN
+  SOSIALISASI
+  LAINNYA
 }
 
 // ==================== AGENDA ====================
@@ -252,65 +256,7 @@ enum JenisJabatan {
 }
 
 // ==================== DOKUMEN PUBLIK ====================
-model DokumenPublik {
-  id            String            @id @default(uuid())
-  judul         String
-  slug          String            @unique
-  deskripsi     String?           @db.Text
-  kategori      KategoriDokumen
-  namaFile      String
-  urlFile       String
-  ukuranFile    Int?              // in bytes
-  tipeFile      String?           // pdf, doc, xls, etc
-  thumbnail     String?
-  isPublished   Boolean           @default(false)
-  downloadCount Int               @default(0)
-  authorId      String
-  author        User              @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  createdAt     DateTime          @default(now())
-  updatedAt     DateTime          @updatedAt
 
-  @@index([slug])
-  @@index([kategori])
-  @@map("dokumen_publik")
-}
-
-enum KategoriDokumen {
-  PERATURAN
-  SK_LURAH
-  LAPORAN
-  FORMULIR
-  PROSEDUR
-  LAINNYA
-}
-
-// ==================== PENGADUAN ====================
-model Pengaduan {
-  id              String           @id @default(uuid())
-  nomorPengaduan  String           @unique
-  nama            String
-  nik             String?
-  email           String?
-  telepon         String
-  alamat          String           @db.Text
-  judul           String
-  isiPengaduan    String           @db.Text
-  kategori        KategoriPengaduan
-  lampiran        String?
-  status          StatusPengaduan  @default(PENDING)
-  tanggapan       String?          @db.Text
-  penanggungJawab String?
-  tanggalTanggap  DateTime?
-  tanggalSelesai  DateTime?
-  isAnonim        Boolean          @default(false)
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @updatedAt
-
-  @@index([nomorPengaduan])
-  @@index([status])
-  @@index([kategori])
-  @@map("pengaduan")
-}
 
 enum KategoriPengaduan {
   INFRASTRUKTUR
@@ -327,16 +273,4 @@ enum StatusPengaduan {
   DIPROSES
   SELESAI
   DITOLAK
-}
-
-// ==================== SETTINGS (Optional) ====================
-model Setting {
-  id        String   @id @default(uuid())
-  key       String   @unique
-  value     String   @db.Text
-  deskripsi String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("settings")
 }

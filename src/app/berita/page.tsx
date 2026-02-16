@@ -19,13 +19,13 @@ export default function Berita() {
 
        <section className="container relative min-h-[400px] md:h-[470px] w-full flex items-center overflow-hidden">
       {/* 1. Background Image */}
-      {/* <Image
-        src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000&auto=format&fit=crop"
+      <Image
+        src="images/berita.png" 
         alt="Arsip Berita Kelurahan"
         fill
         className="object-cover"
         priority
-      /> */}
+      />
 
       {/* 2. Gradient Overlay - Lebih gelap di mobile agar teks terbaca */}
       <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-blue-950/95 via-blue-900/80 to-transparent" />

@@ -1,43 +1,44 @@
-import { currentUser } from "@clerk/nextjs/server"
-export const dynamic = 'force-dynamic'
-import { redirect } from "next/navigation"
-import Link from "next/link"
-import { 
-  Card, 
-  CardContent, 
-  CardDescription, 
-  CardHeader, 
-  CardTitle, 
-  CardFooter 
-} from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
-import { 
-  Newspaper, 
-  Megaphone, 
-  Calendar, 
-  User, 
-  ArrowRight, 
-  Settings, 
+import { currentUser } from "@clerk/nextjs/server";
+export const dynamic = "force-dynamic";
+import { redirect } from "next/navigation";
+import Link from "next/link";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import {
+  Newspaper,
+  Megaphone,
+  Calendar,
+  User,
+  ArrowRight,
+  Settings,
   LogOut,
   LayoutDashboard,
-  FileText
-} from "lucide-react"
-import prisma from "@/lib/prisma"
+  FileText,
+  Users,
+} from "lucide-react";
+import prisma from "@/lib/prisma";
 
 export default async function AdminDashboard() {
-  const clerkUser = await currentUser()
+  const clerkUser = await currentUser();
 
   if (!clerkUser) {
-    redirect("/sign-in")
+    redirect("/sign-in");
   }
 
   // --- LOGIC: Auto-sync user (Tidak diubah, sesuai permintaan) ---
   let user = await prisma.user.findUnique({
-    where: { clerkId: clerkUser.id }
-  })
+    where: { clerkId: clerkUser.id },
+  });
 
   if (!user) {
     try {
@@ -45,23 +46,25 @@ export default async function AdminDashboard() {
         data: {
           clerkId: clerkUser.id,
           email: clerkUser.emailAddresses[0].emailAddress,
-          name: `${clerkUser.firstName || ''} ${clerkUser.lastName || ''}`.trim() || 'Admin',
+          name:
+            `${clerkUser.firstName || ""} ${clerkUser.lastName || ""}`.trim() ||
+            "Admin",
           username: clerkUser.username || null,
           avatar: clerkUser.imageUrl || null,
-        }
-      })
-      console.log("✅ User auto-synced to database:", user.id)
+        },
+      });
+      console.log("✅ User auto-synced to database:", user.id);
     } catch (error) {
-      console.error("❌ Error creating user:", error)
+      console.error("❌ Error creating user:", error);
     }
   }
 
   // --- LOGIC: Get statistics (Tidak diubah) ---
   const stats = await Promise.all([
     prisma.berita.count({ where: { isPublished: true } }),
-    prisma.pengaduan.count({ where: { status: 'PENDING' } }),
-    prisma.agenda.count({ where: { isPublished: true } })
-  ])
+    prisma.pengumuman.count({ where: { isPublished: true } }),
+    prisma.agenda.count({ where: { isPublished: true } }),
+  ]);
 
   // Mapping data untuk UI yang lebih dinamis
   const statCards = [
@@ -72,35 +75,35 @@ export default async function AdminDashboard() {
       icon: Newspaper,
       color: "text-blue-600",
       bg: "bg-blue-100",
-      link: "/admin/berita"
+      link: "/admin/berita",
     },
     {
-      title: "Pengaduan Baru",
+      title: "Pengumuman Baru",
       value: stats[1],
-      description: "Menunggu tindak lanjut",
+      description: "Pengumuman yang terbitkan",
       icon: Megaphone,
-      color: stats[1] > 0 ? "text-red-600" : "text-green-600",
-      bg: stats[1] > 0 ? "bg-red-100" : "bg-green-100",
-      link: "/admin/pengaduan"
+      color: "text-blue-600",
+      bg: "bg-blue-100",
+      link: "/admin/pengumuman",
     },
     {
       title: "Agenda Aktif",
       value: stats[2],
       description: "Kegiatan mendatang",
       icon: Calendar,
-      color: "text-purple-600",
-      bg: "bg-purple-100",
-      link: "/admin/agenda"
-    }
-  ]
+      color: "text-blue-600",
+      bg: "bg-blue-100",
+      link: "/admin/agenda",
+    },
+  ];
 
   // Ucapan selamat datang berdasarkan waktu server (simple)
-  const hour = new Date().getHours()
-  const greeting = hour < 12 ? "Selamat Pagi" : hour < 18 ? "Selamat Siang" : "Selamat Malam"
+  const hour = new Date().getHours();
+  const greeting =
+    hour < 12 ? "Selamat Pagi" : hour < 18 ? "Selamat Siang" : "Selamat Malam";
 
   return (
     <div className="p-6 md:p-8 space-y-8 bg-gray-50/50 min-h-screen">
-      
       {/* --- HEADER SECTION --- */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -112,10 +115,16 @@ export default async function AdminDashboard() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-           <Button variant="outline" size="sm">
-            <LayoutDashboard className="mr-2 h-4 w-4" />
-            Lihat Website Utama
-           </Button>
+          <Link href="/" passHref>
+            <Button
+              className="h-10 cursor-pointer rounded-r-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 bg-white border-gray-200"
+              variant="outline"
+              size="sm"
+            >
+              <LayoutDashboard className="mr-2 h-4 w-4" />
+              Lihat Website Utama
+            </Button>
+          </Link>
         </div>
       </div>
 
@@ -124,7 +133,10 @@ export default async function AdminDashboard() {
       {/* --- STATS OVERVIEW --- */}
       <div className="grid gap-6 md:grid-cols-3">
         {statCards.map((stat, index) => (
-          <Card key={index} className="border-none shadow-sm hover:shadow-md transition-all duration-200">
+          <Card
+            key={index}
+            className="border-none shadow-sm hover:shadow-md transition-all duration-200"
+          >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-gray-600">
                 {stat.title}
@@ -134,53 +146,121 @@ export default async function AdminDashboard() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-gray-900">{stat.value}</div>
+              <div className="text-3xl font-bold text-gray-900">
+                {stat.value}
+              </div>
               <p className="text-xs text-gray-500 mt-1">{stat.description}</p>
             </CardContent>
             <CardFooter className="pt-0">
-               <Button variant="ghost" size="sm" className="w-full justify-between text-gray-500 hover:text-gray-900" asChild>
-                  <Link href={stat.link}>
-                    Lihat Detail <ArrowRight className="h-4 w-4 ml-2" />
-                  </Link>
-               </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="w-full justify-between text-gray-500 hover:text-gray-900"
+                asChild
+              >
+                <Link href={stat.link}>
+                  Lihat Detail <ArrowRight className="h-4 w-4 ml-2" />
+                </Link>
+              </Button>
             </CardFooter>
           </Card>
         ))}
       </div>
 
       <div className="grid gap-6 md:grid-cols-7 lg:grid-cols-7">
-        
         {/* --- MAIN CONTENT / QUICK ACTIONS (4 Cols) --- */}
         <Card className="col-span-4 md:col-span-4 shadow-sm border-none">
           <CardHeader>
             <CardTitle>Aksi Cepat</CardTitle>
-            <CardDescription>Jalan pintas untuk mengelola konten website.</CardDescription>
+            <CardDescription>
+              Jalan pintas untuk mengelola konten website.
+            </CardDescription>
           </CardHeader>
-          <CardContent className="grid gap-4 md:grid-cols-2">
-             <Button variant="outline" className="h-24 flex flex-col items-center justify-center gap-2 hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 transition-all" asChild>
-                <Link href="/admin/berita/create">
+
+          <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 p-6">
+            {/* 1. CARD BERITA (Biru) */}
+            <Button
+              variant="outline"
+              className="w-full h-auto py-8 flex flex-col items-center justify-center gap-4 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg hover:border-blue-200 hover:bg-blue-50/30 transition-all duration-300 group"
+              asChild
+            >
+              <Link href="/admin/berita/create">
+                <div className="p-4 rounded-full bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
                   <FileText className="h-6 w-6" />
-                  <span>Tulis Berita Baru</span>
-                </Link>
-             </Button>
-             <Button variant="outline" className="h-24 flex flex-col items-center justify-center gap-2 hover:border-red-500 hover:text-red-600 hover:bg-red-50 transition-all" asChild>
-                <Link href="/admin/pengaduan">
+                </div>
+                <div className="flex flex-col items-center gap-1">
+                  <span className="font-bold text-lg text-gray-800 group-hover:text-blue-700">
+                    Berita
+                  </span>
+                  <span className="text-xs text-gray-500 font-medium">
+                    Tulis Berita Baru
+                  </span>
+                </div>
+              </Link>
+            </Button>
+
+            {/* 2. CARD PENGUMUMAN (Oranye) */}
+            <Button
+              variant="outline"
+              className="w-full h-auto py-8 flex flex-col items-center justify-center gap-4 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg hover:border-orange-200 hover:bg-orange-50/30 transition-all duration-300 group"
+              asChild
+            >
+              <Link href="/admin/pengumuman/tambah">
+                <div className="p-4 rounded-full bg-orange-100 text-orange-600 group-hover:bg-orange-600 group-hover:text-white transition-colors duration-300">
                   <Megaphone className="h-6 w-6" />
-                  <span>Cek Pengaduan Masuk</span>
-                </Link>
-             </Button>
-             <Button variant="outline" className="h-24 flex flex-col items-center justify-center gap-2 hover:border-purple-500 hover:text-purple-600 hover:bg-purple-50 transition-all" asChild>
-                <Link href="/admin/agenda/create">
+                </div>
+                <div className="flex flex-col items-center gap-1">
+                  <span className="font-bold text-lg text-gray-800 group-hover:text-orange-700">
+                    Pengumuman
+                  </span>
+                  <span className="text-xs text-gray-500 font-medium">
+                    Buat Info Publik
+                  </span>
+                </div>
+              </Link>
+            </Button>
+
+            {/* 3. CARD AGENDA (Ungu) */}
+            <Button
+              variant="outline"
+              className="w-full h-auto py-8 flex flex-col items-center justify-center gap-4 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg hover:border-purple-200 hover:bg-purple-50/30 transition-all duration-300 group"
+              asChild
+            >
+              <Link href="/admin/agenda/tambah">
+                <div className="p-4 rounded-full bg-purple-100 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors duration-300">
                   <Calendar className="h-6 w-6" />
-                  <span>Buat Agenda Baru</span>
-                </Link>
-             </Button>
-             <Button variant="outline" className="h-24 flex flex-col items-center justify-center gap-2 hover:border-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-all" asChild>
-                <Link href="/admin/settings">
-                  <Settings className="h-6 w-6" />
-                  <span>Pengaturan Web</span>
-                </Link>
-             </Button>
+                </div>
+                <div className="flex flex-col items-center gap-1">
+                  <span className="font-bold text-lg text-gray-800 group-hover:text-purple-700">
+                    Agenda
+                  </span>
+                  <span className="text-xs text-gray-500 font-medium">
+                    Jadwal Kegiatan
+                  </span>
+                </div>
+              </Link>
+            </Button>
+
+            {/* 4. CARD PERANGKAT (Hijau) */}
+            <Button
+              variant="outline"
+              className="w-full h-auto py-8 flex flex-col items-center justify-center gap-4 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg hover:border-emerald-200 hover:bg-emerald-50/30 transition-all duration-300 group"
+              asChild
+            >
+              <Link href="/admin/perangkat/tambah">
+                <div className="p-4 rounded-full bg-emerald-100 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+                  <Users className="h-6 w-6" />
+                </div>
+                <div className="flex flex-col items-center gap-1">
+                  <span className="font-bold text-lg text-gray-800 group-hover:text-emerald-700">
+                    Perangkat
+                  </span>
+                  <span className="text-xs text-gray-500 font-medium">
+                    Tambah Staff
+                  </span>
+                </div>
+              </Link>
+            </Button>
           </CardContent>
         </Card>
 
@@ -198,44 +278,37 @@ export default async function AdminDashboard() {
                   {clerkUser.firstName?.[0]}
                 </AvatarFallback>
               </Avatar>
-              
+
               <h3 className="text-xl font-bold text-gray-900">
                 {clerkUser.firstName} {clerkUser.lastName}
               </h3>
-              <p className="text-sm text-gray-500 mb-2">
-                {clerkUser.emailAddresses[0]?.emailAddress}
-              </p>
-              
               <div className="flex gap-2 mt-2">
-                {user ? (
-                  <Badge variant="secondary" className="bg-green-100 text-green-700 hover:bg-green-200">
-                    Database Synced ✓
-                  </Badge>
-                ) : (
-                  <Badge variant="destructive">Not Synced</Badge>
-                )}
                 <Badge variant="outline">Admin Role</Badge>
               </div>
             </div>
-            
+
             <div className="mt-6 space-y-2">
-                <div className="flex items-center justify-between text-sm p-2 hover:bg-gray-50 rounded">
-                    <span className="text-gray-500 flex items-center gap-2"><User size={16}/> Username</span>
-                    <span className="font-medium">{clerkUser.username || "-"}</span>
-                </div>
-                <div className="flex items-center justify-between text-sm p-2 hover:bg-gray-50 rounded">
-                    <span className="text-gray-500 flex items-center gap-2"><Calendar size={16}/> Bergabung</span>
-                    <span className="font-medium">
-                        {new Date(clerkUser.createdAt).toLocaleDateString("id-ID", {
-                            month: 'long', year: 'numeric'
-                        })}
-                    </span>
-                </div>
+              <div className="flex items-center justify-between text-sm p-2 hover:bg-gray-50 rounded">
+                <span className="text-gray-500 flex items-center gap-2">
+                  <User size={16} /> Username
+                </span>
+                <span className="font-medium">{clerkUser.username || "-"}</span>
+              </div>
+              <div className="flex items-center justify-between text-sm p-2 hover:bg-gray-50 rounded">
+                <span className="text-gray-500 flex items-center gap-2">
+                  <Calendar size={16} /> Bergabung
+                </span>
+                <span className="font-medium">
+                  {new Date(clerkUser.createdAt).toLocaleDateString("id-ID", {
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </span>
+              </div>
             </div>
           </CardContent>
         </Card>
-
       </div>
     </div>
-  )
+  );
 }

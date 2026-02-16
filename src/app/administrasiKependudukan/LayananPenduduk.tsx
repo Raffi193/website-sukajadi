@@ -3,10 +3,25 @@
 import { useState } from 'react';
 import { 
   FaIdCard, FaUsers, FaBaby, FaHeartBroken, FaTruckMoving, 
-  FaFileContract, FaSearch, FaTimes, FaDownload, FaClock, FaInfoCircle 
+  FaFileContract, FaSearch, FaTimes, FaDownload, FaClock, FaInfoCircle,
+  FaFilePdf, FaCloudDownloadAlt 
 } from "react-icons/fa";
 
-// --- DATA LAYANAN ---
+// --- PERBAIKAN TIPE DATA DI SINI ---
+// Sesuaikan dengan nama kolom di database (schema.prisma) Anda
+type Dokumen = {
+  id: string;
+  judul: string;
+  url: string;      // Sebelumnya 'dokumenUrl', ubah jadi 'url'
+  ukuran: string;   // Sebelumnya 'dokumenSize', ubah jadi 'ukuran'
+  // Field lain opsional, tidak perlu ditulis jika tidak dipakai di UI
+};
+
+type LayananPendudukProps = {
+  dataDokumen: Dokumen[]; 
+};
+
+// --- DATA LAYANAN STATIS ---
 const servicesData = [
   {
     id: 1,
@@ -101,13 +116,7 @@ const servicesData = [
   },
 ];
 
-const downloadLinks = [
-  { name: "Formulir F-1.01 (Biodata)", size: "120 KB" },
-  { name: "Formulir F-1.21 (Permohonan KTP)", size: "85 KB" },
-  { name: "Surat Pernyataan Belum Menikah", size: "50 KB" },
-];
-
-export default function LayananPenduduk() {
+export default function LayananPenduduk({ dataDokumen }: LayananPendudukProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedService, setSelectedService] = useState<typeof servicesData[0] | null>(null);
 
@@ -173,49 +182,71 @@ export default function LayananPenduduk() {
           {/* Dekorasi Background */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
 
-          <div className="relative z-10 grid md:grid-cols-2 gap-10 items-center">
+          <div className="relative z-10 grid md:grid-cols-2 gap-10 items-start">
             <div>
               <h3 className="text-2xl font-bold font-poppins mb-4 flex items-center gap-3">
-                <FaDownload /> Pusat Unduhan
+                <FaCloudDownloadAlt className="text-yellow-400" /> Pusat Unduhan
               </h3>
               <p className="text-blue-100 mb-6 leading-relaxed text-sm">
                 Unduh formulir persyaratan administrasi secara mandiri untuk mempercepat proses pelayanan di kantor kelurahan.
               </p>
             </div>
+            
             <div className="space-y-3">
-              {downloadLinks.map((file, idx) => (
-                <div key={idx} className="flex items-center justify-between bg-white/10 hover:bg-white/20 border border-white/10 p-4 rounded-xl transition cursor-pointer backdrop-blur-sm">
-                  <div className="flex items-center gap-3">
-                    <FaFileContract className="text-yellow-400" />
-                    <span className="font-medium text-sm">{file.name}</span>
-                  </div>
-                  <span className="text-xs text-blue-200">{file.size}</span>
+              {dataDokumen.length > 0 ? (
+                dataDokumen.map((doc) => (
+                  <a 
+                    key={doc.id}
+                    href={`${doc.url}?download=`} // PERBAIKAN: Ganti dokumenUrl jadi doc.url
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between bg-white/10 hover:bg-white/20 border border-white/10 p-4 rounded-xl transition cursor-pointer backdrop-blur-sm group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="bg-white/10 p-2 rounded-lg text-yellow-400">
+                        <FaFilePdf size={18} />
+                      </div>
+                      <div>
+                        <span className="font-medium text-sm block group-hover:text-yellow-400 transition-colors">
+                            {doc.judul}
+                        </span>
+                        <span className="text-xs text-blue-300">File PDF • {doc.ukuran}</span> 
+                        {/* PERBAIKAN: Ganti dokumenSize jadi doc.ukuran */}
+                      </div>
+                    </div>
+                    <div className="bg-white/10 p-2 rounded-full group-hover:bg-yellow-500 group-hover:text-blue-900 transition-colors">
+                        <FaDownload size={12} />
+                    </div>
+                  </a>
+                ))
+              ) : (
+                <div className="text-center py-6 bg-white/5 rounded-xl border border-white/5 text-blue-200 text-sm">
+                  Belum ada dokumen yang tersedia untuk diunduh.
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </div>
 
       </div>
 
-      {/* --- 4. MODAL POPUP DETAIL (Overlay) --- */}
+      {/* --- 4. MODAL POPUP DETAIL --- */}
       {selectedService && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity" onClick={() => setSelectedService(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity animate-in fade-in" onClick={() => setSelectedService(null)}>
           <div 
-            className="bg-white rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200"
-            onClick={(e) => e.stopPropagation()} // Mencegah modal tertutup saat klik isi modal
+            className="bg-white rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
           >
             {/* Header Modal */}
             <div className="bg-gray-50 p-6 border-b border-gray-100 flex items-center justify-between">
               <div className="flex items-center gap-3">
                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-lg ${selectedService.color}`}>
-                    {selectedService.icon}
+                   {selectedService.icon}
                  </div>
                  <h3 className="text-lg font-bold text-gray-800">{selectedService.title}</h3>
               </div>
               <button 
                 onClick={() => setSelectedService(null)}
-                className="text-gray-400 hover:text-red-500 transition"
+                className="text-gray-400 hover:text-red-500 transition bg-white p-1 rounded-full hover:bg-red-50"
               >
                 <FaTimes size={20} />
               </button>
@@ -230,7 +261,7 @@ export default function LayananPenduduk() {
                  <ul className="space-y-2">
                    {selectedService.syarat.map((req, i) => (
                      <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                       <span className="min-w-[6px] h-[6px] rounded-full bg-blue-400 mt-1.5"></span>
+                       <span className="min-w-[6px] h-[6px] rounded-full bg-blue-400 mt-1.5 shrink-0"></span>
                        {req}
                      </li>
                    ))}
@@ -238,13 +269,13 @@ export default function LayananPenduduk() {
                </div>
 
                <div className="grid grid-cols-2 gap-4">
-                 <div className="bg-blue-50 p-3 rounded-lg">
+                 <div className="bg-blue-50 p-3 rounded-lg border border-blue-100">
                     <p className="text-xs text-blue-500 font-bold mb-1">Estimasi Waktu</p>
                     <p className="text-sm font-bold text-gray-800 flex items-center gap-2">
-                      <FaClock /> {selectedService.waktu}
+                      <FaClock size={14} /> {selectedService.waktu}
                     </p>
                  </div>
-                 <div className="bg-green-50 p-3 rounded-lg">
+                 <div className="bg-green-50 p-3 rounded-lg border border-green-100">
                     <p className="text-xs text-green-600 font-bold mb-1">Biaya Administrasi</p>
                     <p className="text-sm font-bold text-gray-800">
                       {selectedService.biaya}
@@ -254,8 +285,8 @@ export default function LayananPenduduk() {
             </div>
 
             {/* Footer Modal */}
-            <div className="p-4 border-t border-gray-100 text-center">
-              <p className="text-xs text-gray-400">
+            <div className="p-4 bg-gray-50 border-t border-gray-100 text-center">
+              <p className="text-xs text-gray-500">
                 Pastikan dokumen Anda lengkap sebelum datang ke kantor kelurahan.
               </p>
             </div>

@@ -40,10 +40,7 @@ export default async function AdminLayout({
             {/* Right side (User Actions) */}
             <div className="flex items-center gap-4">
               {/* Notification Icon (Visual Only) */}
-              <button className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-colors relative">
-                <Bell className="h-5 w-5" />
-                <span className="absolute top-2 right-2 h-2 w-2 bg-red-500 rounded-full border border-white"></span>
-              </button>
+              
               
               <div className="h-6 w-px bg-gray-200 mx-1"></div>
 

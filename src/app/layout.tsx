@@ -3,6 +3,7 @@ import { Toaster } from 'sonner'
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
+import { Metadata } from "next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -10,10 +11,16 @@ const inter = Inter({
   variable: "--font-primary",
 });
 
-export const metadata = {
-  title: 'Admin Panel Kelurahan',
-  description: 'Sistem Manajemen Kelurahan',
-}
+export const metadata: Metadata = {
+  title: {
+    default: "Kelurahan Sukajadi", // Judul default jika halaman tidak punya judul khusus
+    template: "%s | Kelurahan Sukajadi", // Format judul: "Nama Halaman | Kelurahan Sukajadi"
+  },
+  description: "Website Resmi Media Informasi Kelurahan Sukajadi",
+  icons: {
+    icon: "/logo.png", // Ganti dengan path logo Anda jika ada
+  },
+};
 
 export default function RootLayout({
   children,

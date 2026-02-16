@@ -10,10 +10,12 @@ const nextConfig: NextConfig = {
         pathname: "/storage/v1/object/public/**", // <--- INI KUNCINYA
       },
     ],
+
+    unoptimized: true,
   },
   experimental: {
     serverActions: {
-      bodySizeLimit: '10mb',
+      bodySizeLimit: "10mb",
     },
   },
 };

@@ -1,91 +1,94 @@
 "use client";
 
 import React from "react";
+import { FaLandmark, FaChevronDown } from "react-icons/fa";
 import Image from "next/image";
-import TopBar from "@/components/layout/TopBar";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import LembagaMitra from "./lembagaKemasyarakatan";
-import {
-  FaSitemap,
-  FaDownload,
-  FaUserTie,
-  FaIdBadge,
-  FaLandmark,
-  FaChevronDown,
-} from "react-icons/fa";
-import PerangkatGrid from "./PerangkatDesa";
-import Link from "next/link";
 
 export default function Hero() {
   return (
     <>
-      <section className="container relative bg-blue-950 overflow-hidden md:h-[550px] flex items-center">
-        {/* --- LAYER 1: BACKGROUND PATTERN (KIRI) --- */}
-        {/* Ini memberikan tekstur halus di area biru agar tidak flat */}
+      {/* Hapus 'container' dari sini agar background & gambar bisa full width ke tepi layar */}
+      <section className="relative w-full bg-blue-950 overflow-hidden md:h-[600px] flex items-center px-8">
+        
+        {/* --- LAYER 1: BACKGROUND PATTERN (HALUS) --- */}
         <div
-          className="absolute inset-0 opacity-10 pointer-events-none"
+          className="absolute inset-0 opacity-10 pointer-events-none z-0"
           style={{
             backgroundImage:
               "radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)",
             backgroundSize: "20px 20px",
-          }}            
+          }}
         ></div>
 
-        <div className="container   relative z-10 h-full">
-          <div className="grid md:grid-cols-12 h-full items-center gap-8">
-            {/* --- KOLOM KIRI: KONTEN TEKS (Span 7) --- */}
-            <div className="md:col-span-7 py-16 md:py-0 text-white relative">
-              {/* Ornamen "Stempel" Kecil */}
-              <div className="inline-flex items-center gap-2 bg-blue-800/50 border border-blue-700 px-4 py-2 rounded-full text-blue-200 text-sm font-medium mb-6 backdrop-blur-sm">
+        {/* --- LAYER 2: GAMBAR HERO (KANAN) --- */}
+        {/* Diletakkan absolute agar menempel ke sisi kanan layar tanpa terpotong container */}
+        <div className="hidden md:block absolute top-0 right-0 w-[50%] h-full z-0 pointer-events-none">
+           {/* WRAPPER MIRING (SKEW):
+              - origin-bottom-left: Titik putar di bawah kiri
+              - -skew-x-12: Memiringkan container ke kiri
+              - -mr-32: Menarik container ke kanan MELEWATI batas layar untuk menutup celah kosong
+              - border-l-4: Garis kuning pemanis
+           */}
+           <div className="relative h-full w-full transform -skew-x-9 origin-bottom-left border-l-4 border-yellow-400 overflow-hidden -mr-32">
+              
+              {/* GAMBAR ASLI:
+                  - scale-125: Diperbesar agar sudut-sudut tidak kosong saat dimiringkan
+                  - skew-x-12: Membalas kemiringan agar gedung tetap tegak
+              */}
+              <Image
+                src="/images/pemerintahan.png" 
+                alt="Kantor Pemerintahan Sukajadi"
+                fill
+                className="w-full h-full object-cover transform skew-x-12 scale-125 origin-bottom-left"
+              />
+              
+              {/* GRADIENT OVERLAY: Agar teks tetap terbaca jika gambar terlalu terang & estetik */}
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent transform skew-x-12 scale-125 origin-bottom-left"></div>
+           </div>
+        </div>
+
+        {/* --- LAYER 3: KONTEN TEKS (TENGAH/KIRI) --- */}
+        {/* Class 'container' diletakkan di sini agar teks rapi rata tengah */}
+        <div className="container mx-auto px-4 relative z-10 h-full flex items-center">
+          <div className="grid md:grid-cols-12 w-full gap-8">
+            
+            {/* KOLOM TEKS (Span 7 agar tidak menabrak gambar) */}
+            <div className="md:col-span-7 py-10 md:py-0 text-white">
+              
+              {/* Badge Stempel */}
+              <div className="inline-flex items-center gap-2 bg-blue-800/50 border border-blue-700 px-4 py-2 rounded-full text-blue-200 text-sm font-medium mb-6 backdrop-blur-sm animate-fade-in-up">
                 <FaLandmark />
                 <span>Tata Kelola Pemerintahan</span>
               </div>
 
               {/* Judul Utama */}
-              <h1 className="text-4xl md:text-5xl font-bold font-poppins leading-tight mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold font-poppins leading-tight mb-6 drop-shadow-lg">
                 Melayani dengan <br />
-                <span className="text-yellow-400">Integritas</span> &
-                Transparansi
+                <span className="text-yellow-400">Integritas</span> & Transparansi
               </h1>
 
               {/* Deskripsi */}
-              <p className="text-blue-100 text-lg font-sans leading-relaxed max-w-xl mb-8 border-l-4 border-yellow-400 pl-6">
+              <p className="text-blue-100 text-medium font-sans leading-relaxed max-w-xl mb-8 border-l-4 border-yellow-400 pl-6">
                 Mewujudkan tata kelola pemerintahan Kelurahan Sukajadi yang
                 akuntabel, profesional, dan berorientasi pada pelayanan publik
                 yang prima.
               </p>
 
-              {/* Indikator Scroll (Opsional, pemanis) */}
-              <div className="hidden md:flex items-center gap-3 text-blue-300 text-sm animate-bounce mt-12">
-                <FaChevronDown />
+              {/* Indikator Scroll */}
+              <div className="hidden md:flex items-center gap-3 text-blue-300 text-sm animate-bounce mt-12 cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
+                <div className="p-2 rounded-full border border-blue-400/30">
+                  <FaChevronDown />
+                </div>
                 <span>Gulir untuk melihat struktur & visi kami</span>
               </div>
-            </div>
 
-            {/* --- KOLOM KANAN: GAMBAR DINAMIS (Span 5) --- */}
-            {/* Di Desktop: Gambar absolute di kanan, tinggi penuh, ada efek miring (skew).
-             Di Mobile: Gambar relatif di bawah teks, tinggi terbatas.
-          */}
-            <div className="md:col-span-5 relative h-[300px] md:h-full w-full md:absolute md:right-0 md:top-0 md:w-[45%] overflow-hidden hidden md:block">
-              {/* Wrapper untuk efek miring (skew) */}
-              <div className="h-full w-full md:-skew-x-10 md:origin-bottom-left overflow-hidden relative md:-mr-20">
-                {/* Gambar Asli (Harus di-unskew balik agar gambarnya tetap tegak) */}
-                {/* <Image
-                  // 
-                  src="https://images.unsplash.com/photo-1768399808130-abac2a8442e0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="Kantor Pemerintahan Sukajadi"
-                  fill
-                  className="object-cover md:skew-x-12 scale-100" // scale-110 untuk menghindari celah putih saat di-skew
-                  priority
-                /> */}
-                {/* Overlay Gradient halus di atas gambar */}
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent md:skew-x-12"></div>
-              </div>
             </div>
+            
+            {/* Kolom Kanan Kosong (Space untuk gambar background) */}
+            <div className="md:col-span-5"></div>
           </div>
         </div>
       </section>
     </>
   );
-}
+}   

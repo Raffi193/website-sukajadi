@@ -1,147 +1,101 @@
-import Image from 'next/image';
-import { FaUserTie, FaIdBadge } from "react-icons/fa";
+import { prisma } from "@/lib/prisma";
+import { FaUserTie, FaIdBadge, FaUser } from "react-icons/fa";
+import Image from "next/image";
 
-// Data Dummy
-const teamMembers = [
-  {
-    name: "H. Ahmad Fauzi, S.IP, M.Si",
-    role: "Lurah Sukajadi",
-    nip: "19800101 200501 1 001",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop",
-    isLeader: true 
-  },
-  {
-    name: "Siti Aminah, S.Sos",
-    role: "Sekretaris Lurah",
-    nip: "19850202 201001 2 002",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop",
-    isLeader: false
-  },
-  {
-    name: "Budi Santoso, SE",
-    role: "Kasi Pemerintahan",
-    nip: "19900303 201501 1 003",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800&auto=format&fit=crop",
-    isLeader: false
-  },
-  {
-    name: "Ratna Dewi, S.Kom",
-    role: "Kasi Pelayanan Umum",
-    nip: "19920404 201801 2 004",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop",
-    isLeader: false
-  },
-  {
-    name: "Dedi Kurniawan",
-    role: "Kasi Pembangunan",
-    nip: "19880505 201201 1 005",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop",
-    isLeader: false
-  },
-  {
-    name: "Eko Prasetyo",
-    role: "Staf Administrasi",
-    nip: "Non-ASN",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
-    isLeader: false
-  },
-  {
-    name: "Indah Permata",
-    role: "Staf Keuangan",
-    nip: "Non-ASN",
-    image: "https://images.unsplash.com/photo-1598550874175-4d7112ee750c?q=80&w=800&auto=format&fit=crop",
-    isLeader: false
-  },
-  {
-    name: "Bambang Irawan",
-    role: "Babinsa",
-    nip: "TNI AD",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop",
-    isLeader: false
-  },
-];
+export default async function PerangkatGrid() {
+  const allData = await prisma.perangkatKelurahan.findMany({
+    orderBy: { urutan: "asc" },
+  });
 
-export default function PerangkatGrid() {
-  const leader = teamMembers.find(m => m.isLeader);
-  const staff = teamMembers.filter(m => !m.isLeader);
+  const leader = allData.find((m) => m.jenisJabatan === "LURAH");
+  const staff = allData.filter((m) => m.jenisJabatan !== "LURAH");
 
-  // Komponen Kartu yang seragam
-  const MemberCard = ({ member }: { member: typeof teamMembers[0] }) => (
-    <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group border border-gray-100 flex flex-col hover:-translate-y-1 h-full">
-      
-      {/* Foto Portrait (Ukuran Kecil & Pas) */}
-      <div className="relative aspect-[3/3] w-full overflow-hidden bg-gray-200">
-        {/* <Image 
-          src={member.image} 
-          alt={member.name}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-        /> */}
-        
-        {/* Overlay Label */}
-        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-          <p className="text-white text-xs font-medium border-l-2 border-yellow-400 pl-2">
-            {member.isLeader ? "Pimpinan Wilayah" : "Siap Melayani"}
-          </p>
-        </div>
+  // --- KOMPONEN KARTU ---
+  const MemberCard = ({ member }: { member: (typeof allData)[0] }) => (
+    <div className="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col h-full w-full relative">
+      {/* Foto: Rasio 3:4 */}
+      <div className="relative w-full aspect-[3/4] bg-gray-100 flex items-center justify-center overflow-hidden">
+        {member.foto ? (
+          <Image
+            src={member.foto}
+            alt={member.nama}
+            fill
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <FaUser className="text-gray-300 text-3xl opacity-50" />
+        )}
       </div>
 
-      {/* Info Detail */}
-      <div className="p-4 flex-grow flex flex-col justify-between text-center">
-        <div>
-          <h3 className="font-bold text-gray-800 font-poppins text-base mb-1 group-hover:text-blue-600 transition-colors">
-            {member.name}
+      {/* Info */}
+      <div className="p-3 flex flex-col items-center text-center flex-grow gap-1">
+        <div className="mb-1 w-full">
+          <h3 className="font-bold text-gray-900 text-sm leading-tight line-clamp-2">
+            {member.nama}
           </h3>
-          <p className="text-blue-600 font-medium text-xs mb-2 flex items-center justify-center gap-1">
-            <FaUserTie size={10} /> {member.role}
+          <p className="text-blue-600 text-[10px] font-bold uppercase mt-1 flex items-center justify-center gap-1">
+            <FaUserTie className="w-2.5 h-2.5" />
+            {member.jabatan}
           </p>
         </div>
-        
-        <div className="pt-2 border-t border-gray-50 flex justify-center">
-            <p className="text-[10px] text-gray-400 flex items-center gap-1 bg-gray-50 py-1 px-2 rounded w-fit">
-              <FaIdBadge /> {member.nip}
-            </p>
+
+        <div className="mt-auto w-full">
+          <div className="bg-slate-50 border border-slate-100 rounded py-1 px-2 flex justify-center items-center gap-1.5 mx-auto w-fit">
+            <FaIdBadge className="text-gray-400 w-2.5 h-2.5" />
+            <span className="text-[9px] text-gray-500 font-mono font-medium">
+              {member.nip || "-"}
+            </span>
+          </div>
         </div>
       </div>
     </div>
   );
 
   return (
-    <section className="py-18  bg-white">
+    // PERBAIKAN DI SINI: Tambahkan 'relative z-10'
+    // Ini memastikan section ini punya layer sendiri dan berada di bawah Tupoksi (yang z-20)
+    <section className="py-20 bg-white relative z-10">
       <div className="container mx-auto px-4 md:px-16">
-        
-        {/* Judul Section */}
-        <div className="mb-12 border-l-4 border-blue-600 pl-4">
-          <h2 className="text-3xl font-bold text-gray-900 font-poppins">Profil <span className="text-blue-600">Aparatur</span></h2>
-          <p className="text-gray-500 mt-1 font-sans">
-            Perangkat Pemerintahan Kelurahan Sukajadi
+        {/* Header Section (Gaya Baru) */}
+        <div className="mb-12">
+          <span className="text-blue-600 font-bold text-xs uppercase tracking-widest mb-2 block">
+            PERSONEL & STAFF
+          </span>
+          <h2 className="text-3xl md:text-3xl font-extrabold text-gray-900 font-poppins mb-3">
+            Profil <span className="text-blue-600">Aparatur</span>
+          </h2>
+          <p className="text-gray-500 text-medium max-w-2xl leading-relaxed">
+            Daftar lengkap pejabat struktural dan staf pelaksana yang bertugas
+            melayani masyarakat Kelurahan Sukajadi.
           </p>
+          {/* Garis Aksen Biru */}
+          <div className="w-16 h-1.5 bg-blue-600 mt-4 rounded-full"></div>
         </div>
 
-        <div className="flex flex-col gap-10">
-          
-          {/* 1. KARTU LURAH (Tengah & Ukuran Sama) */}
+        <div className="flex flex-col gap-8 items-center">
+          {/* LURAH */}
           {leader && (
-            <div className="flex justify-center">
-              {/* Kita batasi lebarnya agar sama dengan kartu di grid bawah (max-w-xs / w-64) */}
-              <div className="w-full max-w-[260px]">
-                <MemberCard member={leader} />
-              </div>
+            <div className="w-full max-w-[200px] relative z-0">
+              <MemberCard member={leader} />
             </div>
           )}
 
-          {/* 2. GRID STAF (Ukuran Sama) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {staff.map((member, index) => (
-              // Wrapper div agar ukurannya konsisten
-              <div key={index} className="w-full"> 
-                 <MemberCard member={member} />
-              </div>
-            ))}
-          </div>
-
+          {/* STAFF */}
+          {staff.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full max-w-4xl relative z-0">
+              {staff.map((member) => (
+                <div key={member.id} className="w-full max-w-[200px] mx-auto">
+                  <MemberCard member={member} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            !leader && (
+              <div className="text-gray-400 text-sm italic">Data kosong.</div>
+            )
+          )}
         </div>
-
       </div>
     </section>
   );

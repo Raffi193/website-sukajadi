@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ImageIcon, X, Upload, Loader2 } from "lucide-react";
-import Image from "next/image";
+import Image from "next/image"; // Import Image dari next/image
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabaseClient";
 
@@ -30,29 +30,27 @@ export function ImageUpload({ value, onChange, disabled }: ImageUploadProps) {
           const canvas = document.createElement("canvas");
           const ctx = canvas.getContext("2d");
 
-          // Atur ukuran maksimal (misal lebar 1000px)
-          const MAX_WIDTH = 1000;
-          const scaleSize = MAX_WIDTH / img.width;
-          canvas.width = MAX_WIDTH;
+          // ✅ PERBAIKAN: Ukuran lebih besar & quality lebih tinggi
+          const MAX_WIDTH = 1920; // ← Full HD
+          const scaleSize = img.width > MAX_WIDTH ? MAX_WIDTH / img.width : 1;
+          canvas.width = img.width > MAX_WIDTH ? MAX_WIDTH : img.width;
           canvas.height = img.height * scaleSize;
 
           ctx?.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-          // Convert ke Blob (Format WebP, kualitas 80%)
           canvas.toBlob(
             (blob) => {
               if (blob) resolve(blob);
               else reject(new Error("Gagal kompresi"));
             },
             "image/webp",
-            0.8, // Kualitas 80%
+            0.92, // ← Quality 92% (lebih tinggi)
           );
         };
       };
       reader.onerror = (error) => reject(error);
     });
   };
-  // ------------------------------
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const originalFile = e.target.files?.[0];
@@ -104,24 +102,26 @@ export function ImageUpload({ value, onChange, disabled }: ImageUploadProps) {
   };
 
   const handleRemove = () => {
-    // Opsional: Anda bisa menambahkan logika hapus file dari bucket di sini juga
     setPreview("");
     onChange("");
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
-  // ... (Sisa Return JSX sama seperti sebelumnya) ...
   return (
-    // ... Copy JSX dari jawaban sebelumnya ...
     <div className="space-y-4 w-full">
       {preview ? (
         <div className="relative w-full aspect-video md:h-64 rounded-xl overflow-hidden border border-gray-200 shadow-sm group">
-          <img
+          {/* Gunakan Next.js Image component */}
+          <Image
             src={preview}
             alt="Thumbnail Preview"
-            className="w-full h-full object-cover transition-transform group-hover:scale-105"
+            fill // Menggunakan fill untuk responsive image
+            className="object-cover transition-transform group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={false}
+            quality={85}
           />
-          <div className="absolute top-2 right-2 flex gap-2">
+          <div className="absolute top-2 right-2 flex gap-2 z-10">
             <Button
               type="button"
               variant="destructive"
@@ -150,9 +150,6 @@ export function ImageUpload({ value, onChange, disabled }: ImageUploadProps) {
               {isUploading
                 ? "Mengompres & Upload..."
                 : "Klik untuk upload thumbnail"}
-            </p>
-            <p className="text-xs text-gray-500">
-              Otomatis dikompres ke WebP (Hemat Kuota)
             </p>
           </div>
 

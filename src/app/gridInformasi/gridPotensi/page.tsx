@@ -141,12 +141,12 @@ export default function PotensiSection() {
               {products.map((product, idx) => (
                 <div key={idx} className="group cursor-pointer">
                   <div className="relative h-64 w-full rounded-xl overflow-hidden mb-4">
-                    <Image
+                    {/* <Image
                       src={product.image}
                       alt={product.name}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
+                    /> */}
                     <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                       {product.category}
                     </div>

@@ -13,69 +13,79 @@ export default function Home() {
     <>
       <TopBar />
       <Navbar />
-      <main className=" text-gray-800 bg-gray-50 min-h-screen">
+      <main className="text-gray-800 bg-gray-50 min-h-screen overflow-x-hidden">
         <Hero />
 
-        {/* Area Konten Utama Halaman */}
-        <section data-aos="fade-up" className="py-20 bg-white">
-          <div className="container mx-auto px-4 md:px-16">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              {/* Kolom Foto Lurah */}
+        {/* --- SECTION SAMBUTAN LURAH (DESAIN BARU) --- */}
+        <section className="py-24 bg-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+            
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+              
+              {/* KOLOM KIRI: FOTO LURAH (Desain Lebih Bersih) */}
               <div className="relative">
-                {/* Frame aksen di belakang foto */}
-                <div className="absolute -inset-4 bg-blue-100 rounded-xl transform rotate-3 -z-10" />
-
-                <div className="relative h-[450px] w-full rounded-lg overflow-hidden shadow-lg border-b-4 border-blue-600">
-                  {/* Ganti dengan foto Pak Lurah nanti */}
+                {/* Frame Background Simple (Opsional, bisa dihapus jika ingin polos) */}
+                <div className="absolute -inset-3 bg-blue-50 rounded-2xl transform rotate-2 -z-10" />
+                
+                <div className="relative h-[500px] lg:h-[600px] w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                  {/* Gunakan foto formal Pak Lurah yang berkualitas tinggi di sini */}
                   <Image
-                    src="/images/kantorLurah.png"
-                    alt="Kepala Kelurahan Sukajadi"
+                    src="/images/kantor.jpeg" // Pastikan ganti dengan foto Pak Rusdy Bahalwan
+                    alt="Rusdy Bahalwan, S.Sos. M.Si - Lurah Sukajadi"
                     fill
-                    className="object-cover"
+                    className="object-cover object-top" // object-top agar fokus ke wajah
+                    priority // Agar gambar dimuat lebih dulu
                   />
                 </div>
               </div>
 
-              {/* Kolom Teks Sambutan */}
-              <div className="space-y-6">
-                <div className="space-y-2">
-                  <span className="text-blue-600 font-bold tracking-wider text-sm uppercase">
+              {/* KOLOM KANAN: TEKS SAMBUTAN (Rata Kiri, Profesional) */}
+              <div className="space-y-8 text-left">
+                <div>
+                  <span className="text-blue-600 font-bold tracking-wider text-sm uppercase block mb-2">
                     Assalamu'alaikum Wr. Wb.
                   </span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-800 leading-tight">
-                    Sambutan Lurah <br />{" "}
+                  <h2 className="text-4xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4 font-poppins">
+                    Sambutan Lurah <br />
                     <span className="text-blue-600">Sukajadi</span>
                   </h2>
-                  <div className="h-1 w-20 bg-yellow-400 rounded-full"></div>
+                  {/* Garis Bawah Biru */}
+                  <div className="h-1.5 w-24 bg-blue-600 rounded-full"></div>
                 </div>
 
-                <p className="text-gray-600 leading-relaxed text-lg">
-                  "Selamat datang di website resmi Kelurahan Sukajadi. Website
-                  ini kami hadirkan sebagai media informasi, transparansi, dan
-                  pelayanan publik bagi seluruh masyarakat. Kami berkomitmen
-                  untuk mewujudkan Sukajadi yang maju, mandiri, dan sejahtera."
-                </p>
+                <div className="space-y-6 text-medium leading-relaxed text-gray-600 font-sans text-justify" >
+                  <p>
+                    "Selamat datang di website resmi Pemerintah Kelurahan Sukajadi, Kabupaten Banyuasin. Website ini merupakan wujud komitmen kami dalam era keterbukaan informasi publik, sebagai sarana interaksi dan komunikasi antara pemerintah kelurahan dengan seluruh lapisan masyarakat."
+                  </p>
+                  <p>
+                    Melalui media ini, kami berupaya menyajikan informasi terkini mengenai profil kelurahan, program pembangunan, layanan administrasi, serta berbagai potensi dan kegiatan kemasyarakatan. Kami berharap website ini dapat menjadi jembatan yang efektif untuk meningkatkan kualitas pelayanan publik yang lebih cepat, transparan, dan akuntabel.
+                  </p>
+                  <p>
+                    Mari bersama-sama kita bersinergi, bergotong royong membangun Kelurahan Sukajadi yang lebih maju, mandiri, dan sejahtera. Terima kasih atas dukungan dan partisipasi aktif seluruh warga.
+                  </p>
+                </div>
 
                 <div className="pt-4">
-                  <h4 className="font-bold text-xl text-gray-800">
-                    H. Nama Lurah, S.IP., M.Si
+                  <p className="text-medium font-medium text-gray-500 mb-2">
+                    Wassalamu'alaikum Wr. Wb.
+                  </p>
+                  <h4 className="font-bold text-xl text-gray-900 mb-1">
+                    Rusdy Bahalwan, S.Sos. M.Si
                   </h4>
-                  <p className="text-blue-600 font-medium">Lurah Sukajadi</p>
+                  <p className="text-blue-600 font-semibold text-medium">
+                    Lurah Sukajadi
+                  </p>
                 </div>
               </div>
+
             </div>
           </div>
         </section>
+        {/* --- AKHIR SECTION SAMBUTAN --- */}
 
-        {/* Section Jelajahi */}
         <Jelajahi />
-
-        {/* Section Sarana */}
         <SaranaPrasarana />
-
-        {/*Panggil list berita, batasi 3 saja */}
-        <DaftarBerita limit={3} />
-
+        <DaftarBerita limit={6} />
         <Footer />
         <FloatingButton />
       </main>

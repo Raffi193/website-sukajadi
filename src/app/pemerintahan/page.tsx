@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import TopBar from "@/components/layout/TopBar";
@@ -9,6 +7,7 @@ import LembagaMitra from "./lembagaKemasyarakatan";
 import Hero from "./hero";
 import TupoksiSection from "./TupoksiSection";
 import VisiMisi from "./VisiMisi";
+import KelembagaanSection from "@/components/views/KelembagaanSection";
 import {
   FaSitemap,
   FaDownload,
@@ -29,52 +28,64 @@ export default function page() {
 
       <VisiMisi />
 
-      <section className="container pt-15 py-18 bg-gray-50">
-        <div className="containezr">
-          {/* Judul Section */}
-          <div className=" mb-12 container">
-            <span className="text-blue-600 font-bold tracking-wider text-sm uppercase">
-              Hierarki Organisasi
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+          {/* Header Section (Gaya Baru) */}
+          <div className="mb-12">
+            <span className="text-blue-600 font-bold text-xs uppercase tracking-widest mb-2 block">
+              Hierarki organisasi
             </span>
-            <h2 className="text-3xl font-bold text-gray-900 font-poppins mt-2">
+            <h2 className="text-3xl md:text-3xl font-extrabold text-gray-900 font-poppins mb-3">
               Bagan Struktur <span className="text-blue-600">Pemerintahan</span>
             </h2>
-            <p className="text-gray-500 mt-4 font-sans">
+            <p className="text-gray-500 text-medium max-w-2xl leading-relaxed">
               Gambaran alur koordinasi dan pertanggungjawaban tugas di
               lingkungan Pemerintah Kelurahan Sukajadi
             </p>
-            <div className="h-1 w-20 bg-blue-600 rounded-full mt-4"></div>
+            {/* Garis Aksen Biru */}
+            <div className="w-24 h-1.5 bg-blue-600 mt-4 rounded-full"></div>
           </div>
 
-          {/* Container Gambar Bagan */}
-          <div className="relative w-full max-w-4xl mx-auto bg-gray-50 p-4 rounded-xl border border-gray-100 shadow-sm">
-            {/* Ganti src ini dengan gambar bagan struktur asli Anda nanti */}
-            <div className="relative aspect-[12/5] w-full overflow-hidden rounded-lg">
-              {/* <Image
-                  src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000&auto=format&fit=crop"
-                  alt="Bagan Struktur Organisasi"
-                  fill
-                  className="object-contain" // Agar bagan tidak terpotong
-                /> */}
+          {/* 2. CONTAINER GAMBAR (Card Effect) */}
+          <div className="relative w-full max-w-2xl mx-auto">
+            {/* Efek Shadow & Background Putih */}
+            <div className="bg-white p-3 md:p-6 rounded-2xl shadow-xl border border-gray-100">
+              {/* Gambar Bagan Full Width & Auto Height */}
+              <Image
+                src="/images/bagan.png" // Pastikan path ini benar sesuai file Anda
+                alt="Bagan Struktur Organisasi Kelurahan Sukajadi"
+                className="w-full h-auto rounded-lg border border-gray-100"
+                priority // Agar gambar dimuat lebih dulu
+                width={0}
+                height={0}
+              />
+
+              {/* 3. TOMBOL DOWNLOAD BERFUNGSI */}
+              {/* Menggunakan tag <a> dengan atribut 'download' */}
+              <div className="mt-8 flex justify-center pb-2">
+                <a
+                  href="/images/bagan.png" // Link ke file gambar
+                  download="Struktur-Organisasi-Sukajadi.png" // Nama file saat didownload user
+                  className="flex items-center gap-3 bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 hover:shadow-lg transition-all transform hover:-translate-y-1 font-sans text-sm font-bold tracking-wide"
+                >
+                  <FaDownload /> UNDUH BAGAN
+                </a>
+              </div>
             </div>
 
-            {/* Tombol Download (Opsional) */}
-            <div className="mt-6 flex justify-center">
-              <button className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition font-sans text-sm font-medium shadow-md">
-                <FaDownload /> Unduh Bagan Resolusi Tinggi
-              </button>
-            </div>
+            {/* Dekorasi Background di belakang card (Opsional - Pemanis) */}
+            <div className="absolute -top-4 -left-4 w-full h-full bg-blue-100 rounded-2xl -z-10 hidden md:block"></div>
+            <div className="absolute -bottom-4 -right-4 w-full h-full bg-yellow-100 rounded-2xl -z-10 hidden md:block"></div>
           </div>
         </div>
       </section>
-
 
       {/*  Komponen Grid Foto (Daftar Pegawai) */}
       <PerangkatGrid />
 
       <TupoksiSection />
 
-      <LembagaMitra />
+      <KelembagaanSection />
 
       <Footer />
     </>

@@ -13,7 +13,9 @@ import {
   MessageSquare,
   Settings,
   ChevronRight,
-  LogOut
+  Layers,
+  LogOut,
+  Building2
 } from "lucide-react"
 import { cn } from "@/lib/utils" // Pastikan ada, atau hapus cn dan pakai template literal biasa
 
@@ -28,6 +30,7 @@ const menuGroups = [
     label: "Manajemen Konten",
     items: [
       { icon: FileText, label: "Berita", href: "/admin/berita" },
+      { icon: Layers, label: "Kategori Berita", href: "/admin/kategori" },
       { icon: Megaphone, label: "Pengumuman", href: "/admin/pengumuman" },
       { icon: Calendar, label: "Agenda", href: "/admin/agenda" },
       { icon: Images, label: "Galeri", href: "/admin/galeri" },
@@ -36,17 +39,11 @@ const menuGroups = [
   {
     label: "Administrasi",
     items: [
-      { icon: Users, label: "Perangkat Desa", href: "/admin/perangkat" },
+      { icon: Users, label: "Perangkat Kelurahan", href: "/admin/perangkat" },
       { icon: FileDown, label: "Dokumen Publik", href: "/admin/dokumen" },
-      { icon: MessageSquare, label: "Pengaduan", href: "/admin/pengaduan" },
-    ]
+      { icon: Building2, label: "Profil Kelurahan", href: "/admin/profil" },
+    ] 
   },
-  {
-    label: "Sistem",
-    items: [
-      { icon: Settings, label: "Pengaturan", href: "/admin/settings" },
-    ]
-  }
 ]
 
 export function AdminSidebar() {

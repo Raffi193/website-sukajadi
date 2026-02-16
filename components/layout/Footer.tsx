@@ -51,12 +51,12 @@ export default function Footer() {
             <h4 className="font-bold text-lg mb-6 font-poppins border-l-4 border-blue-600 pl-3">Jelajahi</h4>
             <ul className="space-y-3 text-sm text-gray-400">
               <li>
-                <Link href="/profil/visi-misi" className="hover:text-blue-500 transition flex items-center gap-2">
+                <Link href="/pemerintahan" className="hover:text-blue-500 transition flex items-center gap-2">
                   <FaChevronRight size={10} className="text-blue-600"/> Visi & Misi
                 </Link>
               </li>
               <li>
-                <Link href="/profil/struktur" className="hover:text-blue-500 transition flex items-center gap-2">
+                <Link href="/pemerintahan" className="hover:text-blue-500 transition flex items-center gap-2">
                   <FaChevronRight size={10} className="text-blue-600"/> Struktur Organisasi
                 </Link>
               </li>
@@ -66,12 +66,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/layanan" className="hover:text-blue-500 transition flex items-center gap-2">
+                <Link href="/administrasiKependudukan" className="hover:text-blue-500 transition flex items-center gap-2">
                   <FaChevronRight size={10} className="text-blue-600"/> Layanan Publik
                 </Link>
               </li>
               <li>
-                <Link href="/galeri" className="hover:text-blue-500 transition flex items-center gap-2">
+                <Link href="/gridInformasi/gridGaleri" className="hover:text-blue-500 transition flex items-center gap-2">
                   <FaChevronRight size={10} className="text-blue-600"/> Galeri Kegiatan
                 </Link>
               </li>
@@ -85,9 +85,8 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <FaMapMarkerAlt className="text-blue-600 mt-1 flex-shrink-0" />
                 <span>
-                  Jl. Pangeran Ayin No. 12, RT.05 RW.02, <br/>
-                  Kecamatan Sukarami, Kota Palembang, <br/>
-                  Sumatera Selatan 30151
+                  Jl. Hm Asyik Aqil, Sukomoro, Kec Talang Kelapa, Kabupaten Banyuasin,
+                  Sumatera Selatan
                 </span>
               </li>
               <li className="flex items-center gap-3">

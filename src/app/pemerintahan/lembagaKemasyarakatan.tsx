@@ -37,8 +37,8 @@ const mitraData = [
 
 export default function LembagaMitra() {
   return (
-    <section className="container py-12 md:py-24 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="container py-12 mb-30 md:py-24 bg-gray-50">
+      <div className="container mx-auto px-2 sm:px-6 lg:px-8">
         
         {/* Header Section */}
         <div className="max-w-3xl mb-10 md:mb-16 md:text-left mx-auto md:mx-0">

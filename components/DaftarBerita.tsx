@@ -1,9 +1,7 @@
 import Link from "next/link";
-import { FaCalendar, FaArrowRight, FaNewspaper } from "react-icons/fa";
-import { prisma } from "@/lib/prisma"; // Pastikan path import benar
-import { format } from "date-fns";
-import { id } from "date-fns/locale";
-import Image from "next/image";
+import { FaArrowRight, FaNewspaper } from "react-icons/fa";
+import { prisma } from "@/lib/prisma";
+import BeritaCard from "./BeritaCard";
 
 interface DaftarBeritaProps {
   limit?: number;
@@ -33,111 +31,45 @@ export default async function DaftarBerita({ limit }: DaftarBeritaProps) {
     },
   });
 
-  const getSummary = (text: string | null, htmlContent: string) => {
-    if (text) return text;
-    const cleanText = htmlContent.replace(/<[^>]+>/g, "");
-    return cleanText.length > 100
-      ? cleanText.substring(0, 100) + "..."
-      : cleanText;
-  };
-
   return (
-    // UBAHAN 1: Hapus 'container' dari section agar background full width
-    <section className="py-12 md:py-20 bg-gray-50">
-      <div className="w-full px-5 md:container md:mx-auto md:px-16">
+    <section className="py-16 px-4 bg-gradient-to-b from-gray-50 to-white">
+      <div className="max-w-7xl mx-auto px-2 md:px-8 mb-26">
         {/* Header Section */}
-        {/* Kita beri px-4 di sini agar TEXT judul tidak menempel ke pinggir layar HP, meskipun gambarnya nanti full width */}
-        <div className="px-4 md:px-0 flex flex-col md:flex-row justify-between items-end mb-8 md:mb-12 gap-4">
-          <div className="space-y-2">
-            <h2 className="text-4xl font-bold text-gray-800">
-              Kabar{" "}
-              <span className="text-blue-600 text-4xl font-bold">Sukajadi</span>
-            </h2>
-            <p className="text-gray-600">
-              Ikuti perkembangan terbaru dan kegiatan di wilayah kami
-            </p>
-            <div className="h-1 w-20 bg-blue-600 rounded-full mt-3"></div>
+        <div className="text-center mb-12">
+          <div className="inline-block mb-4">
+            <span className="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold">
+              <FaNewspaper className="inline mr-2" />
+              Berita Terkini
+            </span>
           </div>
-
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            Kabar <span className="text-blue-600">Sukajadi</span>
+          </h2>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Ikuti perkembangan terbaru dan kegiatan di wilayah kami
+          </p>
           {limit && (
             <Link
               href="/berita"
-              className="group flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-800 transition"
+              className="inline-flex items-center gap-2 mt-6 text-blue-600 hover:text-blue-700 font-semibold group"
             >
               Lihat Semua Berita
-              <FaArrowRight
-                size={18}
-                className="group-hover:translate-x-1 transition-transform"
-              />
+              <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
             </Link>
           )}
         </div>
 
         {/* Grid Berita */}
         {beritaData.length > 0 ? (
-          // UBAHAN 3: gap-y-1 (jarak tipis vertikal di HP) vs gap-8 (jarak renggang di Desktop)
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-5 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {beritaData.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group border border-gray-100 flex flex-col h-full"
-              >
-                {/* Gambar */}
-                <div className="relative h-64 md:h-52 w-full overflow-hidden bg-gray-200">
-                  {item.thumbnail ? (
-                    <Image
-                      src={item.thumbnail}
-                      alt={item.judul}
-                      fill
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-400">
-                      <FaNewspaper size={40} />
-                    </div>
-                  )}
-
-                  {/* Badge Kategori */}
-                  {item.kategori && (
-                    <div className="absolute top-4 left-4 bg-blue-600/90 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full font-medium shadow-sm">
-                      {item.kategori.nama}
-                    </div>
-                  )}
-                </div>
-
-                {/* Konten */}
-                <div className="p-4 md:p-6 flex flex-col flex-grow">
-                  <div className="flex items-center gap-2 text-gray-500 text-xs mb-3 font-medium">
-                    <FaCalendar size={12} className="text-blue-500" />
-                    <span>
-                      {format(new Date(item.createdAt), "dd MMMM yyyy", {
-                        locale: id,
-                      })}
-                    </span>
-                  </div>
-
-                  <h3 className="text-lg font-bold text-gray-800 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
-                    <Link href={`/berita/${item.slug}`}>{item.judul}</Link>
-                  </h3>
-
-                  <p className="text-gray-600 text-sm line-clamp-3 mb-4 flex-grow">
-                    {getSummary(item.excerpt, item.konten)}
-                  </p>
-
-                  <Link
-                    href={`/berita/${item.slug}`}
-                    className="mt-auto text-sm font-bold text-blue-600 hover:text-blue-800 flex items-center gap-1 transition-colors"
-                  >
-                    Baca Selengkapnya <FaArrowRight size={12} />
-                  </Link>
-                </div>
-              </div>
+              <BeritaCard key={item.id} item={item} />
             ))}
           </div>
         ) : (
-          <div className="mx-4 md:mx-0 text-center py-12 bg-white rounded-xl border border-dashed border-gray-300 col-span-full">
-            <p className="text-gray-500">
+          <div className="text-center py-12 bg-gray-50 rounded-lg">
+            <FaNewspaper className="text-gray-300 text-6xl mx-auto mb-4" />
+            <p className="text-gray-500 text-lg">
               Belum ada berita yang dipublikasikan.
             </p>
           </div>

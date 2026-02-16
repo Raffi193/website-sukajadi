@@ -4,7 +4,7 @@ import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 const isPublicRoute = createRouteMatcher([
   '/', 
   '/sign-in(.*)',
-  '/sign-up(.*)',
+  // '/sign-up(.*)',
   
   // --- MENU PROFIL ---
   '/profilPage(.*)', // Sesuai dengan href di Navbar Anda

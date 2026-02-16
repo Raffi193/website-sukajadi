@@ -179,7 +179,7 @@ export default function AgendaClient({ agendas }: AgendaClientProps) {
         <div className="flex flex-col gap-6 mb-8 border-b border-gray-200 pb-6">
           {/* Bagian Judul: Dibuat Center di Mobile, Left di Desktop */}
           <div className="flex flex-col gap-1 text-center md:text-left">
-            <h3 className="text-xl md:text-2xl font-bold text-gray-800 flex items-center justify-center md:justify-start gap-2">
+            <h3 className="text-xl md:text-2xl font-bold text-blue-600 flex items-center justify-center md:justify-start gap-2">
               <FaCalendarAlt className="text-blue-600" /> Daftar Agenda
             </h3>
             <p className="text-sm text-gray-500">

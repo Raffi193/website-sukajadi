@@ -22,6 +22,10 @@ const isPublicRoute = createRouteMatcher([
   '/pengumuman(.*)',
   '/agenda(.*)',
   '/gridiInformasi(.*)',
+  '/gridGaleri(.*)',
+  '/gridPotensi(.*)',
+  '/gridSejarah(.*)',
+  '/gridWilayah(.*)',
 
   // --- MENU KONTAK ---
   '/kontak(.*)',

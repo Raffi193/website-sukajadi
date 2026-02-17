@@ -28,7 +28,7 @@ export default function HalamanKontak() {
       <HeroPages
         title="Hubungi Kami"
         subtitle="Pusat informasi dan layanan masyarakat Kelurahan Sukajadi. Kami siap membantu kebutuhan administrasi Anda."
-        image="/images/kantor.jpeg" // Pastikan gambar ada
+        image="/images/kantorlurah.jpeg" // Pastikan gambar ada
       />
 
       <div className="container mx-auto px-4 md:px-8 lg:px-16 mt-30 -mt-10 relative z-10">
@@ -236,7 +236,7 @@ export default function HalamanKontak() {
           <div className="w-full aspect-[7/9] md:aspect-[21/9] bg-gray-200 rounded-2xl overflow-hidden shadow-xl border-4 border-white relative z-0">
              {/* Google Maps Embed */}
              <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.5828779957644!2d104.68656137418243!3d-2.935489739639535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b743048590e8d%3A0x6e313504153925c4!2sKantor%20Lurah%20Sukajadi!5e0!3m2!1sid!2sid!4v1709600000000!5m2!1sid!2sid" // Pastikan link embed ini benar atau gunakan placeholder
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.6632410935244!2d104.65292217435308!3d-2.9128995970634928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b0cac53f936b9%3A0x2997769e28f68579!2sKantor%20Lurah%20Sukajadi!5e0!3m2!1sid!2sid!4v1771296040965!5m2!1sid!2sid" // Pastikan link embed ini benar atau gunakan placeholder
               width="100%"
               height="100%"
               style={{ border: 0 }}

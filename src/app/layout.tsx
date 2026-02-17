@@ -12,15 +12,65 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sukajadi.com"),
+
   title: {
-    default: "Kelurahan Sukajadi", // Judul default jika halaman tidak punya judul khusus
-    template: "%s | Kelurahan Sukajadi", // Format judul: "Nama Halaman | Kelurahan Sukajadi"
+    default: "Website Resmi Kelurahan Sukajadi",
+    template: "%s | Website Kelurahan Sukajadi",
   },
-  description: "Website Resmi Media Informasi Kelurahan Sukajadi",
+
+  description:
+    "Website resmi Kelurahan Sukajadi sebagai media informasi, berita, pengumuman, dan layanan masyarakat",
+
+  keywords: [
+    "Kelurahan Sukajadi",
+    "Website Resmi Kelurahan",
+    "Berita Kelurahan Sukajadi",
+    "Informasi Desa Sukajadi",
+  ],
+
+  authors: [{ name: "Kelurahan Sukajadi" }],
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
+  alternates: {
+    canonical: "/",
+  },
+
+  openGraph: {
+    title: "Website Resmi Kelurahan Sukajadi",
+    description:
+      "Media informasi resmi Kelurahan Sukajadi untuk masyarakat",
+    url: "https://sukajadi.com",
+    siteName: "Website Kelurahan Sukajadi",
+    locale: "id_ID",
+    type: "website",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Website Kelurahan Sukajadi",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Website Resmi Kelurahan Sukajadi",
+    description:
+      "Media informasi resmi Kelurahan Sukajadi untuk masyarakat.",
+    images: ["/logo.png"],
+  },
+
   icons: {
-    icon: "/logo.png", // Ganti dengan path logo Anda jika ada
+    icon: "/logo.png",
   },
 };
+
 
 export default function RootLayout({
   children,

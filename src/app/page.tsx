@@ -8,6 +8,12 @@ import DaftarBerita from "@/components/DaftarBerita";
 import Jelajahi from "./section/jelajahDesa";
 import SaranaPrasarana from "./section/saranaPrasarana";
 
+export const metadata = {
+  title: "Website Resmi Kelurahan Sukajadi",
+  description:
+    "Website resmi Kelurahan Sukajadi sebagai media informasi kepada masyarakat",
+};
+
 export default function Home() {
   return (
     <>

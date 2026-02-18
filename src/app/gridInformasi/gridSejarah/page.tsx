@@ -54,7 +54,7 @@ export default function SejarahSection() {
       <TopBar />
       <NavBar />
 
-      <section className="py-20 bg-white">
+      <section className="py-12 mb-30 bg-white">
         <div className="container mx-auto px-4 md:px-16">
           
           {/* ================= BAGIAN 1: NARASI & FILOSOFI ================= */}
@@ -145,7 +145,7 @@ export default function SejarahSection() {
           </div>
 
           {/* ================= BAGIAN 3: TABEL PEMIMPIN ================= */}
-          <div className="bg-gray-50 rounded-3xl p-8 md:p-12">
+          <div className="bg-gray-50 rounded-3xl p-2 md:p-12">
             <div className="text-center max-w-2xl mx-auto mb-10">
               <span className="text-blue-600 font-bold tracking-wider text-sm uppercase">
                 Dedikasi

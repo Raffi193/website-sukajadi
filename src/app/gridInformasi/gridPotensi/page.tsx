@@ -69,7 +69,7 @@ export default function PotensiSection() {
     <>
       <TopBar />
       <NavBar />
-      <section className="pb-20 py-20 mb-29 bg-white">
+      <section className="pb-20 py-6 mb-29 bg-white">
         <div className="container mx-auto px-4 md:px-16">
           {/* BAGIAN 1: STATISTIK & INTRO */}
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">

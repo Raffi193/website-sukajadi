@@ -36,9 +36,8 @@ export default function WilayahSection() {
     <>
       <Topbar />
       <NavBar />
-      <section className="py-18 mb-29 bg-white">
+      <section className=" mb-50 bg-white">
         <div className="container mx-auto px-4 md:px-16 space-y-20">
-          
           {/* BAGIAN 1: KONDISI GEOGRAFIS & STATISTIK UTAMA */}
           <div className="grid lg:grid-cols-12 gap-12 items-center mt-10">
             {/* Kolom Kiri: Deskripsi Naratif */}
@@ -51,11 +50,13 @@ export default function WilayahSection() {
                 <span className="text-blue-600">Demografi Wilayah</span>
               </h2>
               <p className="text-gray-600 leading-relaxed text-lg font-sans text-justify">
-                Kelurahan Sukajadi mencakup wilayah seluas <strong>± 517,2 Ha</strong>. 
-                Secara topografi, wilayah ini dikelompokkan untuk berbagai kebutuhan 
-                seperti fasilitas umum, pemukiman, perkebunan, dan kegiatan ekonomi. 
-                Struktur tanah yang stabil mendukung pengembangan infrastruktur jangka panjang 
-                di wilayah yang terbagi menjadi <strong>34 RT dan 06 RW</strong> ini.
+                Kelurahan Sukajadi mencakup wilayah seluas{" "}
+                <strong>± 517,2 Ha</strong>. Secara topografi, wilayah ini
+                dikelompokkan untuk berbagai kebutuhan seperti fasilitas umum,
+                pemukiman, perkebunan, dan kegiatan ekonomi. Struktur tanah yang
+                stabil mendukung pengembangan infrastruktur jangka panjang di
+                wilayah yang terbagi menjadi <strong>34 RT dan 06 RW</strong>{" "}
+                ini.
               </p>
             </div>
 
@@ -122,8 +123,12 @@ export default function WilayahSection() {
                     Sebelah Utara
                   </h4>
                 </div>
-                <h5 className="font-semibold text-gray-700">Desa Pangkalan Benteng</h5>
-                <p className="text-gray-500 text-sm mt-1">Jl. Desa Pkl. Benteng</p>
+                <h5 className="font-semibold text-gray-700">
+                  Desa Pangkalan Benteng
+                </h5>
+                <p className="text-gray-500 text-sm mt-1">
+                  Jl. Desa Pkl. Benteng
+                </p>
               </div>
 
               {/* SELATAN */}
@@ -136,8 +141,12 @@ export default function WilayahSection() {
                     Sebelah Selatan
                   </h4>
                 </div>
-                <h5 className="font-semibold text-gray-700">Kelurahan Tanah Mas</h5>
-                <p className="text-gray-500 text-sm mt-1">Jl. Raya Plg-Betung</p>
+                <h5 className="font-semibold text-gray-700">
+                  Kelurahan Tanah Mas
+                </h5>
+                <p className="text-gray-500 text-sm mt-1">
+                  Jl. Raya Plg-Betung
+                </p>
               </div>
 
               {/* TIMUR */}
@@ -150,7 +159,9 @@ export default function WilayahSection() {
                     Sebelah Timur
                   </h4>
                 </div>
-                <h5 className="font-semibold text-gray-700">Kel. Sukajadi Timur</h5>
+                <h5 className="font-semibold text-gray-700">
+                  Kel. Sukajadi Timur
+                </h5>
                 <p className="text-gray-500 text-sm mt-1">Jl. Pelita</p>
               </div>
 
@@ -164,7 +175,9 @@ export default function WilayahSection() {
                     Sebelah Barat
                   </h4>
                 </div>
-                <h5 className="font-semibold text-gray-700">Kelurahan Sukamoro</h5>
+                <h5 className="font-semibold text-gray-700">
+                  Kelurahan Sukamoro
+                </h5>
                 <p className="text-gray-500 text-sm mt-1">Jl. Pasir Putih</p>
               </div>
             </div>
@@ -177,8 +190,12 @@ export default function WilayahSection() {
                 <FaGraduationCap size={24} />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-gray-900">Sektor Pendidikan</h3>
-                <p className="text-gray-500 text-sm">Statistik Jenjang Pendidikan & Jumlah Siswa</p>
+                <h3 className="text-2xl font-bold text-gray-900">
+                  Sektor Pendidikan
+                </h3>
+                <p className="text-gray-500 text-sm">
+                  Statistik Jenjang Pendidikan & Jumlah Siswa
+                </p>
               </div>
             </div>
 
@@ -186,20 +203,27 @@ export default function WilayahSection() {
               {/* Grafik Progress Bar */}
               <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                 <h4 className="font-bold text-gray-800 mb-6 flex items-center gap-2">
-                   Tingkat Pendidikan Penduduk
+                  Tingkat Pendidikan Penduduk
                 </h4>
                 <div className="space-y-4">
                   {educationStats.map((item, index) => {
-                    const percentage = totalEducation > 0 ? (item.count / totalEducation) * 100 : 0;
+                    const percentage =
+                      totalEducation > 0
+                        ? (item.count / totalEducation) * 100
+                        : 0;
                     return (
                       <div key={index}>
                         <div className="flex justify-between text-sm mb-1">
-                          <span className="text-gray-600 font-medium">{item.label}</span>
-                          <span className="font-bold text-gray-900">{item.count}</span>
+                          <span className="text-gray-600 font-medium">
+                            {item.label}
+                          </span>
+                          <span className="font-bold text-gray-900">
+                            {item.count}
+                          </span>
                         </div>
                         <div className="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden">
-                          <div 
-                            className={`h-2.5 rounded-full ${item.color}`} 
+                          <div
+                            className={`h-2.5 rounded-full ${item.color}`}
                             style={{ width: `${percentage}%` }}
                           ></div>
                         </div>
@@ -211,41 +235,50 @@ export default function WilayahSection() {
 
               {/* Statistik Siswa */}
               <div className="space-y-6">
-                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    {/* TK */}
-                    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
-                      <div className="mx-auto w-10 h-10 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mb-2">
-                        <FaChild size={20} />
-                      </div>
-                      <h5 className="text-gray-500 text-xs font-bold uppercase">TK</h5>
-                      <p className="text-2xl font-bold text-gray-800">50</p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {/* TK */}
+                  <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
+                    <div className="mx-auto w-10 h-10 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mb-2">
+                      <FaChild size={20} />
                     </div>
-                    {/* SD */}
-                    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
-                      <div className="mx-auto w-10 h-10 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-2">
-                        <FaSchool size={20} />
-                      </div>
-                      <h5 className="text-gray-500 text-xs font-bold uppercase">SD/MI</h5>
-                      <p className="text-2xl font-bold text-gray-800">509</p>
+                    <h5 className="text-gray-500 text-xs font-bold uppercase">
+                      TK
+                    </h5>
+                    <p className="text-2xl font-bold text-gray-800">50</p>
+                  </div>
+                  {/* SD */}
+                  <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
+                    <div className="mx-auto w-10 h-10 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-2">
+                      <FaSchool size={20} />
                     </div>
-                    {/* SMP */}
-                    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
-                      <div className="mx-auto w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mb-2">
-                        <FaBook size={20} />
-                      </div>
-                      <h5 className="text-gray-500 text-xs font-bold uppercase">SMP/MTs</h5>
-                      <p className="text-2xl font-bold text-gray-800">400</p>
+                    <h5 className="text-gray-500 text-xs font-bold uppercase">
+                      SD/MI
+                    </h5>
+                    <p className="text-2xl font-bold text-gray-800">509</p>
+                  </div>
+                  {/* SMP */}
+                  <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
+                    <div className="mx-auto w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mb-2">
+                      <FaBook size={20} />
                     </div>
-                 </div>
+                    <h5 className="text-gray-500 text-xs font-bold uppercase">
+                      SMP/MTs
+                    </h5>
+                    <p className="text-2xl font-bold text-gray-800">400</p>
+                  </div>
+                </div>
 
-                 {/* Note Tantangan */}
-                 <div className="bg-yellow-50 border border-yellow-200 p-5 rounded-xl">
-                    <h5 className="font-bold text-yellow-800 mb-2 text-sm">Tantangan Pendidikan</h5>
-                    <p className="text-sm text-yellow-700 leading-relaxed">
-                       Diperlukan peningkatan partisipasi masyarakat, perbaikan sarana prasarana, 
-                       dan peningkatan kualitas tenaga pengajar untuk mengurangi angka putus sekolah.
-                    </p>
-                 </div>
+                {/* Note Tantangan */}
+                <div className="bg-yellow-50 border border-yellow-200 p-5 rounded-xl">
+                  <h5 className="font-bold text-yellow-800 mb-2 text-sm">
+                    Tantangan Pendidikan
+                  </h5>
+                  <p className="text-sm text-yellow-700 leading-relaxed">
+                    Diperlukan peningkatan partisipasi masyarakat, perbaikan
+                    sarana prasarana, dan peningkatan kualitas tenaga pengajar
+                    untuk mengurangi angka putus sekolah.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -254,12 +287,12 @@ export default function WilayahSection() {
           <div className="bg-gray-900 rounded-2xl p-2 md:p-4 shadow-2xl">
             <div className="bg-white rounded-xl overflow-hidden relative h-[450px]">
               <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-md border border-gray-200">
-                <h4 className="font-bold text-gray-800 flex items-center gap-2 text-sm">
+                <p className="font-bold text-gray-800 flex items-center gap-2 text-sm">
                   <FaCompass className="text-red-500" /> Peta Sukajadi
-                </h4>
+                </p>
               </div>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15938.932997235586!2d104.70617545!3d-2.90226665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b730623190e3d%3A0x77d01308735316e6!2sSukajadi%2C%20Talang%20Kelapa%2C%20Banyuasin%20Regency%2C%20South%20Sumatra!5e0!3m2!1sen!2sid!4v1707800000000!5m2!1sen!2sid"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.663241093534!2d104.65292217435312!3d-2.9128995970634928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b0cac53f936b9%3A0x2997769e28f68579!2sKantor%20Lurah%20Sukajadi!5e0!3m2!1sid!2sid!4v1771412147354!5m2!1sid!2sid"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -270,7 +303,6 @@ export default function WilayahSection() {
               ></iframe>
             </div>
           </div>
-
         </div>
       </section>
 

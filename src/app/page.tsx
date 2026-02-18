@@ -20,6 +20,18 @@ export default function Home() {
       <TopBar />
       <Navbar />
       <main className="text-gray-800 bg-gray-50 min-h-screen overflow-x-hidden">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "GovernmentOrganization",
+              name: "Kelurahan Sukajadi",
+              url: "https://sukajadi.com",
+            }),
+          }}
+        />
+
         <Hero />
 
         {/* --- SECTION SAMBUTAN LURAH (DESAIN BARU) --- */}

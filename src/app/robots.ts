@@ -1,9 +1,12 @@
-export default function robots() {
+import { MetadataRoute } from 'next'
+
+export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
-      userAgent: "*",
-      allow: "/",
+      userAgent: '*',
+      allow: '/',
+      disallow: ['/admin'],
     },
-    sitemap: "https://sukajadi.com/sitemap.xml",
-  };
+    sitemap: 'https://sukajadi.com/sitemap.xml',
+  }
 }

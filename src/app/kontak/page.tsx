@@ -28,7 +28,7 @@ export default function HalamanKontak() {
       <HeroPages
         title="Hubungi Kami"
         subtitle="Pusat informasi dan layanan masyarakat Kelurahan Sukajadi. Kami siap membantu kebutuhan administrasi Anda."
-        image="/images/kantorlurah.jpeg" // Pastikan gambar ada
+        image="/images/kantor.jpeg" // Pastikan gambar ada
       />
 
       <div className="container mx-auto px-4 md:px-8 lg:px-16 mt-30 -mt-10 relative z-10">

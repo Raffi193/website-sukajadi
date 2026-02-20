@@ -77,9 +77,9 @@ export default function PotensiSection() {
               <div className="inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 px-4 py-1.5 rounded-full text-sm font-medium mb-4">
                 <FaChartLine /> Ekonomi & Demografi
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 font-poppins mb-4">
+              <h2 className="text-3xl font-semibold text-gray-800 font-poppins mb-4">
                 Menggali Potensi, <br />
-                <span className="text-blue-600">Membangun Sukajadi</span>
+                <span className="text-gray-800">Membangun Sukajadi</span>
               </h2>
               <p className="text-gray-600 leading-relaxed text-justify font-sans">
                 Kelurahan Sukajadi memiliki luas wilayah ± 517,2 Ha dengan

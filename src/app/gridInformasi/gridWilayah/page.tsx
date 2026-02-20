@@ -45,9 +45,9 @@ export default function WilayahSection() {
               <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-700 px-4 py-1.5 rounded-full text-sm font-medium">
                 <FaMapMarkedAlt /> Gambaran Umum
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-poppins">
+              <h2 className="text-3xl md:text-3xl font-bold text-gray-800 font-poppins">
                 Kondisi Geografis & <br />
-                <span className="text-blue-600">Demografi Wilayah</span>
+                <span className="text-gray-800">Demografi Wilayah</span>
               </h2>
               <p className="text-gray-600 leading-relaxed text-lg font-sans text-justify">
                 Kelurahan Sukajadi mencakup wilayah seluas{" "}
@@ -106,15 +106,15 @@ export default function WilayahSection() {
               <span className="text-blue-600 font-bold tracking-wider text-sm uppercase">
                 Perbatasan
               </span>
-              <h2 className="text-3xl font-bold text-gray-900 font-poppins mt-2">
+              <p className="text-3xl md:text-3xl font-bold text-gray-800 font-poppins mt-2">
                 Batas Administrasi
-              </h2>
+              </p>
               <div className="h-1 w-20 bg-blue-600 mx-auto mt-4 rounded-full"></div>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* UTARA */}
-              <div className="bg-white p-6 rounded-xl shadow-sm border-t-4 border-blue-500 hover:-translate-y-2 transition-transform group">
+              <div className="bg-white p-6 rounded-xl shadow-sm  border border-gray-200 hover:-translate-y-2 transition-transform group">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="p-2 bg-blue-100 text-blue-600 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition">
                     <FaArrowUp />
@@ -132,7 +132,7 @@ export default function WilayahSection() {
               </div>
 
               {/* SELATAN */}
-              <div className="bg-white p-6 rounded-xl shadow-sm border-t-4 border-blue-500 hover:-translate-y-2 transition-transform group">
+              <div className="bg-white p-6 rounded-xl shadow-sm  border border-gray-200 hover:-translate-y-2 transition-transform group">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="p-2 bg-blue-100 text-blue-600 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition">
                     <FaArrowDown />
@@ -150,7 +150,7 @@ export default function WilayahSection() {
               </div>
 
               {/* TIMUR */}
-              <div className="bg-white p-6 rounded-xl shadow-sm border-t-4 border-blue-500 hover:-translate-y-2 transition-transform group">
+              <div className="bg-white p-6 rounded-xl shadow-sm  border border-gray-200 hover:-translate-y-2 transition-transform group">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="p-2 bg-blue-100 text-blue-600 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition">
                     <FaArrowRight />
@@ -166,7 +166,7 @@ export default function WilayahSection() {
               </div>
 
               {/* BARAT */}
-              <div className="bg-white p-6 rounded-xl shadow-sm border-t-4 border-blue-500 hover:-translate-y-2 transition-transform group">
+              <div className="bg-white p-6 rounded-xl shadow-sm  border border-gray-200 hover:-translate-y-2 transition-transform group">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="p-2 bg-blue-100 text-blue-600 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition">
                     <FaArrowLeft />
@@ -190,9 +190,9 @@ export default function WilayahSection() {
                 <FaGraduationCap size={24} />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-gray-900">
+                <p className="text-2xl font-bold text-gray-800">
                   Sektor Pendidikan
-                </h3>
+                </p>
                 <p className="text-gray-500 text-sm">
                   Statistik Jenjang Pendidikan & Jumlah Siswa
                 </p>
@@ -280,27 +280,6 @@ export default function WilayahSection() {
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* BAGIAN 4: PETA DIGITAL */}
-          <div className="bg-gray-900 rounded-2xl p-2 md:p-4 shadow-2xl">
-            <div className="bg-white rounded-xl overflow-hidden relative h-[450px]">
-              <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-md border border-gray-200">
-                <p className="font-bold text-gray-800 flex items-center gap-2 text-sm">
-                  <FaCompass className="text-red-500" /> Peta Sukajadi
-                </p>
-              </div>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.663241093534!2d104.65292217435312!3d-2.9128995970634928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b0cac53f936b9%3A0x2997769e28f68579!2sKantor%20Lurah%20Sukajadi!5e0!3m2!1sid!2sid!4v1771412147354!5m2!1sid!2sid"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="filter contrast-100"
-              ></iframe>
             </div>
           </div>
         </div>

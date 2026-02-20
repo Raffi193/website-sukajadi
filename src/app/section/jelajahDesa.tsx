@@ -41,8 +41,8 @@ export default function Jelajahi() {
         {/* Header Section */}
         <div className=" max-w-2xl mb-16 space-y-3">
           <span className="text-blue-600 font-bold tracking-wider text-sm uppercase">Destinasi & Informasi</span>
-          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-gray-900 font-poppins">
-            Jelajahi Kelurahan <span className="text-blue-600">Sukajadi</span>
+          <h2 className="mt-2 text-3xl md:text-3xl font-bold text-gray-800 font-poppins">
+            Jelajahi Kelurahan <span className="text-gray-800">Sukajadi</span>
           </h2>
           <p className="text-gray-500 leading-relaxed font-sans">
             Kenali lebih dekat potensi wilayah, sejarah, dan kearifan lokal yang ada di lingkungan kami.

@@ -27,10 +27,10 @@ export default function SejarahSection() {
           <div className="space-y-6">
             <div>
               <span className="text-blue-600 font-bold tracking-wider text-sm uppercase">Jejak Sejarah</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-poppins mt-2">
-                Sejarah Pembentukan <br/> <span className="text-blue-600">Kelurahan Sukajadi</span>
+              <h2 className="text-3xl md:text-3xl font-semibold text-gray-800 font-poppins mt-3">
+                Sejarah Pembentukan <br/> <span className="text-gray-800">Kelurahan Sukajadi</span>
               </h2>
-              <div className="h-1.5 w-24 bg-blue-600 mt-4 rounded-full"></div>
+              <div className="h-1 w-24 bg-blue-600 mt-4 rounded-full"></div>
             </div>
             
             

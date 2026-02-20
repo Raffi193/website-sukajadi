@@ -62,8 +62,8 @@ export default async function PerangkatGrid() {
           <span className="text-blue-600 font-bold text-xs uppercase tracking-widest mb-2 block">
             PERSONEL & STAFF
           </span>
-          <h2 className="text-3xl md:text-3xl font-extrabold text-gray-900 font-poppins mb-3">
-            Profil <span className="text-blue-600">Aparatur</span>
+          <h2 className="text-3xl md:text-3xl font-semibold text-gray-800 font-poppins mb-2">
+            Profil <span className="text-gary-800">Aparatur</span>
           </h2>
           <p className="text-gray-500 text-medium max-w-2xl leading-relaxed">
             Daftar lengkap pejabat struktural dan staf pelaksana yang bertugas

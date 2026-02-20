@@ -37,7 +37,7 @@ export default function PetaKondisiWilayah() {
               <GraduationCap size={22} className="md:w-6 md:h-6" />
             </div>
             <div className="flex-1">
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-1">
+              <h3 className="text-xl sm:text-2xl lg:text-2xl font-semibold text-gray-900 mb-1">
                 Sektor Pendidikan
               </h3>
               <p className="text-gray-500 text-xs sm:text-sm md:text-base">

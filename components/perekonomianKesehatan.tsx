@@ -90,8 +90,8 @@ export default function PerekonomianKesehatan() {
               <span className="text-blue-600 font-bold tracking-wider text-sm uppercase">
                 Ekonomi Kerakyatan
               </span>
-              <h2 className="text-3xl font-bold text-gray-900 font-poppins mt-2">
-                Mata Pencaharian <span className="text-blue-600">Warga</span>
+              <h2 className="text-3xl md:text-3xl font-semibold text-gray-800 font-poppins mt-2">
+                Mata Pencaharian <span className="text-gray-800">Warga</span>
               </h2>
               <div className="h-1 w-20 bg-blue-600 mt-4 rounded-full"></div>
             </div>

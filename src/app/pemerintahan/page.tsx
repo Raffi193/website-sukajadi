@@ -35,8 +35,8 @@ export default function page() {
             <span className="text-blue-600 font-bold text-xs uppercase tracking-widest mb-2 block">
               Hierarki organisasi
             </span>
-            <h2 className="text-3xl md:text-3xl font-extrabold text-gray-900 font-poppins mb-3">
-              Bagan Struktur <span className="text-blue-600">Pemerintahan</span>
+            <h2 className="text-3xl md:text-3xl font-semibold text-gray-900 font-poppins mb-3">
+              Bagan Struktur <span className="text-gray-800">Pemerintahan</span>
             </h2>
             <p className="text-gray-500 text-medium max-w-2xl leading-relaxed">
               Gambaran alur koordinasi dan pertanggungjawaban tugas di

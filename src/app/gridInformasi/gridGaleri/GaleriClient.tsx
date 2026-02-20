@@ -31,7 +31,7 @@ export default function GaleriClient({ data }: { data: GaleriItem[] }) {
         {/* --- 1. HEADER & SEARCH --- */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
           <div>
-            <h2 className="text-3xl font-bold text-gray-800 font-poppins mb-2">
+            <h2 className="text-3xl font-semibold text-gray-800 font-poppins mb-2">
               Galeri Kegiatan
             </h2>
             <p className="text-gray-500">

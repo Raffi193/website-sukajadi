@@ -24,7 +24,7 @@ export default async function ProfilPage() {
       <HeroPages
         title="Profil & Sejarah"
         subtitle="Mengenal lebih dekat identitas, asal-usul, dan perjalanan Kelurahan Sukajadi dari masa ke masa."
-        image="/images/fix.jpeg" // Jangan lupa tambahkan props image jika HeroPages memintanya
+        image="/images/kantor.jpeg" // Jangan lupa tambahkan props image jika HeroPages memintanya
       />
 
       {/* 4. Kirim data ke komponen IdentitasSection */}

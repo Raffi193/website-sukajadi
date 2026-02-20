@@ -61,9 +61,9 @@ export default function Home() {
                   <span className="text-blue-600 font-bold tracking-wider text-sm uppercase block mb-2">
                     Assalamu'alaikum Wr. Wb.
                   </span>
-                  <h2 className="text-4xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4 font-poppins">
+                  <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 leading-tight mb-4 font-poppins">
                     Sambutan Lurah <br />
-                    <span className="text-blue-600">Sukajadi</span>
+                    <span className="text-gray-800">Sukajadi</span>
                   </h2>
                   {/* Garis Bawah Biru */}
                   <div className="h-1.5 w-24 bg-blue-600 rounded-full"></div>

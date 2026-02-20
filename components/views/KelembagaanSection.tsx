@@ -137,10 +137,10 @@ export default function KelembagaanSection() {
           <span className="text-blue-600 font-bold tracking-wider text-sm uppercase bg-blue-50 py-1 rounded-full">
             Struktur & Kelembagaan
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-poppins mt-4">
-            Kelembagaan <span className="text-blue-600">Kelurahan Sukajadi</span>
+          <h2 className="text-3xl md:text-3xl font-semibold text-gray-800 font-poppins mt-2">
+            Kelembagaan <span className="text-gray-800">Kelurahan Sukajadi</span>
           </h2>
-          <p className="text-gray-500 mt-4 max-w-2xl">
+          <p className="text-gray-500 mt-3 max-w-2xl">
             Daftar lengkap pejabat pemerintahan, pengurus RT/RW, dan lembaga kemasyarakatan yang bersinergi membangun kelurahan.
           </p>
         </div>

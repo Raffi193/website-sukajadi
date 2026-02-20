@@ -42,8 +42,8 @@ export default async function DaftarBerita({ limit }: DaftarBeritaProps) {
               Berita Terkini
             </span>
           </div>
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
-            Kabar <span className="text-blue-600">Sukajadi</span>
+          <h2 className="text-3xl font-bold text-gray-800 mb-3">
+            Kabar <span className="text-gray-800">Sukajadi</span>
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             Ikuti perkembangan terbaru dan kegiatan di wilayah kami

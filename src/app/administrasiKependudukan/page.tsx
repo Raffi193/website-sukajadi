@@ -38,7 +38,7 @@ export default async function HalamanKependudukan() {
 
             {/* Judul & Intro */}
             <div className="max-w-3xl">
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 font-poppins mb-3">
+              <h1 className="text-2xl md:text-3xl font-semibold text-gray-800 font-poppins mb-3">
                 Layanan Administrasi
               </h1>
               <p className="text-gray-500 text-medium leading-relaxed">

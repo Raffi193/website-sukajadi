@@ -18,10 +18,10 @@ export default function VisiMisi() {
           <span className="text-blue-600 font-bold tracking-wider text-xs md:text-sm uppercase">
             Arah & Tujuan
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-poppins mt-2">
-            Visi & Misi <span className="text-blue-600">Pemerintahan</span>
+          <h2 className="text-3xl md:text-3xl font-semibold text-gray-800 font-poppins mt-2">
+            Visi & Misi <span className="text-gray-800">Pemerintahan</span>
           </h2>
-          <p className="text-gray-600 leading-relaxed font-sans max-w-2xl mt-4 text-sm md:text-base">
+          <p className="text-gray-600 leading-relaxed font-sans max-w-2xl mt-2 text-medium">
             Komitmen kami dalam merancang masa depan kelurahan yang lebih baik,
             terarah, dan berorientasi pada kesejahteraan seluruh warga.
           </p>

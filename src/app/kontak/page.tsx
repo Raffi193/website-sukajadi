@@ -36,7 +36,7 @@ export default function HalamanKontak() {
         {/* 2. Kartu Kontak Utama (Grid 4 Kolom) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {/* Kartu Alamat */}
-          <div className="bg-white p-6 rounded-xl shadow-lg border-b-4  border-black hover:-translate-y-1 transition-transform duration-300">
+          <div className="bg-white p-6 rounded-xl shadow-lg   border-black hover:-translate-y-1 transition-transform duration-300">
             <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-4">
               <FaMapMarkerAlt size={24} />
             </div>
@@ -47,7 +47,7 @@ export default function HalamanKontak() {
           </div>
 
           {/* Kartu Telepon/WA */}
-          <div className="bg-white p-6 rounded-xl shadow-lg border-b-4  border-black  hover:-translate-y-1 transition-transform duration-300">
+          <div className="bg-white p-6 rounded-xl shadow-lg   border-black  hover:-translate-y-1 transition-transform duration-300">
             <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-4">
               <FaWhatsapp size={24} />
             </div>
@@ -57,7 +57,7 @@ export default function HalamanKontak() {
           </div>
 
           {/* Kartu Email */}
-          <div className="bg-white p-6 rounded-xl shadow-lg border-b-4  border-black  hover:-translate-y-1 transition-transform duration-300">
+          <div className="bg-white p-6 rounded-xl shadow-lg   border-black  hover:-translate-y-1 transition-transform duration-300">
             <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 mb-4">
               <FaEnvelope size={24} />
             </div>
@@ -67,7 +67,7 @@ export default function HalamanKontak() {
           </div>
 
           {/* Kartu Sosmed */}
-          <div className="bg-white p-6 rounded-xl shadow-lg border-b-4 border-black hover:-translate-y-1 transition-transform duration-300">
+          <div className="bg-white p-6 rounded-xl shadow-lg  border-black hover:-translate-y-1 transition-transform duration-300">
             <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 mb-4">
               <FaInstagram size={24} />
             </div>
@@ -227,7 +227,7 @@ export default function HalamanKontak() {
       {/* 4. Peta Lokasi (Full Width) */}
       <section className="bg-white py-12 border-t border-gray-200">
         <div className="container mx-auto px-4 md:px-16 text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 font-poppins mb-2">Lokasi Kantor</h2>
+          <p className="text-xl md:text-2xl font-semibold text-gray-800 font-poppins mb-2">Lokasi Kantor</p>
           <p className="text-gray-500">Temukan lokasi kantor kami melalui peta digital</p>
           <div className="h-1 w-20 bg-blue-600 rounded-full mx-auto mt-4"></div>
         </div>

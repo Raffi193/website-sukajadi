@@ -37,12 +37,12 @@ export default async function HalamanGaleri() {
           </div>
 
           {/* Judul Besar */}
-          <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold font-poppins mb-4">
+          <h1 className="text-3xl md:text-5xl lg:text-4xl font-bold font-poppins mb-3">
             Galeri <span className="text-yellow-400">Kegiatan</span>
           </h1>
 
           {/* Subjudul */}
-          <p className="text-gray-300 text-lg md:text-medium max-w-2xl leading-relaxed">
+          <p className="text-gray-300 text-medium md:text-medium max-w-2xl leading-relaxed">
             Arsip dokumentasi visual kegiatan pemerintahan, pembangunan, dan kemasyarakatan di lingkungan Kelurahan Sukajadi.
           </p>
         </div>

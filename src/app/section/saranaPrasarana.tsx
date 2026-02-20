@@ -114,7 +114,7 @@ export default function SaranaPrasaranaSection() {
           <span className="text-blue-600 font-bold tracking-wider text-sm uppercase">
             SARANA & PRASARANA
           </span>
-          <h2 className="text-3xl font-bold text-gray-900 font-poppins mt-2">
+          <h2 className="text-3xl md:text-3xl font-bold text-gray-900 font-poppins mt-2">
             Profil Infrastruktur Kelurahan Sukajadi
           </h2>
           <p className="text-gray-500 text-sm mt-2 sm:text-base max-w-2xl mx-auto md:mx-0 mb-4 md:mb-4 leading-relaxed">

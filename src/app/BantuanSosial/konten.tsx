@@ -65,7 +65,7 @@ export default function BansosSection() {
               <span className="text-blue-600 font-bold tracking-wider text-sm uppercase mb-2 block">
                 Transparansi Data
               </span>
-              <h2 className="text-3xl font-bold text-gray-900 font-poppins mb-4">
+              <h2 className="text-2xl font-semibold text-gray-800 font-poppins mb-4">
                 Cek Penerima Bansos
               </h2>
               <p className="text-gray-600 leading-relaxed mb-6">
@@ -109,7 +109,7 @@ export default function BansosSection() {
         {/* --- 2. KATALOG PROGRAM --- */}
         <div className="mb-16">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <h3 className="text-2xl font-bold text-gray-900 font-poppins">
+            <h3 className="text-2xl font-semibold text-gray-800 font-poppins">
               Jenis Bantuan Sosial
             </h3>
             <div className="h-1 w-20 bg-blue-600 mx-auto mt-3 rounded-full"></div>
@@ -149,7 +149,7 @@ export default function BansosSection() {
 
         {/* --- 3. ALUR PENGAJUAN (Timeline Style) --- */}
         <div className="max-w-4xl mx-auto mb-20">
-          <h3 className="text-2xl font-bold text-gray-900 font-poppins mb-8 text-center">
+          <h3 className="text-2xl font-semibold text-gray-800 font-poppins mb-8 text-center">
             Alur Pengusulan DTKS Baru
           </h3>
 

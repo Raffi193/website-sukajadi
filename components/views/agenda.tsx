@@ -79,7 +79,7 @@ export default function AgendaClient({ agendas }: AgendaClientProps) {
             <FaChevronRight size={10} />
             <span className="text-white">Agenda</span>
           </nav>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-2 font-poppins">
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 font-poppins">
             Kalender <span className="text-yellow-400">Kegiatan</span>
           </h1>
           <p className="text-blue-100 max-w-xl text-sm md:text-lg font-sans">

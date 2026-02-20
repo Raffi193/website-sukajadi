@@ -93,14 +93,14 @@ export default function IdentitasSection({ data }: { data: ProfilData | null }) 
             <span className="text-blue-600 font-bold tracking-wider text-sm uppercase flex items-center gap-2">
               <FaFileContract /> Data Administratif
             </span>
-            <h2 className="text-4xl font-bold text-gray-900 font-poppins mt-3">
-              Identitas <span className="text-blue-600">Wilayah</span>
+            <h2 className="text-3xl md:text-3xl font-semibold text-gray-800 font-poppins mt-3">
+              Identitas Wilayah
             </h2>
             <p className="text-gray-500 text-medium py-2">
               Informasi dasar mengenai kode wilayah, luas area, dan pembagian
               administratif Kelurahan Sukajadi, Kabupaten Banyuasin.
             </p>
-            <div className="h-1.5 w-24 bg-blue-600 mt-4 rounded-full"></div>
+            <div className="h-1 w-24 bg-blue-600 mt-4 rounded-full"></div>
           </div>
         </div>
 

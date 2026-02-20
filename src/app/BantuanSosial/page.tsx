@@ -29,7 +29,7 @@ export default function HalamanBansos() {
 
             {/* Judul & Intro */}
             <div className="max-w-3xl">
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 font-poppins mb-3">
+              <h1 className="text-3xl md:text-3xl font-semibold text-gray-800 font-poppins mb-3">
                 Informasi Bantuan Sosial
               </h1>
               <p className="text-gray-500 text-lg leading-relaxed">

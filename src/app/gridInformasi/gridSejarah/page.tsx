@@ -77,8 +77,8 @@ export default function SejarahSection() {
               <span className="text-blue-600 font-bold tracking-wider text-sm uppercase flex items-center gap-2">
                 <FaHistory /> Napak Tilas
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-poppins mt-3 mb-6">
-                Sejarah & <span className="text-blue-600">Perkembangan</span>
+              <h2 className="text-3xl md:text-3xl font-semibold text-gray-800 font-poppins mt-3 mb-6">
+                Sejarah & <span className="text-gray-800">Perkembangan</span>
               </h2>
 
               <div className="prose text-gray-600 leading-relaxed text-justify mb-8 font-sans">
@@ -115,7 +115,7 @@ export default function SejarahSection() {
           {/* ================= BAGIAN 2: TIMELINE (GARIS WAKTU) ================= */}
           <div className="max-w-4xl mx-auto mb-24">
             <div className="text-center mb-12">
-              <h3 className="text-2xl font-bold text-gray-900 font-poppins">
+              <h3 className="text-2xl font-semibold text-gray-900 font-poppins">
                 Jejak Langkah Perjalanan
               </h3>
               <div className="h-1 w-20 bg-blue-600 mx-auto mt-3 rounded-full"></div>
@@ -150,7 +150,7 @@ export default function SejarahSection() {
               <span className="text-blue-600 font-bold tracking-wider text-sm uppercase">
                 Dedikasi
               </span>
-              <h2 className="text-3xl font-bold text-gray-900 font-poppins mt-2">
+              <h2 className="text-3xl font-semibold text-gray-900 font-poppins mt-2">
                 Pemimpin Dari Masa ke Masa
               </h2>
               <p className="text-gray-500 mt-2 text-sm font-sans">

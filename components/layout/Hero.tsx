@@ -16,7 +16,7 @@ export default function HeroPages({
   image = "/images/kantor.jpeg" // Default Image
 }: HeroPagesProps) {
   return (
-    <section className="relative h-[400px] w-full flex items-center px-6">
+    <section className="relative h-[340px] w-full flex items-center px-6">
       
       {/* 1. Background Image Full */}
       <Image 
@@ -47,13 +47,13 @@ export default function HeroPages({
           </div>
 
           {/* Judul Halaman */}
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 font-poppins leading-tight">
+          <h1 className="text-3xl md:text-3xl font-bold text-white mb-4 font-poppins leading-tight">
             {title}
           </h1>
           
           {/* Deskripsi (Jika ada) */}
           {subtitle && (
-            <p className="text-blue-100 text-lg font-sans leading-relaxed max-w-2xl border-l-4 border-yellow-400 pl-4">
+            <p className="text-blue-100 text-medium font-sans leading-relaxed max-w-2xl border-l-4 border-yellow-400 pl-4">
               {subtitle}
             </p>
           )}

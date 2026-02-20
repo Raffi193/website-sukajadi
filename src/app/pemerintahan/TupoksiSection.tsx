@@ -151,10 +151,10 @@ export default function TupoksiSection() {
            <span className="text-blue-600 font-bold text-sm uppercase tracking-wider block mb-2">
              Tanggung Jawab
            </span>
-           <h2 className="text-3xl font-bold text-gray-900 font-poppins">
+           <h2 className="text-3xl md:text-3xl font-semibold text-gray-800 font-poppins">
              Tugas Pokok & Fungsi
            </h2>
-           <p className="text-gray-500 mt-2 max-w-2xl">
+           <p className="text-gray-500 mt-3 max-w-2xl">
              Uraian tugas dan wewenang setiap unit kerja dalam memberikan pelayanan prima.
            </p>
         </div>

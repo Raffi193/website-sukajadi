@@ -1,14 +1,22 @@
 "use client";
 
-import { deleteGaleri } from "@/src/app/actions/galeri";
+import { deleteGaleri } from "@/src/actions/galeri";
 import { FaTrash } from "react-icons/fa";
 import { useTransition } from "react";
 
-export default function TombolHapusGaleri({ id, judul }: { id: string, judul: string }) {
+export default function TombolHapusGaleri({
+  id,
+  judul,
+}: {
+  id: string;
+  judul: string;
+}) {
   const [isPending, startTransition] = useTransition();
 
   const handleDelete = () => {
-    if (confirm(`Hapus galeri "${judul}"? Tindakan ini tidak bisa dibatalkan.`)) {
+    if (
+      confirm(`Hapus galeri "${judul}"? Tindakan ini tidak bisa dibatalkan.`)
+    ) {
       startTransition(async () => {
         await deleteGaleri(id);
       });
@@ -16,8 +24,8 @@ export default function TombolHapusGaleri({ id, judul }: { id: string, judul: st
   };
 
   return (
-    <button 
-      onClick={handleDelete} 
+    <button
+      onClick={handleDelete}
       disabled={isPending}
       className="text-red-500 hover:bg-red-50 p-2 rounded-lg transition text-sm flex items-center gap-1"
     >

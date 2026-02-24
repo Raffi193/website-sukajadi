@@ -41,7 +41,7 @@ import {
   Edit,
 } from "lucide-react";
 import { formatDate } from "@/lib/helpers";
-import { deleteBerita } from "@/src/app/actions/berita";
+import { deleteBerita } from "@/src/actions/berita";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Image from "next/image";

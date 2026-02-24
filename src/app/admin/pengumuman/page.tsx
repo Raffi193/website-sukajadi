@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
-import { deletePengumuman } from "@/src/app/actions/pengumuman"; // Import
+import { deletePengumuman } from "@/src/actions/pengumuman"; // Import
 import { FaPlus, FaTrash, FaFilePdf, FaTag, FaEdit } from "react-icons/fa";
 
 export const dynamic = "force-dynamic";
@@ -91,23 +91,23 @@ export default async function AdminPengumumanPage() {
                 </td>
                 <td className="p-4 text-right">
                   <div className="flex justify-end gap-2">
-                  <Link
-                    href={`/admin/pengumuman/${item.id}/edit`}
-                    className="text-blue-500 hover:text-blue-700 p-2 rounded-md hover:bg-blue-50 transition"
-                  >
-                    <FaEdit />
-                  </Link>
+                    <Link
+                      href={`/admin/pengumuman/${item.id}/edit`}
+                      className="text-blue-500 hover:text-blue-700 p-2 rounded-md hover:bg-blue-50 transition"
+                    >
+                      <FaEdit />
+                    </Link>
 
-                  <form
-                    action={async () => {
-                      "use server";
-                      await deletePengumuman(item.id);
-                    }}
-                  >
-                    <button className="text-red-500 hover:text-red-700 p-2 rounded-md hover:bg-red-50 transition">
-                      <FaTrash />
-                    </button>
-                  </form>
+                    <form
+                      action={async () => {
+                        "use server";
+                        await deletePengumuman(item.id);
+                      }}
+                    >
+                      <button className="text-red-500 hover:text-red-700 p-2 rounded-md hover:bg-red-50 transition">
+                        <FaTrash />
+                      </button>
+                    </form>
                   </div>
                 </td>
               </tr>

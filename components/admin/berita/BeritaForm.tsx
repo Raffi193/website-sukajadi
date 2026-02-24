@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { KategoriBerita } from "@prisma/client";
-import { createBerita, updateBerita } from "@/src/app/actions/berita";
+import { createBerita, updateBerita } from "@/src/actions/berita";
 
 // UI Components
 import { Button } from "@/components/ui/button";
@@ -152,7 +152,7 @@ export function BeritaForm({ kategoris, initialData }: BeritaFormProps) {
         if (!initialData) {
           // Reset form jadi kosong lagi
           form.reset({
-            judul: "",  
+            judul: "",
             slug: "",
             konten: "",
             thumbnail: "",
@@ -160,8 +160,7 @@ export function BeritaForm({ kategoris, initialData }: BeritaFormProps) {
           });
 
           // Paksa scroll ke paling atas agar nyaman input lagi
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          
+          window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
         router.refresh();
@@ -279,7 +278,6 @@ export function BeritaForm({ kategoris, initialData }: BeritaFormProps) {
                 name="konten"
                 render={({ field }) => (
                   <FormItem>
-                    
                     <FormControl>
                       <div className="min-h-[400px]">
                         <TiptapEditor
@@ -461,26 +459,24 @@ export function BeritaForm({ kategoris, initialData }: BeritaFormProps) {
           </Card>
 
           <div className="flex items-center gap-3">
-          <Button
-            onClick={form.handleSubmit(onSubmit)}
-            disabled={isSubmitting}
-            className="min-w-[140px] shadow-lg shadow-blue-500/20 bg-blue-600 hover:bg-blue-700 transition-all"
-          >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Menyimpan...
-              </>
-            ) : (
-              <>
-                <Save className="mr-2 h-4 w-4" />
-                Simpan Berita
-              </>
-            )}
-          </Button>
-        </div>
-
-          
+            <Button
+              onClick={form.handleSubmit(onSubmit)}
+              disabled={isSubmitting}
+              className="min-w-[140px] shadow-lg shadow-blue-500/20 bg-blue-600 hover:bg-blue-700 transition-all"
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Menyimpan...
+                </>
+              ) : (
+                <>
+                  <Save className="mr-2 h-4 w-4" />
+                  Simpan Berita
+                </>
+              )}
+            </Button>
+          </div>
         </form>
       </Form>
     </div>

@@ -1,4 +1,4 @@
-import { getBerita, getKategoriBerita } from "@/src/app/actions/berita";
+import { getBerita, getKategoriBerita } from "@/src/actions/berita";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Plus, FileText, CheckCircle2, Clock } from "lucide-react";

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { updateProfilKelurahan } from "@/src/app/actions/profil";
+import { updateProfilKelurahan } from "@/src/actions/profil";
 import { createClient } from "@supabase/supabase-js";
 import {
   FaSave,
@@ -28,7 +28,12 @@ const supabase = createClient(
 // Tab Navigasi
 const tabs = [
   { id: "identitas", label: "Identitas", icon: <FaBuilding />, color: "blue" },
-  { id: "sejarah", label: "Sejarah & Visi", icon: <FaHistory />, color: "purple" },
+  {
+    id: "sejarah",
+    label: "Sejarah & Visi",
+    icon: <FaHistory />,
+    color: "purple",
+  },
   { id: "wilayah", label: "Wilayah", icon: <FaMapMarkedAlt />, color: "green" },
   { id: "demografi", label: "Demografi", icon: <FaUsers />, color: "orange" },
   { id: "media", label: "Media & Sosmed", icon: <FaGlobe />, color: "pink" },
@@ -53,11 +58,17 @@ export default function FormProfil({ initialData }: { initialData: any }) {
 
   const showToast = (msg: string, type: "success" | "error") => {
     setToast({ show: true, message: msg, type });
-    setTimeout(() => setToast({ show: false, message: "", type: "success" }), 4000);
+    setTimeout(
+      () => setToast({ show: false, message: "", type: "success" }),
+      4000,
+    );
   };
 
   // Fungsi Kompresi Gambar
-  const compressImage = async (file: File, maxWidth: number = 1920): Promise<Blob> => {
+  const compressImage = async (
+    file: File,
+    maxWidth: number = 1920,
+  ): Promise<Blob> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -101,14 +112,18 @@ export default function FormProfil({ initialData }: { initialData: any }) {
       return;
     }
 
-    const setUploading = type === "logo" ? setLogoUploading : setKantorUploading;
+    const setUploading =
+      type === "logo" ? setLogoUploading : setKantorUploading;
     const setUrl = type === "logo" ? setLogoUrl : setKantorUrl;
 
     try {
       setUploading(true);
 
       // Kompresi gambar
-      const compressedBlob = await compressImage(file, type === "logo" ? 1000 : 1920);
+      const compressedBlob = await compressImage(
+        file,
+        type === "logo" ? 1000 : 1920,
+      );
       const fileName = `profil/${type}-${Date.now()}-${Math.random().toString(36).substring(2, 9)}.webp`;
       const compressedFile = new File([compressedBlob], fileName, {
         type: "image/webp",
@@ -125,7 +140,10 @@ export default function FormProfil({ initialData }: { initialData: any }) {
         .getPublicUrl(fileName);
 
       setUrl(data.publicUrl);
-      showToast(`${type === "logo" ? "Logo" : "Foto kantor"} berhasil diupload`, "success");
+      showToast(
+        `${type === "logo" ? "Logo" : "Foto kantor"} berhasil diupload`,
+        "success",
+      );
     } catch (err) {
       console.error("Upload error:", err);
       showToast("Gagal upload gambar", "error");
@@ -170,7 +188,9 @@ export default function FormProfil({ initialData }: { initialData: any }) {
                 : "bg-red-50/95 text-red-800 border-red-300"
             }`}
           >
-            <div className={`p-2 rounded-full ${toast.type === "success" ? "bg-green-100" : "bg-red-100"}`}>
+            <div
+              className={`p-2 rounded-full ${toast.type === "success" ? "bg-green-100" : "bg-red-100"}`}
+            >
               {toast.type === "success" ? (
                 <FaCheckCircle className="text-green-600" size={20} />
               ) : (
@@ -200,7 +220,9 @@ export default function FormProfil({ initialData }: { initialData: any }) {
                 : "border-transparent text-gray-500 hover:text-gray-700 hover:bg-white/50"
             }`}
           >
-            <span className={`transition-transform group-hover:scale-110 ${activeTab === tab.id ? "scale-110" : ""}`}>
+            <span
+              className={`transition-transform group-hover:scale-110 ${activeTab === tab.id ? "scale-110" : ""}`}
+            >
               {tab.icon}
             </span>
             {tab.label}
@@ -210,7 +232,9 @@ export default function FormProfil({ initialData }: { initialData: any }) {
 
       <form onSubmit={handleSubmit} className="p-6 md:p-8 lg:p-10">
         {/* --- TAB 1: IDENTITAS --- */}
-        <div className={activeTab === "identitas" ? "block space-y-6" : "hidden"}>
+        <div
+          className={activeTab === "identitas" ? "block space-y-6" : "hidden"}
+        >
           <div className="grid md:grid-cols-2 gap-5">
             <div className="group">
               <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
@@ -340,7 +364,7 @@ export default function FormProfil({ initialData }: { initialData: any }) {
               placeholder="Contoh: 517.2 Ha"
             />
           </div>
-          
+
           <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border-2 border-green-100">
             <h4 className="font-bold text-green-800 mb-4 flex items-center gap-2">
               <FaMapMarkedAlt /> Batas Wilayah
@@ -390,7 +414,9 @@ export default function FormProfil({ initialData }: { initialData: any }) {
         </div>
 
         {/* --- TAB 4: DEMOGRAFI --- */}
-        <div className={activeTab === "demografi" ? "block space-y-6" : "hidden"}>
+        <div
+          className={activeTab === "demografi" ? "block space-y-6" : "hidden"}
+        >
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-gradient-to-br from-orange-50 to-amber-50 p-8 rounded-2xl border-2 border-orange-100 text-center group hover:shadow-lg transition-all">
               <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
@@ -441,7 +467,7 @@ export default function FormProfil({ initialData }: { initialData: any }) {
                 <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
                 Logo Kelurahan
               </label>
-              
+
               {logoUrl ? (
                 <div className="relative group">
                   <div className="w-full aspect-square max-w-sm mx-auto border-4 border-white rounded-2xl overflow-hidden shadow-xl bg-white">
@@ -477,20 +503,29 @@ export default function FormProfil({ initialData }: { initialData: any }) {
                   <div className="w-full aspect-square max-w-sm mx-auto border-4 border-dashed border-blue-300 rounded-2xl bg-white hover:bg-blue-50 transition-all flex flex-col items-center justify-center p-8 group-hover:border-blue-500">
                     {logoUploading ? (
                       <>
-                        <FaSpinner className="text-blue-500 animate-spin mb-4" size={48} />
+                        <FaSpinner
+                          className="text-blue-500 animate-spin mb-4"
+                          size={48}
+                        />
                         <p className="text-blue-600 font-bold">Mengupload...</p>
-                        <p className="text-xs text-gray-500 mt-2">Mohon tunggu sebentar</p>
+                        <p className="text-xs text-gray-500 mt-2">
+                          Mohon tunggu sebentar
+                        </p>
                       </>
                     ) : (
                       <>
                         <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                           <FaImage className="text-blue-500" size={32} />
                         </div>
-                        <p className="text-blue-800 font-bold mb-2">Upload Logo Kelurahan</p>
+                        <p className="text-blue-800 font-bold mb-2">
+                          Upload Logo Kelurahan
+                        </p>
                         <p className="text-sm text-gray-600 text-center max-w-xs">
                           Klik untuk memilih file atau drag & drop di sini
                         </p>
-                        <p className="text-xs text-gray-400 mt-3">Format: JPG, PNG, WebP • Max: 5MB</p>
+                        <p className="text-xs text-gray-400 mt-3">
+                          Format: JPG, PNG, WebP • Max: 5MB
+                        </p>
                       </>
                     )}
                   </div>
@@ -511,7 +546,7 @@ export default function FormProfil({ initialData }: { initialData: any }) {
                 <span className="w-2 h-2 bg-green-600 rounded-full"></span>
                 Foto Kantor Depan
               </label>
-              
+
               {kantorUrl ? (
                 <div className="relative group">
                   <div className="w-full aspect-video max-w-3xl mx-auto border-4 border-white rounded-2xl overflow-hidden shadow-xl bg-white">
@@ -547,20 +582,31 @@ export default function FormProfil({ initialData }: { initialData: any }) {
                   <div className="w-full aspect-video max-w-3xl mx-auto border-4 border-dashed border-green-300 rounded-2xl bg-white hover:bg-green-50 transition-all flex flex-col items-center justify-center p-8 group-hover:border-green-500">
                     {kantorUploading ? (
                       <>
-                        <FaSpinner className="text-green-500 animate-spin mb-4" size={48} />
-                        <p className="text-green-600 font-bold">Mengupload...</p>
-                        <p className="text-xs text-gray-500 mt-2">Mohon tunggu sebentar</p>
+                        <FaSpinner
+                          className="text-green-500 animate-spin mb-4"
+                          size={48}
+                        />
+                        <p className="text-green-600 font-bold">
+                          Mengupload...
+                        </p>
+                        <p className="text-xs text-gray-500 mt-2">
+                          Mohon tunggu sebentar
+                        </p>
                       </>
                     ) : (
                       <>
                         <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                           <FaCamera className="text-green-500" size={32} />
                         </div>
-                        <p className="text-green-800 font-bold mb-2">Upload Foto Kantor</p>
+                        <p className="text-green-800 font-bold mb-2">
+                          Upload Foto Kantor
+                        </p>
                         <p className="text-sm text-gray-600 text-center max-w-xs">
                           Klik untuk memilih file atau drag & drop di sini
                         </p>
-                        <p className="text-xs text-gray-400 mt-3">Format: JPG, PNG, WebP • Max: 10MB</p>
+                        <p className="text-xs text-gray-400 mt-3">
+                          Format: JPG, PNG, WebP • Max: 10MB
+                        </p>
                       </>
                     )}
                   </div>
@@ -583,14 +629,30 @@ export default function FormProfil({ initialData }: { initialData: any }) {
             </h4>
             <div className="grid md:grid-cols-2 gap-4">
               {[
-                { name: "facebook", label: "Facebook", placeholder: "https://facebook.com/...",  },
-                { name: "instagram", label: "Instagram", placeholder: "https://instagram.com/..." },
-                { name: "twitter", label: "Twitter / X", placeholder: "https://twitter.com/..."},
-                { name: "youtube", label: "YouTube", placeholder: "https://youtube.com/@..."},
+                {
+                  name: "facebook",
+                  label: "Facebook",
+                  placeholder: "https://facebook.com/...",
+                },
+                {
+                  name: "instagram",
+                  label: "Instagram",
+                  placeholder: "https://instagram.com/...",
+                },
+                {
+                  name: "twitter",
+                  label: "Twitter / X",
+                  placeholder: "https://twitter.com/...",
+                },
+                {
+                  name: "youtube",
+                  label: "YouTube",
+                  placeholder: "https://youtube.com/@...",
+                },
               ].map((social) => (
                 <div key={social.name} className="group">
                   <label className="block text-xs font-bold text-gray-600 mb-2 flex items-center gap-2">
-                     {social.label}
+                    {social.label}
                   </label>
                   <input
                     type="text"
@@ -622,7 +684,10 @@ export default function FormProfil({ initialData }: { initialData: any }) {
               </>
             ) : (
               <>
-                <FaSave className="group-hover:scale-110 transition-transform" size={18} />
+                <FaSave
+                  className="group-hover:scale-110 transition-transform"
+                  size={18}
+                />
                 <span>Simpan Perubahan</span>
               </>
             )}

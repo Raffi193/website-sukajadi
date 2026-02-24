@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { deleteDokumen } from "@/src/app/actions/dokumen";
+import { deleteDokumen } from "@/src/actions/dokumen";
 import { FaTrash, FaExclamationTriangle, FaSpinner } from "react-icons/fa";
 
 export default function TombolHapusDokumen({ id }: { id: string }) {
@@ -33,16 +33,14 @@ export default function TombolHapusDokumen({ id }: { id: string }) {
       {/* 2. Modal Konfirmasi Kustom */}
       {isOpen && (
         <div className="fixed inset-0 z-[999] flex items-center justify-center p-4">
-          
           {/* Backdrop (Layar Hitam Transparan) */}
-          <div 
+          <div
             className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity animate-in fade-in"
             onClick={() => !isPending && setIsOpen(false)} // Klik luar untuk tutup (jika tidak sedang loading)
           />
 
           {/* Kartu Modal */}
           <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 scale-100 animate-in zoom-in-95 duration-200">
-            
             <div className="flex flex-col items-center text-center">
               {/* Ikon Peringatan Besar */}
               <div className="w-16 h-16 bg-red-100 text-red-500 rounded-full flex items-center justify-center mb-4 shadow-inner">
@@ -54,7 +52,8 @@ export default function TombolHapusDokumen({ id }: { id: string }) {
                 Hapus Dokumen?
               </h3>
               <p className="text-gray-500 text-sm mb-6 leading-relaxed">
-                Tindakan ini tidak dapat dibatalkan. Dokumen ini akan hilang permanen dari database dan penyimpanan.
+                Tindakan ini tidak dapat dibatalkan. Dokumen ini akan hilang
+                permanen dari database dan penyimpanan.
               </p>
 
               {/* Tombol Aksi */}
@@ -66,7 +65,7 @@ export default function TombolHapusDokumen({ id }: { id: string }) {
                 >
                   Batal
                 </button>
-                
+
                 <button
                   onClick={handleDelete}
                   disabled={isPending}
@@ -82,7 +81,6 @@ export default function TombolHapusDokumen({ id }: { id: string }) {
                 </button>
               </div>
             </div>
-
           </div>
         </div>
       )}

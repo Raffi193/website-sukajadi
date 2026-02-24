@@ -12,7 +12,7 @@ import {
   Users,
   Pencil,
 } from "lucide-react";
-import { deletePerangkat } from "@/src/app/actions/perangkat";
+import { deletePerangkat } from "@/src/actions/perangkat";
 
 export default async function PerangkatPage() {
   const data = await prisma.perangkatKelurahan.findMany({

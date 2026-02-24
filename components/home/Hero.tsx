@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Shield, CheckCircle, CreditCard } from "lucide-react";
 import Link from "next/link";
 // 1. Import fungsi untuk ambil data profil
-import { getProfilKelurahan } from "@/src/app/actions/profil"; 
+import { getProfilKelurahan } from "@/src/actions/profil";
 
 export default async function Hero() {
   // 2. Ambil data profil dari database
@@ -18,12 +18,16 @@ export default async function Hero() {
         {/* Gambar Dinamis */}
         <Image
           src={bgImage}
-          alt={profil?.namaKelurahan ? `Kantor ${profil.namaKelurahan}` : "Kantor Kelurahan"}
+          alt={
+            profil?.namaKelurahan
+              ? `Kantor ${profil.namaKelurahan}`
+              : "Kantor Kelurahan"
+          }
           fill
           className="object-cover opacity-90" // Opacity sedikit biar teks lebih terbaca
           priority
         />
-        
+
         {/* Overlay Gradient (Agar teks putih terbaca jelas di atas foto apapun) */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/60 to-transparent" />
 
@@ -93,7 +97,9 @@ export default async function Hero() {
             <div className="bg-white/20 w-12 h-12 rounded-lg flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform backdrop-blur-sm">
               <CheckCircle size={24} />
             </div>
-            <h3 className="text-lg font-bold mb-2 text-white">Integritas Tinggi</h3>
+            <h3 className="text-lg font-bold mb-2 text-white">
+              Integritas Tinggi
+            </h3>
             <p className="text-blue-100 text-sm leading-relaxed relative z-10">
               Aparatur kelurahan yang berdedikasi tinggi, jujur, dan profesional
               dalam melayani administrasi warga.
@@ -118,4 +124,3 @@ export default async function Hero() {
     </div>
   );
 }
-

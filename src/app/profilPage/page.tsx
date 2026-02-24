@@ -1,18 +1,17 @@
-import { getProfilKelurahan } from "@/src/app/actions/profil"; // 1. Import Server Action
+import { getProfilKelurahan } from "@/src/actions/profil"; // 1. Import Server Action
 import TopBar from "@/components/layout/TopBar";
 import NavBar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HeroPages from "@/components/layout/Hero"; // Pastikan path ini benar
 import IdentitasSection from "./IdentitasKelurahan";
 import SejarahSection from "./SejarahKelurahan";
-import SejarahKepemimpinan from '@/components/sejarahKepemimpinan';
+import SejarahKepemimpinan from "@/components/sejarahKepemimpinan";
 import PetaKondisiWilayah from "@/components/PetaKondisiWilayah";
 import PendidikanFasilitas from "@/components/pendidikanFasilitas";
 import PerekonomianKesehatan from "@/components/perekonomianKesehatan";
 
 // 2. Ubah function menjadi async
 export default async function ProfilPage() {
-  
   // 3. Ambil data dari database
   const profil = await getProfilKelurahan();
 

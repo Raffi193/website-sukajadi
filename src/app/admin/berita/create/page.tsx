@@ -1,14 +1,14 @@
-import { getKategoriBerita } from "@/src/app/actions/berita"
-import { BeritaForm } from "@/components/admin/berita/BeritaForm"
-import { Button } from "@/components/ui/button"
-import { ArrowLeft } from "lucide-react"
-import Link from "next/link"
+import { getKategoriBerita } from "@/src/actions/berita";
+import { BeritaForm } from "@/components/admin/berita/BeritaForm";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 export default async function CreateBeritaPage() {
-  const kategoriResult = await getKategoriBerita()
+  const kategoriResult = await getKategoriBerita();
 
   if (!kategoriResult.success) {
-    return <div>Error loading kategori</div>
+    return <div>Error loading kategori</div>;
   }
 
   return (
@@ -20,11 +20,11 @@ export default async function CreateBeritaPage() {
             <ArrowLeft className="h-4 w-4 mr-2" />
             Kembali
           </Button>
-        </Link> 
+        </Link>
       </div>
 
       {/* Form */}
       <BeritaForm kategoris={kategoriResult.data} />
     </div>
-  )
+  );
 }

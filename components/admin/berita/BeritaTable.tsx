@@ -277,8 +277,7 @@ export function BeritaTable({ berita, pagination }: BeritaTableProps) {
           <AlertDialogHeader>
             <AlertDialogTitle>Hapus Berita?</AlertDialogTitle>
             <AlertDialogDescription>
-              Aksi ini tidak dapat dibatalkan. Berita akan dihapus permanen dari
-              database.
+               Berita ini akan dihapus permanen!
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

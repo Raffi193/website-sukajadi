@@ -6,6 +6,7 @@ import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { generateSlug } from "@/lib/helpers";
+import { redirect } from "next/navigation";
 
 // Types
 export type BeritaFormData = {

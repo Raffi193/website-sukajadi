@@ -100,7 +100,7 @@ export default async function DetailBeritaPage({ params }: Props) {
                   </div>
 
                   {/* Judul Besar */}
-                  <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+                  <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 leading-tight">
                     {berita.judul}
                   </h1>
 

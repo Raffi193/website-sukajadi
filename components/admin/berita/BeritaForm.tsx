@@ -129,20 +129,40 @@ export function BeritaForm({ kategoris, initialData }: BeritaFormProps) {
     }
   };
 
-  const onSubmit = async (data: BeritaFormValues) => {
+ const onSubmit = async (data: BeritaFormValues) => {
     setIsSubmitting(true);
     try {
+      // 1. LOGIKA BARU: Bersihkan tag HTML jika excerpt kosong
+      let finalExcerpt = data.excerpt;
+
+      if (!finalExcerpt || finalExcerpt.trim() === "") {
+        // Hapus semua tag HTML dan entitas spasi
+        const plainText = data.konten
+          .replace(/<[^>]+>/g, "") // Menghapus tag seperti <p>, <ul>, <li>, dll.
+          .replace(/&nbsp;/g, " ") // Mengubah entitas spasi HTML menjadi spasi biasa
+          .trim();
+        
+        // Ambil 150 karakter pertama sebagai ringkasan otomatis
+        finalExcerpt = plainText.substring(0, 150);
+        
+        // Tambahkan "..." jika teks aslinya lebih panjang dari 150 karakter
+        if (plainText.length > 150) {
+          finalExcerpt += "...";
+        }
+      }
+
+      // 2. Gabungkan data dengan excerpt yang sudah dibersihkan
+      const submitData = {
+        ...data,
+        excerpt: finalExcerpt, // Gunakan variabel finalExcerpt di sini
+        isPublished: data.isPublished ?? false,
+        isPinned: data.isPinned ?? false,
+      };
+
+      // 3. Kirim ke Server Action
       const result = initialData
-        ? await updateBerita(initialData.id, {
-            ...data,
-            isPublished: data.isPublished ?? false,
-            isPinned: data.isPinned ?? false,
-          })
-        : await createBerita({
-            ...data,
-            isPublished: data.isPublished ?? false,
-            isPinned: data.isPinned ?? false,
-          });
+        ? await updateBerita(initialData.id, submitData)
+        : await createBerita(submitData);
 
       if (result.success) {
         toast.success("Berhasil update berita!", {
@@ -150,16 +170,17 @@ export function BeritaForm({ kategoris, initialData }: BeritaFormProps) {
         });
 
         if (!initialData) {
-          // Reset form jadi kosong lagi
           form.reset({
             judul: "",
             slug: "",
             konten: "",
+            excerpt: "",
             thumbnail: "",
-            // ... default values lainnya
+            kategoriId: "",
+            isPublished: false,
+            isPinned: false,
           });
 
-          // Paksa scroll ke paling atas agar nyaman input lagi
           window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
@@ -257,7 +278,7 @@ export function BeritaForm({ kategoris, initialData }: BeritaFormProps) {
                               shouldValidate: true,
                             });
                         }}
-                        className="text-gray-500 hover:text-blue-600"
+                        className="text-gray-500 hover:text-blue-600 cursor-pointer"
                       >
                         <RefreshCw className="h-4 w-4" />
                       </Button>
@@ -462,7 +483,7 @@ export function BeritaForm({ kategoris, initialData }: BeritaFormProps) {
             <Button
               onClick={form.handleSubmit(onSubmit)}
               disabled={isSubmitting}
-              className="min-w-[140px] shadow-lg shadow-blue-500/20 bg-blue-600 hover:bg-blue-700 transition-all"
+              className="min-w-[140px] shadow-lg shadow-blue-500/20 bg-blue-600 hover:bg-blue-700 transition-all cursor-pointer"
             >
               {isSubmitting ? (
                 <>

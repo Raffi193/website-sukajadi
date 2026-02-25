@@ -9,7 +9,7 @@ export default async function Hero() {
   const profil = await getProfilKelurahan();
 
   // 3. Tentukan gambar fallback jika admin belum upload
-  const bgImage = profil?.gambarKantor || "/images/pemerintahan.png";
+  const bgImage = profil?.gambarKantor || "/images/kantorlurah.jpeg";
 
   return (
     <div data-aos="fade-up" className="relative w-full">

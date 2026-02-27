@@ -1,12 +1,10 @@
 "use server";
 
-import { unstable_cache } from "next/cache";
-import { revalidatePath } from "next/cache";
+import { unstable_cache, revalidatePath, revalidateTag, updateTag } from "next/cache";
 import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { generateSlug } from "@/lib/helpers";
-import { redirect } from "next/navigation";
 
 // Types
 export type BeritaFormData = {
@@ -51,7 +49,18 @@ async function fetchBeritaFromDb(params?: {
     const [berita, total] = await Promise.all([
       prisma.berita.findMany({
         where,
-        include: {
+        // PERBAIKAN: Gunakan select untuk mencegah load 'konten' yang berat di halaman list
+        select: {
+          id: true,
+          judul: true,
+          slug: true,
+          excerpt: true,
+          thumbnail: true,
+          isPublished: true,
+          isPinned: true,
+          createdAt: true,
+          publishedAt: true,
+          viewCount: true,
           kategori: true,
           author: {
             select: {
@@ -84,12 +93,7 @@ async function fetchBeritaFromDb(params?: {
       success: false,
       error: "Gagal mengambil data berita",
       data: [],
-      pagination: {
-        page: 1,
-        limit: 10,
-        total: 0,
-        totalPages: 0,
-      },
+      pagination: { page: 1, limit: 10, total: 0, totalPages: 0 },
     };
   }
 }
@@ -114,101 +118,69 @@ async function fetchBeritaByIdFromDb(idOrSlug: string) {
     });
 
     if (!berita) {
-      return {
-        success: false,
-        error: "Berita tidak ditemukan",
-      };
+      return { success: false, error: "Berita tidak ditemukan" };
     }
 
-    // Increment view count (Fire and forget - aman dari blocking)
-    prisma.berita
-      .update({
-        where: { id: berita.id },
-        data: { viewCount: { increment: 1 } },
-      })
-      .catch((err) => console.error("Gagal update view count:", err));
+    // PERBAIKAN: Logika increment view count dihilangkan dari fungsi fetching ini
+    // agar kompatibel dengan sistem cache dan tidak memblokir koneksi database.
 
     return {
       success: true,
       data: berita,
     };
   } catch (error) {
-    console.error("Error fetching berita:", error);
-    return {
-      success: false,
-      error: "Gagal mengambil data berita",
-    };
+    console.error("Error fetching berita detail:", error);
+    return { success: false, error: "Gagal mengambil data berita" };
   }
 }
 
 // ----------------------------------------------------------------------
-// 2. EXPORTED CACHED FUNCTIONS (Ini yang dipanggil oleh Server Components)
+// FUNGSI BARU: Untuk menambah view count yang dipanggil secara terpisah
+// ----------------------------------------------------------------------
+export async function incrementViewCount(id: string) {
+  try {
+    await prisma.berita.update({
+      where: { id },
+      data: { viewCount: { increment: 1 } },
+      select: { id: true } // Return sekecil mungkin agar cepat
+    });
+  } catch (error) {
+    console.error("Gagal update view count:", error);
+  }
+}
+
+// ----------------------------------------------------------------------
+// EXPORTED CACHED FUNCTIONS
 // ----------------------------------------------------------------------
 
-// GET: List berita dengan pagination dan filter
 export const getBerita = unstable_cache(
-  async (params?: {
-    page?: number;
-    limit?: number;
-    kategoriId?: string;
-    search?: string;
-    isPublished?: boolean;
-  }) => fetchBeritaFromDb(params),
-  ["berita-list-cache"], // Base key cache
-  {
-    revalidate: 60, // Halaman akan diperbarui di background setiap 60 detik
-    tags: ["berita"], // Tag ini bisa dipanggil di revalidateTag() saat ada berita baru
-  }
+  async (params?: any) => fetchBeritaFromDb(params),
+  ["berita-list-cache"],
+  { revalidate: 60, tags: ["berita"] }
 );
 
-// GET: Single berita by ID atau slug
 export const getBeritaById = unstable_cache(
   async (idOrSlug: string) => fetchBeritaByIdFromDb(idOrSlug),
   ["berita-detail-cache"], 
-  {
-    revalidate: 60,
-    tags: ["berita"], 
-  }
+  { revalidate: 60, tags: ["berita"] }
 );
 
-// CREATE: Buat berita baru
+// ----------------------------------------------------------------------
+// MUTATIONS (Create, Update, Delete)
+// ----------------------------------------------------------------------
+
 export async function createBerita(data: BeritaFormData) {
   try {
     const { userId } = await auth();
+    if (!userId) return { success: false, error: "Unauthorized" };
 
-    if (!userId) {
-      return {
-        success: false,
-        error: "Unauthorized",
-      };
-    }
+    const user = await prisma.user.findUnique({ where: { clerkId: userId } });
+    if (!user) return { success: false, error: "User tidak ditemukan" };
 
-    // Get user from database
-    const user = await prisma.user.findUnique({
-      where: { clerkId: userId },
-    });
-
-    if (!user) {
-      return {
-        success: false,
-        error: "User tidak ditemukan",
-      };
-    }
-
-    // Generate slug dari judul jika tidak ada
     const slug = data.slug || generateSlug(data.judul);
-
-    // Check apakah slug sudah ada
-    const existingBerita = await prisma.berita.findUnique({
-      where: { slug },
-    });
-
-    if (existingBerita) {
-      return {
-        success: false,
-        error: "Slug sudah digunakan",
-      };
-    }
+    const existingBerita = await prisma.berita.findUnique({ where: { slug } });
+    
+    if (existingBerita) return { success: false, error: "Slug sudah digunakan" };
 
     const berita = await prisma.berita.create({
       data: {
@@ -223,69 +195,34 @@ export async function createBerita(data: BeritaFormData) {
         isPinned: data.isPinned || false,
         publishedAt: data.isPublished ? new Date() : null,
       },
-      include: {
-        kategori: true,
-        author: true,
-      },
     });
 
+    // PERBAIKAN: Gunakan revalidateTag untuk menghapus unstable_cache secara langsung
+    updateTag("berita");
     revalidatePath("/admin/berita");
     revalidatePath("/berita");
     revalidatePath("/");
 
-    return {
-      success: true,
-      data: berita,
-      message: "Berita berhasil dibuat",
-    };
+    return { success: true, data: berita, message: "Berita berhasil dibuat" };
   } catch (error) {
     console.error("Error creating berita:", error);
-    return {
-      success: false,
-      error: "Gagal membuat berita",
-    };
+    return { success: false, error: "Gagal membuat berita" };
   }
 }
 
-// UPDATE: Update berita
 export async function updateBerita(id: string, data: BeritaFormData) {
   try {
     const { userId } = await auth();
+    if (!userId) return { success: false, error: "Unauthorized" };
 
-    if (!userId) {
-      return {
-        success: false,
-        error: "Unauthorized",
-      };
-    }
+    const existingBerita = await prisma.berita.findUnique({ where: { id } });
+    if (!existingBerita) return { success: false, error: "Berita tidak ditemukan" };
 
-    // Check apakah berita ada
-    const existingBerita = await prisma.berita.findUnique({
-      where: { id },
-    });
-
-    if (!existingBerita) {
-      return {
-        success: false,
-        error: "Berita tidak ditemukan",
-      };
-    }
-
-    // Generate slug baru jika judul berubah
     const slug = data.slug || generateSlug(data.judul);
 
-    // Check slug conflict (kecuali untuk berita yang sama)
     if (slug !== existingBerita.slug) {
-      const slugExists = await prisma.berita.findUnique({
-        where: { slug },
-      });
-
-      if (slugExists) {
-        return {
-          success: false,
-          error: "Slug sudah digunakan",
-        };
-      }
+      const slugExists = await prisma.berita.findUnique({ where: { slug } });
+      if (slugExists) return { success: false, error: "Slug sudah digunakan" };
     }
 
     const berita = await prisma.berita.update({
@@ -299,70 +236,44 @@ export async function updateBerita(id: string, data: BeritaFormData) {
         kategoriId: data.kategoriId,
         isPublished: data.isPublished,
         isPinned: data.isPinned || false,
-        publishedAt:
-          data.isPublished && !existingBerita.isPublished
-            ? new Date()
-            : existingBerita.publishedAt,
-      },
-      include: {
-        kategori: true,
-        author: true,
+        publishedAt: data.isPublished && !existingBerita.isPublished ? new Date() : existingBerita.publishedAt,
       },
     });
 
+    // PERBAIKAN
+    updateTag("berita");
     revalidatePath("/admin/berita");
     revalidatePath("/berita");
     revalidatePath(`/berita/${berita.slug}`);
     revalidatePath("/");
 
-    return {
-      success: true,
-      data: berita,
-      message: "Berita berhasil diupdate",
-    };
+    return { success: true, data: berita, message: "Berita berhasil diupdate" };
   } catch (error) {
     console.error("Error updating berita:", error);
-    return {
-      success: false,
-      error: "Gagal mengupdate berita",
-    };
+    return { success: false, error: "Gagal mengupdate berita" };
   }
 }
 
-// DELETE: Hapus berita
 export async function deleteBerita(id: string) {
   try {
     const { userId } = await auth();
+    if (!userId) return { success: false, error: "Unauthorized" };
 
-    if (!userId) {
-      return {
-        success: false,
-        error: "Unauthorized",
-      };
-    }
+    await prisma.berita.delete({ where: { id } });
 
-    await prisma.berita.delete({
-      where: { id },
-    });
-
+    // PERBAIKAN
+    updateTag("berita");
     revalidatePath("/admin/berita");
     revalidatePath("/berita");
     revalidatePath("/");
 
-    return {
-      success: true,
-      message: "Berita berhasil dihapus",
-    };
+    return { success: true, message: "Berita berhasil dihapus" };
   } catch (error) {
     console.error("Error deleting berita:", error);
-    return {
-      success: false,
-      error: "Gagal menghapus berita",
-    };
+    return { success: false, error: "Gagal menghapus berita" };
   }
 }
 
-// HELPER: Get all kategori untuk dropdown
 export async function getKategoriBerita() {
   try {
     const kategori = await prisma.kategoriBerita.findMany({

@@ -30,6 +30,8 @@ export default async function BeritaAdminPage({
     );
   }
 
+  const beritaData = (beritaResult.data || []) as any[];
+
   // Hitung statistik sederhana untuk tampilan
   const totalBerita = beritaResult.pagination.total;
   // Catatan: filter ini hanya menghitung dari page yang aktif (10 item).
@@ -115,7 +117,7 @@ export default async function BeritaAdminPage({
 
         {/* Table - Tanpa Wrapper Card Tambahan */}
         <BeritaTable
-          berita={beritaResult.data}
+          berita={beritaData}
           pagination={beritaResult.pagination}
         />
       </div>

@@ -85,7 +85,7 @@ export default function IdentitasSection({ data }: { data: ProfilData | null }) 
   ];
 
   return (
-    <section className="py-20 bg-white border-b border-gray-100">
+    <section data-aos="fade-up" className="py-20 bg-white border-b border-gray-100">
       <div className="container mx-auto px-4 md:px-16">
         {/* Section Title */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">

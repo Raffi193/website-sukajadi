@@ -1,8 +1,8 @@
 "use client";
 
-import TopBar from "@/components/layout/TopBar";
-import NavBar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import TopBar from "@/src/components/layout/TopBar";
+import NavBar from "@/src/components/layout/Navbar";
+import Footer from "@/src/components/layout/Footer";
 import Image from "next/image";
 import Link from "next/link";
 import {

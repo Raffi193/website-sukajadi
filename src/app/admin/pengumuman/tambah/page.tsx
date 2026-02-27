@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
 import { createPengumuman } from "@/src/actions/pengumuman"; // Import Action
-import { DocumentUpload } from "@/components/admin/dokumen/dokumenUpload"; // Import Component Upload
+import { DocumentUpload } from "@/src/components/admin/dokumen/dokumenUpload"; // Import Component Upload
 import { FaSave, FaArrowLeft, FaSpinner } from "react-icons/fa";
 
 export default function TambahPengumumanPage() {

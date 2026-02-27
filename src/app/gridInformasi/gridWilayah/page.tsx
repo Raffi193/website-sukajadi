@@ -15,9 +15,9 @@ import {
   FaBook,
   FaChild,
 } from "react-icons/fa";
-import Topbar from "@/components/layout/TopBar";
-import NavBar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import Topbar from "@/src/components/layout/TopBar";
+import NavBar from "@/src/components/layout/Navbar";
+import Footer from "@/src/components/layout/Footer";
 
 export default function WilayahSection() {
   // Data Pendidikan untuk Progress Bar

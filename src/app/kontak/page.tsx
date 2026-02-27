@@ -1,21 +1,21 @@
 // app/kontak/page.tsx
-import TopBar from "@/components/layout/TopBar";
-import Navbar from "@/components/layout/Navbar";
-import HeroPages from "@/components/layout/Hero"; // Pastikan path ini sesuai
-import Footer from "@/components/layout/Footer";
+import TopBar from "@/src/components/layout/TopBar";
+import Navbar from "@/src/components/layout/Navbar";
+import HeroPages from "@/src/components/layout/Hero"; // Pastikan path ini sesuai
+import Footer from "@/src/components/layout/Footer";
 import Link from "next/link";
-import { 
-  FaMapMarkerAlt, 
-  FaPhoneAlt, 
-  FaEnvelope, 
-  FaWhatsapp, 
-  FaClock, 
-  FaInstagram, 
-  FaFacebookF, 
+import {
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaWhatsapp,
+  FaClock,
+  FaInstagram,
+  FaFacebookF,
   FaYoutube,
   FaBuilding,
   FaShieldAlt,
-  FaAmbulance
+  FaAmbulance,
 } from "react-icons/fa";
 
 export default function HalamanKontak() {
@@ -32,7 +32,6 @@ export default function HalamanKontak() {
       />
 
       <div className="container mx-auto px-4 md:px-8 lg:px-16 mt-30 -mt-10 relative z-10">
-        
         {/* 2. Kartu Kontak Utama (Grid 4 Kolom) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {/* Kartu Alamat */}
@@ -40,7 +39,9 @@ export default function HalamanKontak() {
             <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-4">
               <FaMapMarkerAlt size={24} />
             </div>
-            <h3 className="font-bold text-gray-800 text-lg mb-2">Alamat Kantor</h3>
+            <h3 className="font-bold text-gray-800 text-lg mb-2">
+              Alamat Kantor
+            </h3>
             <p className="text-gray-600 text-sm leading-relaxed">
               Jl. Hm Asyik Aqil, Sukomoro, Kec. Talang Kelapa, Kab. Banyuasin
             </p>
@@ -51,7 +52,9 @@ export default function HalamanKontak() {
             <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-4">
               <FaWhatsapp size={24} />
             </div>
-            <h3 className="font-bold text-gray-800 text-lg mb-2">Layanan Warga</h3>
+            <h3 className="font-bold text-gray-800 text-lg mb-2">
+              Layanan Warga
+            </h3>
             <p className="text-gray-600 text-sm mb-1">Telepon: (0711) 123456</p>
             <p className="text-gray-600 text-sm">WhatsApp: +62 812-3456-7890</p>
           </div>
@@ -61,9 +64,13 @@ export default function HalamanKontak() {
             <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 mb-4">
               <FaEnvelope size={24} />
             </div>
-            <h3 className="font-bold text-gray-800 text-lg mb-2">Surat Elektronik</h3>
+            <h3 className="font-bold text-gray-800 text-lg mb-2">
+              Surat Elektronik
+            </h3>
             <p className="text-gray-600 text-sm mb-1">admin@sukajadi.go.id</p>
-            <p className="text-gray-600 text-sm">kelurahan.sukajadi@gmail.com</p>
+            <p className="text-gray-600 text-sm">
+              kelurahan.sukajadi@gmail.com
+            </p>
           </div>
 
           {/* Kartu Sosmed */}
@@ -71,18 +78,34 @@ export default function HalamanKontak() {
             <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 mb-4">
               <FaInstagram size={24} />
             </div>
-            <h3 className="font-bold text-gray-800 text-lg mb-2">Media Sosial</h3>
+            <h3 className="font-bold text-gray-800 text-lg mb-2">
+              Media Sosial
+            </h3>
             <div className="flex gap-3 mt-2">
-              <Link href="#" className="p-2 bg-gray-100 rounded-full hover:bg-blue-600 hover:text-white transition"><FaFacebookF /></Link>
-              <Link href="#" className="p-2 bg-gray-100 rounded-full hover:bg-pink-600 hover:text-white transition"><FaInstagram /></Link>
-              <Link href="#" className="p-2 bg-gray-100 rounded-full hover:bg-red-600 hover:text-white transition"><FaYoutube /></Link>
+              <Link
+                href="#"
+                className="p-2 bg-gray-100 rounded-full hover:bg-blue-600 hover:text-white transition"
+              >
+                <FaFacebookF />
+              </Link>
+              <Link
+                href="#"
+                className="p-2 bg-gray-100 rounded-full hover:bg-pink-600 hover:text-white transition"
+              >
+                <FaInstagram />
+              </Link>
+              <Link
+                href="#"
+                className="p-2 bg-gray-100 rounded-full hover:bg-red-600 hover:text-white transition"
+              >
+                <FaYoutube />
+              </Link>
             </div>
           </div>
         </div>
 
         {/* 3. Section Informasi Detail (Layout 2 Kolom) */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-          
           {/* Kolom Kiri: Jam Operasional & Jadwal */}
           <div className="lg:col-span-1 space-y-6">
             <div className="bg-blue-900 text-white p-6 rounded-xl shadow-lg relative overflow-hidden">
@@ -111,27 +134,49 @@ export default function HalamanKontak() {
                 </div>
               </div>
               <p className="mt-6 text-xs text-blue-200 italic">
-                *Untuk layanan mendesak di luar jam kerja, silakan hubungi nomor darurat wilayah.
+                *Untuk layanan mendesak di luar jam kerja, silakan hubungi nomor
+                darurat wilayah.
               </p>
             </div>
 
             {/* Nomor Darurat */}
             <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
               <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                 <FaShieldAlt className="text-red-600" /> Nomor Darurat Wilayah
+                <FaShieldAlt className="text-red-600" /> Nomor Darurat Wilayah
               </h3>
               <ul className="space-y-3">
                 <li className="flex justify-between items-center p-3 bg-red-50 rounded-lg">
-                  <span className="text-gray-700 text-sm font-medium">Bhabinkamtibmas</span>
-                  <a href="tel:110" className="text-red-600 font-bold hover:underline">0812-XXXX-XXXX</a>
+                  <span className="text-gray-700 text-sm font-medium">
+                    Bhabinkamtibmas
+                  </span>
+                  <a
+                    href="tel:110"
+                    className="text-red-600 font-bold hover:underline"
+                  >
+                    0812-XXXX-XXXX
+                  </a>
                 </li>
                 <li className="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
-                  <span className="text-gray-700 text-sm font-medium">Babinsa TNI</span>
-                  <a href="tel:113" className="text-orange-600 font-bold hover:underline">0813-XXXX-XXXX</a>
+                  <span className="text-gray-700 text-sm font-medium">
+                    Babinsa TNI
+                  </span>
+                  <a
+                    href="tel:113"
+                    className="text-orange-600 font-bold hover:underline"
+                  >
+                    0813-XXXX-XXXX
+                  </a>
                 </li>
                 <li className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
-                  <span className="text-gray-700 text-sm font-medium">Ambulans Desa</span>
-                  <a href="tel:118" className="text-blue-600 font-bold hover:underline">0811-XXXX-XXXX</a>
+                  <span className="text-gray-700 text-sm font-medium">
+                    Ambulans Desa
+                  </span>
+                  <a
+                    href="tel:118"
+                    className="text-blue-600 font-bold hover:underline"
+                  >
+                    0811-XXXX-XXXX
+                  </a>
                 </li>
               </ul>
             </div>
@@ -141,9 +186,12 @@ export default function HalamanKontak() {
           <div className="lg:col-span-2">
             <div className="bg-white p-8 rounded-xl shadow-md border border-gray-100 h-full">
               <div className="mb-6">
-                <h3 className="text-2xl font-bold text-gray-800 font-poppins">Unit Layanan Kelurahan</h3>
+                <h3 className="text-2xl font-bold text-gray-800 font-poppins">
+                  Unit Layanan Kelurahan
+                </h3>
                 <p className="text-gray-500 mt-2">
-                  Silakan hubungi unit terkait sesuai dengan kebutuhan administrasi Anda untuk pelayanan yang lebih cepat.
+                  Silakan hubungi unit terkait sesuai dengan kebutuhan
+                  administrasi Anda untuk pelayanan yang lebih cepat.
                 </p>
               </div>
 
@@ -154,9 +202,16 @@ export default function HalamanKontak() {
                     <FaBuilding />
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-800">Seksi Pemerintahan</h4>
-                    <p className="text-xs text-gray-500 mb-2">KTP, KK, Surat Pindah, Pertanahan</p>
-                    <a href="https://wa.me/6281234567890" className="text-sm text-green-600 font-semibold hover:underline flex items-center gap-1">
+                    <h4 className="font-bold text-gray-800">
+                      Seksi Pemerintahan
+                    </h4>
+                    <p className="text-xs text-gray-500 mb-2">
+                      KTP, KK, Surat Pindah, Pertanahan
+                    </p>
+                    <a
+                      href="https://wa.me/6281234567890"
+                      className="text-sm text-green-600 font-semibold hover:underline flex items-center gap-1"
+                    >
                       <FaWhatsapp /> Chat WhatsApp
                     </a>
                   </div>
@@ -168,9 +223,16 @@ export default function HalamanKontak() {
                     <FaBuilding />
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-800">Seksi Pembangunan</h4>
-                    <p className="text-xs text-gray-500 mb-2">Izin Usaha, Pembangunan, Lingkungan</p>
-                    <a href="https://wa.me/6281234567890" className="text-sm text-green-600 font-semibold hover:underline flex items-center gap-1">
+                    <h4 className="font-bold text-gray-800">
+                      Seksi Pembangunan
+                    </h4>
+                    <p className="text-xs text-gray-500 mb-2">
+                      Izin Usaha, Pembangunan, Lingkungan
+                    </p>
+                    <a
+                      href="https://wa.me/6281234567890"
+                      className="text-sm text-green-600 font-semibold hover:underline flex items-center gap-1"
+                    >
                       <FaWhatsapp /> Chat WhatsApp
                     </a>
                   </div>
@@ -183,8 +245,13 @@ export default function HalamanKontak() {
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-800">Seksi Kessos</h4>
-                    <p className="text-xs text-gray-500 mb-2">Bantuan Sosial, Kesehatan, Pendidikan</p>
-                    <a href="https://wa.me/6281234567890" className="text-sm text-green-600 font-semibold hover:underline flex items-center gap-1">
+                    <p className="text-xs text-gray-500 mb-2">
+                      Bantuan Sosial, Kesehatan, Pendidikan
+                    </p>
+                    <a
+                      href="https://wa.me/6281234567890"
+                      className="text-sm text-green-600 font-semibold hover:underline flex items-center gap-1"
+                    >
                       <FaWhatsapp /> Chat WhatsApp
                     </a>
                   </div>
@@ -197,8 +264,13 @@ export default function HalamanKontak() {
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-800">Layanan Umum</h4>
-                    <p className="text-xs text-gray-500 mb-2">Legalisir, Surat Keterangan, dll</p>
-                    <a href="https://wa.me/6281234567890" className="text-sm text-green-600 font-semibold hover:underline flex items-center gap-1">
+                    <p className="text-xs text-gray-500 mb-2">
+                      Legalisir, Surat Keterangan, dll
+                    </p>
+                    <a
+                      href="https://wa.me/6281234567890"
+                      className="text-sm text-green-600 font-semibold hover:underline flex items-center gap-1"
+                    >
                       <FaWhatsapp /> Chat WhatsApp
                     </a>
                   </div>
@@ -209,10 +281,13 @@ export default function HalamanKontak() {
               <div className="mt-8 bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl p-6 text-white flex flex-col md:flex-row items-center justify-between gap-4">
                 <div>
                   <h4 className="font-bold text-lg">Punya Pertanyaan Lain?</h4>
-                  <p className="text-blue-100 text-sm">Tim kami siap membantu menjawab pertanyaan Anda melalui WhatsApp.</p>
+                  <p className="text-blue-100 text-sm">
+                    Tim kami siap membantu menjawab pertanyaan Anda melalui
+                    WhatsApp.
+                  </p>
                 </div>
-                <a 
-                  href="https://wa.me/6281234567890" 
+                <a
+                  href="https://wa.me/6281234567890"
                   target="_blank"
                   className="bg-white text-blue-600 px-6 py-2 rounded-full font-bold text-sm hover:bg-gray-100 transition shadow-md whitespace-nowrap"
                 >
@@ -227,15 +302,19 @@ export default function HalamanKontak() {
       {/* 4. Peta Lokasi (Full Width) */}
       <section className="bg-white py-12 border-t border-gray-200">
         <div className="container mx-auto px-4 md:px-16 text-center mb-8">
-          <p className="text-xl md:text-2xl font-semibold text-gray-800 font-poppins mb-2">Lokasi Kantor</p>
-          <p className="text-gray-500">Temukan lokasi kantor kami melalui peta digital</p>
+          <p className="text-xl md:text-2xl font-semibold text-gray-800 font-poppins mb-2">
+            Lokasi Kantor
+          </p>
+          <p className="text-gray-500">
+            Temukan lokasi kantor kami melalui peta digital
+          </p>
           <div className="h-1 w-20 bg-blue-600 rounded-full mx-auto mt-4"></div>
         </div>
 
         <div className="container mx-auto px-4 md:px-16 mb-30">
           <div className="w-full aspect-[7/9] md:aspect-[21/9] bg-gray-200 rounded-2xl overflow-hidden shadow-xl border-4 border-white relative z-0">
-             {/* Google Maps Embed */}
-             <iframe
+            {/* Google Maps Embed */}
+            <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.6632410935244!2d104.65292217435308!3d-2.9128995970634928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b0cac53f936b9%3A0x2997769e28f68579!2sKantor%20Lurah%20Sukajadi!5e0!3m2!1sid!2sid!4v1771296040965!5m2!1sid!2sid" // Pastikan link embed ini benar atau gunakan placeholder
               width="100%"
               height="100%"
@@ -247,11 +326,11 @@ export default function HalamanKontak() {
               className="hover:grayscale-0 transition duration-500"
             ></iframe>
           </div>
-          
+
           <div className="text-center mt-6">
-            <a 
-              href="https://maps.google.com/?q=Kantor+Lurah+Sukajadi" 
-              target="_blank" 
+            <a
+              href="https://maps.google.com/?q=Kantor+Lurah+Sukajadi"
+              target="_blank"
               className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-800 transition mt-4"
             >
               <FaMapMarkerAlt /> Buka di Google Maps

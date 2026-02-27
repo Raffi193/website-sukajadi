@@ -1,14 +1,13 @@
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import Navbar from "@/src/components/layout/Navbar";
+import Footer from "@/src/components/layout/Footer";
 import LayananPenduduk from "./LayananPenduduk";
 import Link from "next/link";
 import { FaChevronRight, FaHome } from "react-icons/fa";
-import TopBar from "@/components/layout/TopBar";
+import TopBar from "@/src/components/layout/TopBar";
 import { prisma } from "@/lib/prisma"; // Import Prisma
 
 // Tambahkan 'async' karena kita akan fetch data database
 export default async function HalamanKependudukan() {
-  
   // 1. Ambil data dokumen dari database (diurutkan terbaru)
   const dokumenList = await prisma.dokumenPublik.findMany({
     orderBy: { createdAt: "desc" },
@@ -54,7 +53,6 @@ export default async function HalamanKependudukan() {
           Pastikan component LayananPenduduk menerima props ini
         */}
         <LayananPenduduk dataDokumen={dokumenList} />
-        
       </main>
       <Footer />
     </>

@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/src/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 // Import form client yang baru
-import CreatePerangkatForm from "@/components/admin/perangkat/CreatePerangkatForm";
+import CreatePerangkatForm from "@/src/components/admin/perangkat/CreatePerangkatForm";
 
 export default function TambahPerangkatPage() {
   return (
@@ -30,7 +30,6 @@ export default function TambahPerangkatPage() {
             </span>
           </h1>
           <div className="flex items-center gap-2 text-muted-foreground">
-           
             <p className="text-sm md:text-base font-medium">
               Lengkapi formulir di bawah untuk menambahkan personel baru
             </p>

@@ -10,7 +10,7 @@ export default function VisiMisi() {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-whie overflow-hidden">
+    <section data-aos="fade-up" className="py-16 md:py-24 bg-whie overflow-hidden">
       <div className="container mx-auto px-4 md:px-16">
         
         {/* HEADER SECTION */}

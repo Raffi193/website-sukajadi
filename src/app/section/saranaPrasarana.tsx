@@ -102,7 +102,7 @@ const INFRASTRUCTURE_DETAILS = [
 
 export default function SaranaPrasaranaSection() {
   return (
-    <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 relative overflow-hidden">
+    <section data-aos="fade-up" className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-[300px] md:h-[500px] bg-gradient-to-b from-white to-transparent pointer-events-none"></div>
 

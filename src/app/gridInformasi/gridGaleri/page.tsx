@@ -1,13 +1,13 @@
 import { prisma } from "@/lib/prisma";
-import Navbar from "@/components/layout/Navbar"; // Pastikan path benar
-import Footer from "@/components/layout/Footer"; // Pastikan path benar
-import TopBar from "@/components/layout/TopBar"; // Pastikan path benar
+import Navbar from "@/src/components/layout/Navbar"; // Pastikan path benar
+import Footer from "@/src/components/layout/Footer"; // Pastikan path benar
+import TopBar from "@/src/components/layout/TopBar"; // Pastikan path benar
 import GaleriClient from "./GaleriClient";
 import Link from "next/link";
 import { FaChevronRight, FaHome } from "react-icons/fa";
 
 // Agar data selalu fresh saat ada upload baru
-export const dynamic = 'force-dynamic'; 
+export const dynamic = "force-dynamic";
 
 export default async function HalamanGaleri() {
   // Ambil Data dari Database
@@ -20,7 +20,7 @@ export default async function HalamanGaleri() {
     <main className="min-h-screen bg-gray-50">
       <TopBar />
       <Navbar />
-      
+
       {/* --- HEADER BARU (Ganti HeroPages) --- */}
       <section className="bg-[#1e293b] pt-20 pb-20 px-4 md:px-8 text-white relative overflow-hidden">
         {/* Dekorasi Background (Opsional) */}
@@ -29,7 +29,10 @@ export default async function HalamanGaleri() {
         <div className="container mx-auto relative z-10">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-sm text-gray-400 mb-2">
-            <Link href="/" className="hover:text-white flex items-center gap-1 transition">
+            <Link
+              href="/"
+              className="hover:text-white flex items-center gap-1 transition"
+            >
               <FaHome /> Beranda
             </Link>
             <FaChevronRight size={10} />
@@ -43,7 +46,8 @@ export default async function HalamanGaleri() {
 
           {/* Subjudul */}
           <p className="text-gray-300 text-medium md:text-medium max-w-2xl leading-relaxed">
-            Arsip dokumentasi visual kegiatan pemerintahan, pembangunan, dan kemasyarakatan di lingkungan Kelurahan Sukajadi.
+            Arsip dokumentasi visual kegiatan pemerintahan, pembangunan, dan
+            kemasyarakatan di lingkungan Kelurahan Sukajadi.
           </p>
         </div>
       </section>

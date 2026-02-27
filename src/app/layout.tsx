@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import { Metadata } from "next";
+import AosInit from "../components/AosInit";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -55,6 +56,7 @@ export default function RootLayout({
     >
       <html lang="id">
         <body className={inter.className}>
+          <AosInit />
           {children}
           <Toaster position="top-right" richColors />
         </body>

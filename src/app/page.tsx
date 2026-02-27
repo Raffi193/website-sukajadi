@@ -1,10 +1,10 @@
-import TopBar from "@/components/layout/TopBar";
-import Navbar from "@/components/layout/Navbar";
-import Hero from "@/components/home/Hero";
-import Footer from "@/components/layout/Footer";
-import FloatingButton from "@/components/layout/FloatingButton";
+import TopBar from "@/src/components/layout/TopBar";
+import Navbar from "@/src/components/layout/Navbar";
+import Hero from "@/src/components/home/Hero";
+import Footer from "@/src/components/layout/Footer";
+import FloatingButton from "@/src/components/layout/FloatingButton";
 import Image from "next/image";
-import DaftarBerita from "@/components/DaftarBerita";
+import DaftarBerita from "@/src/components/DaftarBerita";
 import Jelajahi from "./section/jelajahDesa";
 import SaranaPrasarana from "./section/saranaPrasarana";
 
@@ -35,7 +35,7 @@ export default function Home() {
         <Hero />
 
         {/* --- SECTION SAMBUTAN LURAH (DESAIN BARU) --- */}
-        <section className="py-24 bg-white">
+        <section data-aos="fade-up" className="py-24 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-16">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
               {/* KOLOM KIRI: FOTO LURAH (Desain Lebih Bersih) */}

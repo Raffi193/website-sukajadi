@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <>
       {/* Hapus 'container' dari sini agar background & gambar bisa full width ke tepi layar */}
-      <section className="relative w-full bg-blue-950 overflow-hidden md:h-[600px] flex items-center px-8">
+      <section data-aos="fade-up" className="relative w-full bg-blue-950 overflow-hidden md:h-[600px] flex items-center px-8">
         
         {/* --- LAYER 1: BACKGROUND PATTERN (HALUS) --- */}
         <div

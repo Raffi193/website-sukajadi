@@ -1,23 +1,22 @@
-import { UserButton } from "@clerk/nextjs"
-import { currentUser } from "@clerk/nextjs/server"
-import { redirect } from "next/navigation"
-import { AdminSidebar } from "@/components/admin/sidebar" // Import sidebar yang baru dibuat
-import { Bell } from "lucide-react"
+import { UserButton } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import { AdminSidebar } from "@/src/components/admin/sidebar"; // Import sidebar yang baru dibuat
+import { Bell } from "lucide-react";
 
 export default async function AdminLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const user = await currentUser()
+  const user = await currentUser();
 
   if (!user) {
-    redirect("/sign-in")
+    redirect("/sign-in");
   }
 
   return (
     <div className="flex min-h-screen bg-gray-50/50">
-      
       {/* Sidebar (Fixed width) */}
       <div className="hidden md:flex md:w-72 md:flex-col md:fixed md:inset-y-0">
         <AdminSidebar />
@@ -25,11 +24,9 @@ export default async function AdminLayout({
 
       {/* Main Content Wrapper */}
       <div className="flex flex-col flex-1 md:pl-72 transition-all w-full">
-        
         {/* Top Navbar */}
         <header className="h-16 sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-gray-200/60">
           <div className="flex items-center justify-between h-full px-6 md:px-8">
-            
             {/* Left side (Breadcrumbs/Title placeholder) */}
             <div className="flex items-center gap-2">
               <h1 className="text-sm font-medium text-gray-500">
@@ -40,8 +37,7 @@ export default async function AdminLayout({
             {/* Right side (User Actions) */}
             <div className="flex items-center gap-4">
               {/* Notification Icon (Visual Only) */}
-              
-              
+
               <div className="h-6 w-px bg-gray-200 mx-1"></div>
 
               <div className="flex items-center gap-3 pl-1">
@@ -53,12 +49,12 @@ export default async function AdminLayout({
                     Administrator
                   </span>
                 </div>
-                <UserButton 
+                <UserButton
                   afterSignOutUrl="/"
                   appearance={{
                     elements: {
-                      avatarBox: "h-9 w-9 ring-2 ring-gray-100"
-                    }
+                      avatarBox: "h-9 w-9 ring-2 ring-gray-100",
+                    },
                   }}
                 />
               </div>
@@ -74,5 +70,5 @@ export default async function AdminLayout({
         </main>
       </div>
     </div>
-  )
+  );
 }

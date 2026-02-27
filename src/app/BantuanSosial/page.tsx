@@ -1,10 +1,10 @@
 // app/layanan/bansos/page.tsx
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import Navbar from "@/src/components/layout/Navbar";
+import Footer from "@/src/components/layout/Footer";
 import BansosSection from "./konten";
 import Link from "next/link";
 import { FaChevronRight, FaHome } from "react-icons/fa";
-import TopBar from "@/components/layout/TopBar";
+import TopBar from "@/src/components/layout/TopBar";
 
 export default function HalamanBansos() {
   return (
@@ -42,11 +42,9 @@ export default function HalamanBansos() {
 
         {/* Konten Utama */}
         <BansosSection />
-
-       
       </main>
 
-       <Footer />
+      <Footer />
     </>
   );
 }

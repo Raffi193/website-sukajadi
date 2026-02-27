@@ -10,9 +10,9 @@ import {
   FaArrowLeft,
   FaShareAlt,
 } from "react-icons/fa";
-import Footer from "@/components/layout/Footer";
-import NavBar from "@/components/layout/Navbar";
-import TopBar from "@/components/layout/TopBar";
+import Footer from "@/src/components/layout/Footer";
+import NavBar from "@/src/components/layout/Navbar";
+import TopBar from "@/src/components/layout/TopBar";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -156,7 +156,7 @@ export default async function DetailBeritaPage({ params }: Props) {
                 {/* --- ISI BERITA --- */}
                 <div
                   className="prose prose-lg prose-blue max-w-none text-gray-800 leading-relaxed break-words overflow-hidden"
-                dangerouslySetInnerHTML={{ __html: berita.konten }}
+                  dangerouslySetInnerHTML={{ __html: berita.konten }}
                 />
 
                 {/* Tags Section (Opsional) */}

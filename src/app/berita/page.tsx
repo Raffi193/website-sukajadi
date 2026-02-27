@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Calendar, ArrowRight } from "lucide-react";
-import TopBar from "@/components/layout/TopBar";
-import NavBar from "@/components/layout/Navbar";
-import Hero from "@/components/home/Hero";
-import Footer from "@/components/layout/Footer";
+import TopBar from "@/src/components/layout/TopBar";
+import NavBar from "@/src/components/layout/Navbar";
+import Hero from "@/src/components/home/Hero";
+import Footer from "@/src/components/layout/Footer";
 import { FaSearch, FaHome, FaChevronRight } from "react-icons/fa";
-import DaftarBerita from "@/components/DaftarBerita";
+import DaftarBerita from "@/src/components/DaftarBerita";
 
 export default function Berita() {
   return (

@@ -2,9 +2,9 @@
 
 import { prisma } from "@/lib/prisma"; // Sesuaikan path prisma
 import { notFound } from "next/navigation";
-import { BeritaForm } from "@/components/admin/berita/BeritaForm"; // Sesuaikan path import
+import { BeritaForm } from "@/src/components/admin/berita/BeritaForm"; // Sesuaikan path import
 import { ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
 
 interface EditBeritaPageProps {

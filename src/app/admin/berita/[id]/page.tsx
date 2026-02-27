@@ -6,10 +6,10 @@ import { id as idLocale } from "date-fns/locale";
 import { ArrowLeft, Edit, Calendar, User, Eye, Tag, Globe } from "lucide-react";
 
 import { prisma } from "@/lib/prisma"; // Sesuaikan path prisma Anda
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import { Button } from "@/src/components/ui/button";
+import { Badge } from "@/src/components/ui/badge";
+import { Card, CardContent } from "@/src/components/ui/card";
+import { Separator } from "@/src/components/ui/separator";
 
 interface BeritaDetailPageProps {
   params: Promise<{ id: string }>;

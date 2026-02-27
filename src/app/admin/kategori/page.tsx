@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/src/components/ui/button";
 import { Plus, Trash2, Tag, Layers, Hash } from "lucide-react";
 import { deleteKategori } from "@/src/actions/kategori";
 

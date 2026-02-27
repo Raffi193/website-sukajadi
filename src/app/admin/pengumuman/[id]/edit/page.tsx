@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
-import EditPengumumanForm from "@/components/admin/EditPengungumanForm";
+import EditPengumumanForm from "@/src/components/admin/EditPengungumanForm";
 
 interface EditPageProps {
   params: Promise<{ id: string }>; // Params sekarang Promise di Next.js terbaru

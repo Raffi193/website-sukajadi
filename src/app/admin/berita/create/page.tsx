@@ -1,6 +1,6 @@
 import { getKategoriBerita } from "@/src/actions/berita";
-import { BeritaForm } from "@/components/admin/berita/BeritaForm";
-import { Button } from "@/components/ui/button";
+import { BeritaForm } from "@/src/components/admin/berita/BeritaForm";
+import { Button } from "@/src/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 

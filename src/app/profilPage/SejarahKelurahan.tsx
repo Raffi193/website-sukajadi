@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function SejarahSection() {
   return (
-    <section className="py-20 bg-white">
+    <section data-aos="fade-up" className="py-20 bg-white">
       <div className="container mx-auto px-4 md:px-16">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           

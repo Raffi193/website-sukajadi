@@ -1,10 +1,15 @@
 import { getBerita, getKategoriBerita } from "@/src/actions/berita";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/src/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/src/components/ui/card";
 import { Plus, FileText, CheckCircle2, Clock } from "lucide-react";
 import Link from "next/link";
-import { BeritaTable } from "@/components/admin/berita/BeritaTable";
-import { BeritaFilters } from "@/components/admin/berita/BeritaFilters";
+import { BeritaTable } from "@/src/components/admin/berita/BeritaTable";
+import { BeritaFilters } from "@/src/components/admin/berita/BeritaFilters";
 
 export default async function BeritaAdminPage({
   searchParams,
@@ -116,10 +121,7 @@ export default async function BeritaAdminPage({
         </div>
 
         {/* Table - Tanpa Wrapper Card Tambahan */}
-        <BeritaTable
-          berita={beritaData}
-          pagination={beritaResult.pagination}
-        />
+        <BeritaTable berita={beritaData} pagination={beritaResult.pagination} />
       </div>
     </div>
   );

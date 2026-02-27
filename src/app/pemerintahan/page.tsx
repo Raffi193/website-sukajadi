@@ -1,13 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import TopBar from "@/components/layout/TopBar";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import TopBar from "@/src/components/layout/TopBar";
+import Navbar from "@/src/components/layout/Navbar";
+import Footer from "@/src/components/layout/Footer";
 import LembagaMitra from "./lembagaKemasyarakatan";
 import Hero from "./hero";
 import TupoksiSection from "./TupoksiSection";
 import VisiMisi from "./VisiMisi";
-import KelembagaanSection from "@/components/views/KelembagaanSection";
+import KelembagaanSection from "@/src/components/views/KelembagaanSection";
 import {
   FaSitemap,
   FaDownload,

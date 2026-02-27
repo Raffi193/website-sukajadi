@@ -181,6 +181,9 @@ export default function Footer() {
             Cipta Dilindungi.
           </p>
           <div className="flex gap-6 mt-4 md:mt-0">
+            <Link href="whatsapp://send?phone=6283167858315" className="hover:text-white transition">
+              Development by KKN Rekognisi 84_417 <br/> UIN Raden Fatah Palembang <br /> 
+            </Link>
             <Link href="#" className="hover:text-white transition">
               Kebijakan Privasi
             </Link>
